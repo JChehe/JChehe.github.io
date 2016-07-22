@@ -1,0 +1,832 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iframe,JavaScript,hash," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="最近需要对创业团队的网站进行改版，而我负责前端设计和实现。下面是一些总结与体会：当设计完成之前，我就跟和我配合的Java 后台说用iframe实现，结果说麻烦不肯，到最后突然对我说还是用iframe吧，说他以前也用过，很简单–！…其实我之间也基本没用iframe，对它比较陌生，但是 QQmusic 网页版就是用iframe 做的，印象比较深刻！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现类似 QQ音乐网页版 的单页面总结">
+<meta property="og:url" content="http://yoursite.com/2015/08/23/2015-8-23-build-similar-qqmusice-spa/index.html">
+<meta property="og:site_name" content="刘健超(Jc)'s Blog">
+<meta property="og:description" content="最近需要对创业团队的网站进行改版，而我负责前端设计和实现。下面是一些总结与体会：当设计完成之前，我就跟和我配合的Java 后台说用iframe实现，结果说麻烦不肯，到最后突然对我说还是用iframe吧，说他以前也用过，很简单–！…其实我之间也基本没用iframe，对它比较陌生，但是 QQmusic 网页版就是用iframe 做的，印象比较深刻！">
+<meta property="og:updated_time" content="2016-04-06T04:33:06.048Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实现类似 QQ音乐网页版 的单页面总结">
+<meta name="twitter:description" content="最近需要对创业团队的网站进行改版，而我负责前端设计和实现。下面是一些总结与体会：当设计完成之前，我就跟和我配合的Java 后台说用iframe实现，结果说麻烦不肯，到最后突然对我说还是用iframe吧，说他以前也用过，很简单–！…其实我之间也基本没用iframe，对它比较陌生，但是 QQmusic 网页版就是用iframe 做的，印象比较深刻！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 实现类似 QQ音乐网页版 的单页面总结 | 刘健超(Jc)'s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76019300-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d2eaa363b7db95e9ef065389dd27defe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">刘健超(Jc)'s Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="/resume" rel="section">
+            
+              <i class="menu-item-icon fa fa-thumbs-o-up fa-fw"></i> <br />
+            
+            简历
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                实现类似 QQ音乐网页版 的单页面总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-23T16:13:00+08:00" content="2015-08-23">
+              2015-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/原创/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/23/2015-8-23-build-similar-qqmusice-spa/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/23/2015-8-23-build-similar-qqmusice-spa/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/08/23/2015-8-23-build-similar-qqmusice-spa/" class="leancloud_visitors" data-flag-title="实现类似 QQ音乐网页版 的单页面总结">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+          
+            <div class="post-tags">
+              Tags:&nbsp;&nbsp;
+              
+                <a href="/tags/iframe/" rel="tag">#iframe</a>
+              
+                <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+              
+                <a href="/tags/hash/" rel="tag">#hash</a>
+              
+            </div>
+          
+        </div>
+
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近需要对创业团队的网站进行改版，而我负责前端设计和实现。<br>下面是一些总结与体会：<br>当设计完成之前，我就跟和我配合的Java 后台说用iframe实现，结果说麻烦不肯，到最后突然对我说还是用iframe吧，说他以前也用过，很简单–！…其实我之间也基本没用iframe，对它比较陌生，但是 QQmusic 网页版就是用iframe 做的，印象比较深刻！  </p>
+<a id="more"></a>
+<p>我设计的页面总体结构是与QQmusic网页版类似，网页头部和脚部都是固定，中间内容是通过iframe来展示。</p>
+<p>用iframe之前，我想到要解决的问题有：</p>
+<ol>
+<li><p>iframe虽然有height这个属性，但是每次加载到里面的内容都是不同的，而且我实现的部分页面是需要动态加载能容的。<br>我的解决办法是：<br>iframe 首次加载成功后和 <code>iframe</code> 页面内有动态增加内容时（导致整体高度有变化）都调用下面这个函数，来设置 <code>iframe</code> 高度</p>
+<pre><code>function iframeLoaded() {
+    var contentFrame = document.getElementById(&apos;contentFrame&apos;);
+    if(contentFrame) {
+        contentFrame.height = contentFrame.contentWindow.document.documentElement.scrollHeight + &quot;px&quot;;
+    }
+}
+</code></pre></li>
+</ol>
+<ol>
+<li><p>因为是做成像QQmusic网页版的单页面，所以我也利用hash变化来欺骗浏览器，让浏览器为我的页面跳转生成历史记录，但是后来发现，每次点击链接加载不用iframe时，都会生成两条相同的历史记录。这是为什么呢？后来发现，hash值改变会导致一次，iframe的src改变也会生成一次历史记录(包括hash的改变)。然后我又去看看QQmusic 是怎么实现只产生一次历史记录的，惊奇的发现，它的iframe的src一直没变（一直是 about:blank）。</p>
+<pre><code>&lt;iframe name=&quot;contentFrame&quot; id=&quot;contentFrame&quot; width=&quot;100%&quot; height=&quot;2207px&quot; allowtransparency=&quot;true&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;0&quot; src=&quot;about:blank&quot;&gt;&lt;/iframe&gt;
+</code></pre><p>因此发现我之前对iframe有些误解，之前认为iframe只能通过src来获取内容，其实个人认为正确的是：iframe中的内容不一定是通过设置src后获取的，也可以是通过其它方式（例如通过ajax获取html后替换原视图而成）；所以对于QQmusic来说，iframe只是一块渲染视图的容器，它里面显示的内容是由另外的逻辑来控制的。这样无须改变iframe的src（也就不会产生历史记录），从而可以动态修改iframe的内容了。如：</p>
+<pre><code>window.onload = function(){
+    var iframe = document.getElementById(&quot;iframe&quot;)
+    var newDiv = document.createElement(&quot;div&quot;)
+    newDiv.innerHTML = &quot;我要跑到iframe里&quot;
+    iframe.contentWindow.document.body.appendChild(newDiv)
+}
+</code></pre><p>对于整体页面（用jQuery发出异步请求）</p>
+<pre><code>$.ajax({
+    url: &quot;原本iframe的src值&quot;,    // 改为异步请求加载
+    type: &quot;GET&quot;
+})
+.done(function(data){
+     var iframe = document.getElementById(&quot;iframe&quot;)
+     iframe.contentWindow.document.documentElement.innerHTML = data;  // 获取后直接插到iframe
+})
+</code></pre><p>所以，iframe的内容一直在改变，而它的src却一直是about:blank没变。因此也不会产生新的历史记录。<br>此时此刻，我心情是很开心的，然而，当我与iframe内的元素交互时，发现除了 CSS 的交互效果，<script src=""></script>和写在<script></script>内的js代码都是不执行的（测试后发现直接添加到元素的onclick事件可以执行），而且在测试的过程中发现有时候CSS加载比较慢，导致HTML裸露出来，不知道为什么。这个要继续查查。</p>
+<p>所以，最后我不采用通过ajax获取内容，再添加到iframe的做法。<br>而是采用移除原来iframe，再新建一个iframe插入的方式，这种方式也是不会产生新的历史记录。</p>
+<p>解决了产生两条历史记录的问题后，剩下的问题就是iframe内的链接跳转，因为整体是通过主页面的hash值来路由的，所以iframe内的链接跳转是不能直接跳转的，他的跳转需要一定处理的流程：</p>
+<p>处理由iframe内发送的请求：<br>  ①首先接收iframe的参数<br>  ②根据参数生成对应的hash，并修改main_frame 的hash值<br>  ③根据hash值，修改iframe的src（我是通过删除原来的iframe，再添加新iframe的做法）</p>
+<p>如：主页面的全局有一个接收iframe内a标签的data-hash的函数:</p>
+<pre><code>function handleIframeRequst( iframeHash){
+    window.location.hash = iframeHash;
+}
+</code></pre><p>假设iframe内的一个a标签 ： <a href="javascript:;" data-hash="main&sub" target="_blank" rel="external"></a><br>点击这个标签时，就会调用主页面的一个处理该data-hash的函数<br>parent.handleIframeRequst($(this).data(“hash”)); // 通过parent调用主页面的函数</p>
+<p>主页面接收参数后，修改自身的hash值，然后解析hash值，生成相应的 iframe src值。</p>
+<p>这样基本就可以将网站做成 类似 QQmusic 那样的单页面网站啦。 满足感 Up！Up！Up！</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/23/2015-6-23-seven-essential-javascript-functions/" rel="next" title="7 个基本的 JS 函数">
+                <i class="fa fa-chevron-left"></i> 7 个基本的 JS 函数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/01/2015-9-1-how-to-be-a-great-javascript-software-developer/" rel="prev" title="如何成为一个JavaScript 大牛？">
+                如何成为一个JavaScript 大牛？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p style="margin:0;">热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/08/23/2015-8-23-build-similar-qqmusice-spa/"
+           data-title="实现类似 QQ音乐网页版 的单页面总结" data-url="http://yoursite.com/2015/08/23/2015-8-23-build-similar-qqmusice-spa/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="刘健超" />
+          <p class="site-author-name" itemprop="name">刘健超</p>
+          <p class="site-description motion-element" itemprop="description">踏实 梦想 责任</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JChehe" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1995306965" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jobbole.com/members/q574805242/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  伯乐在线
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/jc" target="_blank">
+                  
+                    <i class="fa fa-Segmentfault"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gongmingwang.com/" target="_blank">莞青共鸣网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codcodog.github.io/" target="_blank">莫廖の博客</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘健超</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jchehe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qPe43l5UuF31pWPlmLIhg8E7-gzGzoHsz", "1sqA7g86Dtpv9ft1jen0Lg0r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

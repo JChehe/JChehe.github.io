@@ -1,0 +1,880 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="【伯乐在线注】：《Web 应用上线前，程序员应考虑哪些技术细节呢？》这是 StackExchange 上面的一个经典问题贴。最赞回复有 2200+ 顶，虽然大多数人可能都听过其中大部分内容，但应该会有你没有深入了解的内容。一起来看看。
+问题Web 应用上线前，程序员应考虑哪些技术细节呢？ 如果 Jeff Atwood 忘记把 HttpOnly cookies、sitemaps 和 cross-si">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web应用上线之前，每个程序员应该了解的技术细节">
+<meta property="og:url" content="http://yoursite.com/2015/05/07/2015-5-7-what-techical-details-should-a-programmer-of-a-web-application-consider-before-making-the-site-public/index.html">
+<meta property="og:site_name" content="刘健超(Jc)'s Blog">
+<meta property="og:description" content="【伯乐在线注】：《Web 应用上线前，程序员应考虑哪些技术细节呢？》这是 StackExchange 上面的一个经典问题贴。最赞回复有 2200+ 顶，虽然大多数人可能都听过其中大部分内容，但应该会有你没有深入了解的内容。一起来看看。
+问题Web 应用上线前，程序员应考虑哪些技术细节呢？ 如果 Jeff Atwood 忘记把 HttpOnly cookies、sitemaps 和 cross-si">
+<meta property="og:updated_time" content="2016-04-06T03:46:13.538Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web应用上线之前，每个程序员应该了解的技术细节">
+<meta name="twitter:description" content="【伯乐在线注】：《Web 应用上线前，程序员应考虑哪些技术细节呢？》这是 StackExchange 上面的一个经典问题贴。最赞回复有 2200+ 顶，虽然大多数人可能都听过其中大部分内容，但应该会有你没有深入了解的内容。一起来看看。
+问题Web 应用上线前，程序员应考虑哪些技术细节呢？ 如果 Jeff Atwood 忘记把 HttpOnly cookies、sitemaps 和 cross-si">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Web应用上线之前，每个程序员应该了解的技术细节 | 刘健超(Jc)'s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76019300-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d2eaa363b7db95e9ef065389dd27defe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">刘健超(Jc)'s Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="/resume" rel="section">
+            
+              <i class="menu-item-icon fa fa-thumbs-o-up fa-fw"></i> <br />
+            
+            简历
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Web应用上线之前，每个程序员应该了解的技术细节
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-07T11:27:20+08:00" content="2015-05-07">
+              2015-05-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/07/2015-5-7-what-techical-details-should-a-programmer-of-a-web-application-consider-before-making-the-site-public/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/07/2015-5-7-what-techical-details-should-a-programmer-of-a-web-application-consider-before-making-the-site-public/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/05/07/2015-5-7-what-techical-details-should-a-programmer-of-a-web-application-consider-before-making-the-site-public/" class="leancloud_visitors" data-flag-title="Web应用上线之前，每个程序员应该了解的技术细节">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+          
+            <div class="post-tags">
+              Tags:&nbsp;&nbsp;
+              
+                <a href="/tags/web/" rel="tag">#web</a>
+              
+            </div>
+          
+        </div>
+
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>【伯乐在线注】：《Web 应用上线前，程序员应考虑哪些技术细节呢？》这是 StackExchange 上面的一个经典问题贴。<br>最赞回复有 2200+ 顶，虽然大多数人可能都听过其中大部分内容，但应该会有你没有深入了解的内容。一起来看看。</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>Web 应用上线前，程序员应考虑哪些技术细节呢？ 如果 Jeff Atwood 忘记把 <a href="http://programmers.stackexchange.com/users/37/jeff-atwood" target="_blank" rel="external">HttpOnly cookies、sitemaps</a> 和 <a href="http://www.codinghorror.com/blog/archives/001171.html" target="_blank" rel="external">cross-site request forgeries</a> 放在同一个网站，那我会把什么重要的东西也会忘掉呢？</p>
+<a id="more"></a>
+<p>我以一个 Web 开发人员的角度思考这个问题，别人为网站进行美化设计并填充内容。因此，他们可能认为可用性和内容比平台更重要，程序员在这方面没多少发言权了。而你需要考虑到的是：你实现平台的稳定性、安全性和满足其它商业目的（如成本不要太高、耗时不要太长和网站排名）。</p>
+<p>而以一位已经在相当可信的环境下，完成了几个企业内网应用程序项目的开发者角度思考，并在一个流行且权威网站上为整个糟糕的万维网打响第一枪。</p>
+<p>另外，我希望能回答得更加具体一点，而不仅仅是一个“Web标准”这样模糊的答案。通过 HTTP 传输的 HTML、JavaScript、CSS 是必须要掌握的，特别是针对那些资深 Web 开发者。所以，超出上述范围，哪一个标准？在什么环境下，并且为什么这样？<strong>麻烦您提供一个跳转到该标准说明的链接。</strong></p>
+<h1 id="最佳回复"><a href="#最佳回复" class="headerlink" title="最佳回复"></a>最佳回复</h1><p>下面列表里的大部分内容，我们大多数人都应该已经听过了。所以在这之前，你可能只有一到两个项目没有深入查看和理解透彻，或甚至没听过。</p>
+<h2 id="界面和用户体验"><a href="#界面和用户体验" class="headerlink" title="界面和用户体验"></a>界面和用户体验</h2><ul>
+<li>应意识到浏览器实现标准不一致，并确保你的网站能在所有主流浏览器上合理运行。至少起码在最近的 <a href="https://en.wikipedia.org/wiki/Gecko_%28layout_engine%29" target="_blank" rel="external">Gecko</a> 引擎（<a href="http://firefox.com/" target="_blank" rel="external">Firefox</a>）、Webkit 引擎（<a href="http://www.apple.com/safari/" target="_blank" rel="external">Safari</a> 和一些移动端浏览器）、<a href="http://www.google.com/chrome" target="_blank" rel="external">Chrome</a>、支持 <a href="https://en.wikipedia.org/wiki/Internet_Explorer" target="_blank" rel="external">IE 浏览器</a>（利用 <a href="http://www.microsoft.com/Downloads/details.aspx?FamilyID=21eabb90-958f-4b64-b5f1-73d0a413c8ef&amp;displaylang=en" target="_blank" rel="external">Application Compatibility VPC Images</a> 进行测试）和 <a href="http://www.opera.com/" target="_blank" rel="external">Opera</a>。另外，也要考虑浏览器在不同操作系统下是如何渲染网站的。</li>
+<li>要考虑到用户除了通过主流浏览器来浏览网站外，还有其它方式：手机、屏幕阅读器和搜索引擎等。 这有一些相关信息：<a href="http://www.w3.org/WAI/" target="_blank" rel="external">WAI</a> 和 <a href="http://www.section508.gov/" target="_blank" rel="external">Section508</a>，移动开发：<a href="http://mobiforge.com/" target="_blank" rel="external">MobiForge</a>。</li>
+<li>Staging：如何部署更新而不影响用户。进行一次或多次测试或 staging 环境可用来实现架构的更改，确保代码或全部内容能部署在一个可控的方式而不会破坏任何东西。有一个自动化的方式部署批准改变网站。最有效地实现方法是使用版本控制系统(Git、CVS、Subversion 等)和一个自动构建机制( Ant、 NAnt 等)。</li>
+<li>不要向用户直接显示不友好的错误提示。</li>
+<li>不要以纯文本的方式显示用户的 Email 地址，否则他们将会收到该死的垃圾邮件。</li>
+<li>为用户链接添加属性 rel = “nofollow” 来 <a href="https://en.wikipedia.org/wiki/Nofollow" target="_blank" rel="external">避免垃圾邮件</a>。</li>
+<li><a href="http://www.codinghorror.com/blog/archives/001228.html" target="_blank" rel="external">为你的网站建立深思熟虑的限制</a> – 这也属于下面将要讲到的安全性。</li>
+<li>学会如何实现网页的 <a href="https://en.wikipedia.org/wiki/Progressive_enhancement" target="_blank" rel="external">渐进增强</a>。</li>
+<li><a href="https://en.wikipedia.org/wiki/Post/Redirect/Get" target="_blank" rel="external">POST 提交成功后，要重定向</a>，以防止再次提交引起刷新。</li>
+<li>别忘了考虑到访问性（accessibility，即残障人士如何使用网站）。这一直是好想法并且有时这是法定要求。<a href="http://www.w3.org/WAI/intro/aria" target="_blank" rel="external">WAI-ARIA</a> 和 <a href="http://www.w3.org/TR/WCAG20/" target="_blank" rel="external">WCAG 2</a> 都是这方面很好的资源。</li>
+<li>别让用户思考如何操作。</li>
+</ul>
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><ul>
+<li>阅读 <a href="http://www.owasp.org/index.php/Category%3aOWASP_Guide_Project" target="_blank" rel="external">《OWASP开发指南》</a>，它提供了全面的网站安全指导。</li>
+<li>知道注入相关的知识，尤其是 <a href="https://en.wikipedia.org/wiki/SQL_injection" target="_blank" rel="external">SQL 注入</a>，并知道如何防止它。</li>
+<li>千万别相信用户的输入，也不要相信任何请求（其中包括 cookies 和 表单域的隐藏字段值！）。</li>
+<li>使用 salt（密码散列技术）散列密码并为你的彩虹表行使用不同的 salts 来防止 rainbow 攻击。 使用一个效率较低的散列算法，如 bcrypt （ 久经试验的）或 scrypt （更新，甚至更强）（<a href="http://www.tarsnap.com/scrypt.html" target="_blank" rel="external">1</a>，<a href="http://it.slashdot.org/comments.pl?sid=1987632&amp;cid=35149842" target="_blank" rel="external">2</a>），来存储密码。（<a href="http://codahale.com/how-to-safely-store-a-password/" target="_blank" rel="external">如何安全地存储一个密码</a>）。NIST 也批准用 <a href="https://security.stackexchange.com/q/7689/396" target="_blank" rel="external">PBKDF2</a> 散列密码，<a href="https://security.stackexchange.com/a/2136/396" target="_blank" rel="external">FIPS</a> 认可 <a href="https://security.stackexchange.com/a/2136/396" target="_blank" rel="external">.NET</a> （想了解更多信息，请 <a href="https://security.stackexchange.com/questions/211/how-to-securely-hash-passwords" target="_blank" rel="external">点击</a>）。应避免直接使用 MD5 或 SHA 家族。</li>
+<li><a href="http://stackoverflow.com/questions/1581610/how-can-i-store-my-users-passwords-safely/1581919#1581919" target="_blank" rel="external">别尝试提出你自己喜欢的认证系统</a>。这很容易在微妙且不可测的方式下出现错误，而且你可能直到被入侵才知道发生什么事</li>
+<li>了解 <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="external">处理信用卡的规则</a>。（<a href="https://stackoverflow.com/questions/51094/payment-processors-what-do-i-need-to-know-if-i-want-to-accept-credit-cards-on-m" target="_blank" rel="external">也可以看看这里这个问题</a>）</li>
+<li>在登录页和任何涉及敏感数据的网页（如信用卡信息），使用 <a href="http://www.mozilla.org/projects/security/pki/nss/ssl/draft302.txt" target="_blank" rel="external">SSL</a> / <a href="https://en.wikipedia.org/wiki/Https" target="_blank" rel="external">HTTPS</a>。</li>
+<li>防止 <a href="https://en.wikipedia.org/wiki/Session_hijacking#Prevention" target="_blank" rel="external">会话（session）劫持</a>。</li>
+<li>避免 <a href="https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank" rel="external">跨站脚本攻击</a>（XSS）。</li>
+<li>避免 <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank" rel="external">跨站请求伪造攻击</a>（CSRF）。</li>
+<li>避免 <a href="https://en.wikipedia.org/wiki/Clickjacking" target="_blank" rel="external">点击劫持</a>。</li>
+<li>系统补丁要保持更新。</li>
+<li>保证数据库连接信息安全。</li>
+<li>你自身要保持关注最新的攻击技术和影响你平台的漏洞。</li>
+<li>阅读 <a href="http://code.google.com/p/browsersec/wiki/Main" target="_blank" rel="external">Google 的《浏览器安全手册》</a>。</li>
+<li>阅读 <a href="http://amzn.com/0470170778" target="_blank" rel="external">《Web应用黑客手册》</a>。</li>
+<li>考虑 <a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege" target="_blank" rel="external">最小特权原则</a>。尝试将你的应用程序在 <a href="https://security.stackexchange.com/questions/47576/do-simple-linux-servers-really-need-a-non-root-user-for-security-reasons" target="_blank" rel="external">非根模式（non-root）</a>的服务器下运行。（<a href="http://tomcat.apache.org/tomcat-8.0-doc/security-howto.html#Non-Tomcat_settings" target="_blank" rel="external">tomcat 案例</a>）</li>
+</ul>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><ul>
+<li>如有必要，就实现缓存。了解和正确地使用 HTTP 缓存（caching）和 HTML 5 离线缓存。</li>
+<li>优化图片 – 别使用一个 20 KB 大小的图片做为一个重复背景。</li>
+<li>学习如何用 <a href="http://developer.yahoo.com/performance/rules.html#gzip" target="_blank" rel="external">gzip / deflate 压缩内容</a>（<a href="https://stackoverflow.com/questions/1574168/gzip-vs-deflate-zlib-revisited" target="_blank" rel="external">deflate更好</a>）。</li>
+<li>合并多个样式表单或脚本文件，以减少浏览器发送请求次数，而且要利用 gzip 压缩文件之间重复的部分。</li>
+<li>浏览 <a href="http://developer.yahoo.com/performance/" target="_blank" rel="external">Yahoo Exceptional Performance</a>（雅虎优越性能）网站，里面有很多优秀的指引，其中就包括提高前端性能和它们的 <a href="http://developer.yahoo.com/yslow/" target="_blank" rel="external">YSlow</a> 工具（需要 Fixfox、Safari、Chrome 或 Opera）。另外，<a href="https://developers.google.com/speed/pagespeed/insights_extensions" target="_blank" rel="external">Google PageSpeed](https://developers.google.com/speed/docs/best-practices/rules_intro) （以 浏览器扩展 的方式</a>）是另一个测试性能的工具，而且它也会优化你的图片。</li>
+<li>为较小且有关联的图片使用 <a href="http://alistapart.com/articles/sprites" target="_blank" rel="external">CSS 图片精灵</a> 技术，如工具栏（看“把 HTTP 请求减到最低”那点建议）</li>
+<li>繁忙 Web 站点应考虑将 <a href="http://developer.yahoo.com/performance/rules.html#split" target="_blank" rel="external">网页的内容分开存放</a> 在不同的域名下。特别是…</li>
+<li>静态内容（也就是图片、CSS、JavaScript 和无需通过 cookies 获取的一般内容）应放进独立且 <a href="http://blog.stackoverflow.com/2009/08/a-few-speed-improvements/" target="_blank" rel="external">不使用 cookies</a> 的域名上，因为所有域名和其子域名为客户端生成的 cookies 都会伴随请求发送回给自己。 一个很好的选择是使用内容分发网络（CDN），但要考虑到这种情况：CDN（包括可替代的 CDN）可能会失效，这时本地副本能代替它来进行传输。</li>
+<li>将浏览器渲染页面所需 HTTP 请求数量最少化。</li>
+<li>用Google的 <a href="http://developers.google.com/closure/compiler/" target="_blank" rel="external">Closure Compiler</a> 压缩 JavaScript，当然也可以使用 <a href="http://developer.yahoo.com/yui/compressor/" target="_blank" rel="external">其他压缩工具</a>。</li>
+<li>确保有一个 favicon.ico 文件在网站的根目录，也就是说 /favicon.ico。<a href="http://mathiasbynens.be/notes/rel-shortcut-icon" target="_blank" rel="external">浏览器会自动请求它</a>，即使在 HTML 中并未提及到它。如果没有 /favicon.ico，那么请求返回的结果是 大量的 404 错误，这将会耗尽服务器的带宽。</li>
+</ul>
+<h2 id="SEO（搜索引擎优化）"><a href="#SEO（搜索引擎优化）" class="headerlink" title="SEO（搜索引擎优化）"></a>SEO（搜索引擎优化）</h2><ul>
+<li>使用“对搜索引擎友好”的链接，比如说 example.com/pages/45-article-title 优于 example.com/index.php?page=45。是 googlebot（Google 的 web 爬虫）用来替换 #! 的。换句话说，./#!page=1 会被Google搜索引擎转成 ./?_escaped<em>fragments</em>=page=1。 （通常来说 URL 中的 # 后的东西都不会被传到服务器上，所以，为了要让 Google 可以抓取 AJAX 的东西，你需要使用 #!，而 Google 会把“#!”转成“_escaped<em>fragment</em>”来向服务器发请求，Twitter 的大量链接者是#!的，比如：<a href="https://twitter.com/#!/your_activity" target="_blank" rel="external">https://twitter.com/#!/your_activity</a> —— 陈皓注）。另外，用户也许会使用 Firefox 或 Chromium，那么 history.pushState({“foo”:”bar”}, “About”, “./?page=1”); 是一个很不错的命令。因为即使地址栏上的地址改变了，页面也不会重新加载。这可让你使用 ? 而不是 #!来动态加载内容了，也告诉服务器，当下次访问该页面时给该链接发邮件，AJAX 无须再发送一个额外的请求了。</li>
+<li>别使用 <a href="https://ux.stackexchange.com/questions/12100/why-shouldnt-we-use-the-word-here-in-a-textlink" target="_blank" rel="external">“点击这里”</a> 这类的链接。这是浪费一个 SEO 的机会，并且会对使用屏幕朗读器用户造成困惑。</li>
+<li>拥有一个 <a href="http://www.sitemaps.org/" target="_blank" rel="external">XML 网站地图</a>，它的默认路径最好是 /sitemap.xml。</li>
+<li>当你有多个 URL 指向同一个内容时，请使用 <a href="http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html" target="_blank" rel="external"><link rel="canonical" ...=""></a>。这个问题可利用 <a href="http://www.google.com/webmasters/" target="_blank" rel="external">Google Webmaster Tools</a> 解决。</li>
+<li>使用 <a href="http://www.google.com/webmasters/" target="_blank" rel="external">Google Webmaster Tools</a> 和 <a href="http://www.bing.com/toolbox/webmaster" target="_blank" rel="external">Bing Webmaster Tools</a>。</li>
+<li>在一开始就正确安装 <a href="http://www.google.com/analytics/" target="_blank" rel="external">Google Analytics</a> （或一个开源的分析工具，如 <a href="http://piwik.org/" target="_blank" rel="external">Piwik</a>）。</li>
+<li>要知道 <a href="https://en.wikipedia.org/wiki/Robots_exclusion_standard" target="_blank" rel="external">robots.txt</a> 和搜索引擎爬虫是如何工作的。</li>
+<li>重定向请求（使用 301 永久性移走），要求 www.example.com 重定向到 example.com （或反过来），从而防止分裂两个站点之间的谷歌排名。</li>
+<li>知道并不是所有的爬虫都是好的，有些爬虫的行为并不好。</li>
+<li>如果有非文本内容（如视频等）需要添加到 Google 网站地图的话，你可以到 <a href="http://stackoverflow.com/questions/72394/what-should-a-developer-know-before-building-a-public-web-site#167608" target="_blank" rel="external">Tim Farley’s answer</a> 看看，里面有一些关于这方面的，而且不错的信息。</li>
+</ul>
+<h2 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h2><ul>
+<li>搞懂 HTTP 协议，以及诸如 GET 、POST、sessions 和 cookies 这些概念，而且要知道“无状态”是什么意思。</li>
+<li>根据 <a href="http://www.w3.org/TR/" target="_blank" rel="external">W3C 文档</a> 编写你的 <a href="http://www.w3.org/TR/xhtml1/" target="_blank" rel="external">XHTML</a> / <a href="http://www.w3.org/TR/REC-html40/" target="_blank" rel="external">HTML</a> 和 <a href="http://www.w3.org/TR/CSS2/" target="_blank" rel="external">CSS</a> 代码，并确保它们 <a href="http://validator.w3.org/" target="_blank" rel="external">有效</a>。这里的目的是避免浏览器的怪异模式，并让它们更容易在非传统浏览器（如屏幕阅读器和移动设备）上运行。</li>
+<li>搞懂浏览器是如何处理 JavaScript。</li>
+<li>搞懂页面上的 JavaScript、样式表单和其他资源是如何加载和运行的，并考虑它们对性能的影响。现在广泛认同的做法是：除了通用脚本，如 analytics apps 或 HTML5 shims，<a href="http://developer.yahoo.com/blogs/ydn/posts/2007/07/high_performanc_5/" target="_blank" rel="external">将其它脚本放到页面底部</a>。</li>
+<li>搞懂 JavaScript 沙箱如何工作，特别是你打算用 iframes。</li>
+<li>要意识到 JavaScript 可能会被禁用，因此 AJAX 也只是一个扩展，不一定会被运行。即使大多数普通的用户并不会理会 JavaScript 被禁用，但要记住 <a href="http://noscript.net/" target="_blank" rel="external">NoScript</a> 正变得更流行，移动设备可能默认禁止 JavaScript，而且 Google 在索引你的网站时，并不会执行大多数 JavaScript。</li>
+<li>学会区分 <a href="http://www.bigoakinc.com/blog/when-to-use-a-301-vs-302-redirect/" target="_blank" rel="external">301 和 302 重定向</a> 的不同之处（这也是一个 SEO 问题）。</li>
+<li>尽可能多地学习你部署平台的相关知识。</li>
+<li>考虑使用 <a href="http://stackoverflow.com/questions/167531/is-it-ok-to-use-a-css-reset-stylesheet" target="_blank" rel="external">Reset Style Sheet</a>（重置样式表单） 或 <a href="http://necolas.github.com/normalize.css/" target="_blank" rel="external">normalize.css</a>。</li>
+<li>考虑使用 JavaScript 框架（如 <a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>、<a href="http://mootools.net/" target="_blank" rel="external">MooTools</a>、<a href="http://www.prototypejs.org/" target="_blank" rel="external">Prototype</a>、<a href="http://dojotoolkit.org/" target="_blank" rel="external">Dojo</a> 或 <a href="http://developer.yahoo.com/yui/3/" target="_blank" rel="external">YUI 3</a>），它们会解决很多在使用 JavaScript 操作 DOM 时的浏览器差异问题。</li>
+<li>把性能和 JS 框架合在一起讨论，考虑使用诸如 <a href="http://developers.google.com/speed/libraries/devguide" target="_blank" rel="external">Google Libraries API</a> 服务来加载框架， 以至于浏览器能使用已缓存框架的副本，而不是从你的网站下载同样的副本。</li>
+<li>不要重复造轮子。在做任何事之前，可搜索一个组件或案例是如何实现的。但有 99% 机会是其它人已经做过了，并发布了 OSS 版本的代码。</li>
+<li>另外，即时确定你需要的是什么，但也别使用太多库。特别是在 Web 客户端，保持轻量、快速和灵活非常重要。</li>
+</ul>
+<h2 id="BUG-修复"><a href="#BUG-修复" class="headerlink" title="BUG 修复"></a>BUG 修复</h2><ul>
+<li>要明白你将花费 20% 时间敲代码，而剩下 80% 的时间是在维护你的代码，所以代码质量很重要。</li>
+<li>建立一个良好的错误报告解决方案。</li>
+<li>为用户提供一个能向你提交建议与批评的系统。</li>
+<li>为将来的维护和技术支持人员撰写文档，解释清楚系统是怎么运行的。</li>
+<li>经常备份！（并确保那些备份是可用的）除了备份机制，你还必须有一个恢复机制。</li>
+<li>使用版本控制系统来存储你的文件，如 <a href="http://subversion.apache.org/" target="_blank" rel="external">Subversion</a>、<a href="http://mercurial.selenic.com/" target="_blank" rel="external">Mercurial</a> 或 <a href="http://git-scm.org/" target="_blank" rel="external">Git</a>。</li>
+<li>别忘记进行验收测试。框架（如 <a href="http://seleniumhq.org/" target="_blank" rel="external">Selenium</a>）能为你提供相应帮助。特别是如果你想完全自动化测试，也可通过使用持续集成工具，比如 <a href="http://jenkins-ci.org/" target="_blank" rel="external">Jenkins</a>。</li>
+<li>在网站运行时，要确保你有足够的日志，当然你可以使用框架，如 <a href="http://logging.apache.org/log4j/" target="_blank" rel="external">log4j</a>、<a href="http://logging.apache.org/log4net/" target="_blank" rel="external">log4net</a> 或 <a href="http://log4r.rubyforge.org/" target="_blank" rel="external">log4r</a>。因为当你的网站某部分发生错误，你将需要一种方式找出是哪里发生的。</li>
+<li>当日志能确保你能同时捕捉到处理异常和未处理异常。那么可通过记录/分析输出的日志，可显示网站的关键问题出现在哪里。</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>服务器端和客户端都要监控和分析（应主动而不是被动）。</li>
+<li>使用能与用户保持联系的服务（如 UserVoice 和 Intercom，或其它类似的工具）。</li>
+<li>采用 <a href="http://nvie.com/about/" target="_blank" rel="external">Vincent Driessen</a> 的 Git 分支模型（<a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="external">Git branching model</a>）。</li>
+</ul>
+<p>文中有很多省略掉的东西，并不是因为它们不是有用的答案，而是它们过于详细，且超出本问题的范围。而对于想懂得更多的人来说，他们希望学到更多的东西，因此他们应该知道这些概述。另外，我也欢迎大家编辑补充这个答案，因为我可能忽略了一些东西或犯了一些错误。</p>
+<hr>
+<p>本文由 <a href="http://blog.jobbole.com/" target="_blank" rel="external">伯乐在线</a> - <a href="http://www.jobbole.com/members/q574805242" target="_blank" rel="external">刘健超-J.c</a> 翻译，黄利民 校稿。未经许可，禁止转载！<br>英文出处：<a href="http://programmers.stackexchange.com/questions/46716/what-technical-details-should-a-programmer-of-a-web-application-consider-before" target="_blank" rel="external">stackexchange</a>。</p>
+<p>谢谢您的阅读。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/23/2015-6-23-css-transition-height-0-to-height-auto/" rel="prev" title="如何为不定高度(height:auto)的元素添加CSS3 transition-property:height 动画">
+                如何为不定高度(height:auto)的元素添加CSS3 transition-property:height 动画 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p style="margin:0;">热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/05/07/2015-5-7-what-techical-details-should-a-programmer-of-a-web-application-consider-before-making-the-site-public/"
+           data-title="Web应用上线之前，每个程序员应该了解的技术细节" data-url="http://yoursite.com/2015/05/07/2015-5-7-what-techical-details-should-a-programmer-of-a-web-application-consider-before-making-the-site-public/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="刘健超" />
+          <p class="site-author-name" itemprop="name">刘健超</p>
+          <p class="site-description motion-element" itemprop="description">踏实 梦想 责任</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JChehe" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1995306965" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jobbole.com/members/q574805242/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  伯乐在线
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/jc" target="_blank">
+                  
+                    <i class="fa fa-Segmentfault"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gongmingwang.com/" target="_blank">莞青共鸣网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codcodog.github.io/" target="_blank">莫廖の博客</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最佳回复"><span class="nav-number">2.</span> <span class="nav-text">最佳回复</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#界面和用户体验"><span class="nav-number">2.1.</span> <span class="nav-text">界面和用户体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">2.2.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能"><span class="nav-number">2.3.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SEO（搜索引擎优化）"><span class="nav-number">2.4.</span> <span class="nav-text">SEO（搜索引擎优化）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术"><span class="nav-number">2.5.</span> <span class="nav-text">技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BUG-修复"><span class="nav-number">2.6.</span> <span class="nav-text">BUG 修复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.7.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘健超</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jchehe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qPe43l5UuF31pWPlmLIhg8E7-gzGzoHsz", "1sqA7g86Dtpv9ft1jen0Lg0r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
