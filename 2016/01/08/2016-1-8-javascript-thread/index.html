@@ -1,0 +1,973 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,thread," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="首发地址：码农网《细说JavaScript单线程的一些事》
+最近被同学问道 JavaScript 单线程的一些事，我竟回答不上。好吧，感觉自己的 JavaScript 白学了。下面是我这几天整理的一些关于 JavaScript 单线程的一些事。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="细说JavaSript单线程的一些事">
+<meta property="og:url" content="http://yoursite.com/2016/01/08/2016-1-8-javascript-thread/index.html">
+<meta property="og:site_name" content="刘健超(Jc)'s Blog">
+<meta property="og:description" content="首发地址：码农网《细说JavaScript单线程的一些事》
+最近被同学问道 JavaScript 单线程的一些事，我竟回答不上。好吧，感觉自己的 JavaScript 白学了。下面是我这几天整理的一些关于 JavaScript 单线程的一些事。">
+<meta property="og:image" content="http://images.51cto.com/files/uploadimg/20090804/1503300.jpg">
+<meta property="og:image" content="https://developer.mozilla.org/files/4617/default.svg">
+<meta property="og:updated_time" content="2016-04-06T04:39:24.555Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="细说JavaSript单线程的一些事">
+<meta name="twitter:description" content="首发地址：码农网《细说JavaScript单线程的一些事》
+最近被同学问道 JavaScript 单线程的一些事，我竟回答不上。好吧，感觉自己的 JavaScript 白学了。下面是我这几天整理的一些关于 JavaScript 单线程的一些事。">
+<meta name="twitter:image" content="http://images.51cto.com/files/uploadimg/20090804/1503300.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 细说JavaSript单线程的一些事 | 刘健超(Jc)'s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76019300-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d2eaa363b7db95e9ef065389dd27defe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">刘健超(Jc)'s Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="/resume" rel="section">
+            
+              <i class="menu-item-icon fa fa-thumbs-o-up fa-fw"></i> <br />
+            
+            简历
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                细说JavaSript单线程的一些事
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-08T09:58:07+08:00" content="2016-01-08">
+              2016-01-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/原创/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/08/2016-1-8-javascript-thread/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/2016-1-8-javascript-thread/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/01/08/2016-1-8-javascript-thread/" class="leancloud_visitors" data-flag-title="细说JavaSript单线程的一些事">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+          
+            <div class="post-tags">
+              Tags:&nbsp;&nbsp;
+              
+                <a href="/tags/javascript/" rel="tag">#javascript</a>
+              
+                <a href="/tags/thread/" rel="tag">#thread</a>
+              
+            </div>
+          
+        </div>
+
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>首发地址：<a href="http://www.codeceo.com/article/javascript-threaded.html" target="_blank" rel="external">码农网《细说JavaScript单线程的一些事》</a></p>
+<p>最近被同学问道 JavaScript 单线程的一些事，我竟回答不上。好吧，感觉自己的 JavaScript 白学了。下面是我这几天整理的一些关于 JavaScript 单线程的一些事。</p>
+<a id="more"></a>
+<h2 id="首先，说下为什么-JavaScript-是单线程？"><a href="#首先，说下为什么-JavaScript-是单线程？" class="headerlink" title="首先，说下为什么 JavaScript 是单线程？"></a>首先，说下为什么 JavaScript 是单线程？</h2><p>总所周知，JavaScript是以单线程的方式运行的。说到线程就自然联想到进程。那它们有什么联系呢？</p>
+<blockquote>
+<p>进程和线程都是操作系统的概念。进程是应用程序的执行实例，每一个进程都是由私有的虚拟地址空间、代码、数据和其它系统资源所组成；进程在运行过程中能够申请创建和使用系统资源（如独立的内存区域等），这些资源也会随着进程的终止而被销毁。而线程则是进程内的一个独立执行单元，在不同的线程之间是可以共享进程资源的，所以在多线程的情况下，需要特别注意对临界资源的访问控制。在系统创建进程之后就开始启动执行进程的主线程，而进程的生命周期和这个主线程的生命周期一致，主线程的退出也就意味着进程的终止和销毁。主线程是由系统进程所创建的，同时用户也可以自主创建其它线程，这一系列的线程都会并发地运行于同一个进程中。</p>
+</blockquote>
+<p>显然，在多线程操作下可以实现应用的<strong>并行处理</strong>，从而以更高的CPU利用率提高整个应用程序的性能和吞吐量。特别是现在很多语言都支持多核并行处理技术，然而JavaScript却以单线程执行，为什么呢？</p>
+<p>其实这与它的用途有关。作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。若以多线程的方式操作这些DOM，则可能出现操作的冲突。假设有两个线程同时操作一个DOM元素，线程1要求浏览器删除DOM，而线程2却要求修改DOM样式，这时浏览器就无法决定采用哪个线程的操作。当然，我们可以为浏览器引入“锁”的机制来解决这些冲突，但这会大大提高复杂性，所以 JavaScript 从诞生开始就选择了单线程执行。</p>
+<p>另外，因为 JavaScript 是单线程的，在某一时刻内只能执行特定的一个任务，并且会阻塞其它任务执行。那么对于类似I/O等耗时的任务，就没必要等待他们执行完后才继续后面的操作。在这些任务完成前，JavaScript完全可以往下执行其他操作，当这些耗时的任务完成后则以回调的方式执行相应处理。这些就是JavaScript与生俱来的特性：异步与回调。</p>
+<p>当然对于不可避免的耗时操作（如：繁重的运算，多重循环），HTML5提出了<strong>Web Worker</strong>，它会在当前JavaScript的执行主线程中利用Worker类新开辟一个额外的线程来加载和运行特定的JavaScript文件，这个新的线程和JavaScript的主线程之间并不会互相影响和阻塞执行，而且在Web Worker中提供了这个新线程和JavaScript主线程之间数据交换的接口：postMessage和onMessage事件。但在HTML5 Web Worker中是不能操作DOM的，任何需要操作DOM的任务都需要委托给JavaScript主线程来执行，所以虽然引入HTML5 Web Worker，但仍然没有改线JavaScript单线程的本质。</p>
+<h2 id="并发模式与Event-Loop"><a href="#并发模式与Event-Loop" class="headerlink" title="并发模式与Event Loop"></a>并发模式与Event Loop</h2><p><strong>JavaScript 有个基于“Event Loop”并发的模型。</strong><br>啊，并发？不是说 JavaScript是单线程吗？ 没错，的确是单线程，但是并发与并行是有区别的。<br>前者是逻辑上的同时发生，而后者是物理上的同时发生。所以，单核处理器也能实现并发。</p>
+<p><img src="http://images.51cto.com/files/uploadimg/20090804/1503300.jpg" alt="并发与并行"><br>并发与并行</p>
+<p>并行大家都好理解，而<strong>所谓“并发”是指两个或两个以上的事件在同一时间间隔中发生。</strong>如上图的第一个表，由于计算机系统只有一个CPU，故ABC三个程序从“微观”上是交替使用CPU，但交替时间很短，用户察觉不到，形成了“宏观”意义上的并发操作。</p>
+<h3 id="Runtime-概念"><a href="#Runtime-概念" class="headerlink" title="Runtime 概念"></a>Runtime 概念</h3><p>下面的内容解释一个理论上的模型。现代 JavaScript 引擎已着重实现和优化了以下所描述的几个概念。</p>
+<p><img src="https://developer.mozilla.org/files/4617/default.svg" alt="Stack、Heap、Queue"></p>
+<h4 id="Stack（栈）"><a href="#Stack（栈）" class="headerlink" title="Stack（栈）"></a>Stack（栈）</h4><p>这里放着JavaScript正在执行的任务。每个任务被称为帧（stack of frames）。</p>
+<pre><code>function f(b){
+  var a = 12;
+  return a+b+35;
+}
+
+function g(x){
+  var m = 4;
+  return f(m*x);
+}
+
+g(21);
+</code></pre><p>上述代码调用 <code>g</code> 时，创建栈的第一帧，该帧包含了 <code>g</code> 的参数和局部变量。当 <code>g</code> 调用 <code>f</code> 时，第二帧就会被创建，并且置于第一帧之上，当然，该帧也包含了 <code>f</code> 的参数和局部变量。当 <code>f</code> 返回时，其对应的帧就会出栈。同理，当 <code>g</code> 返回时，栈就为空了（<strong>栈的特定就是后进先出</strong> Last-in first-out (LIFO)）。</p>
+<h4 id="Heap（堆）"><a href="#Heap（堆）" class="headerlink" title="Heap（堆）"></a>Heap（堆）</h4><p>一个用来表示内存中一大片非结构化区域的名字，对象都被分配在这。</p>
+<h4 id="Queue（队列）"><a href="#Queue（队列）" class="headerlink" title="Queue（队列）"></a>Queue（队列）</h4><p>一个 JavaScript runtime 包含了一个任务队列，该队列是由一系列待处理的任务组成。而每个任务都有相对应的函数。当栈为空时，就会从任务队列中取出一个任务，并处理之。该处理会调用与该任务相关联的一系列函数（因此会创建一个初始栈帧）。当该任务处理完毕后，栈就会再次为空。<strong>（Queue的特点是先进先出 First-in First-out (FIFO)）。</strong></p>
+<p>为了方便描述与理解，作出以下约定：</p>
+<ul>
+<li>Stack栈为<strong>主线程</strong></li>
+<li>Queue队列为<strong>任务队列（等待调度到主线程执行）</strong></li>
+</ul>
+<p>OK，上述知识点帮助我们理清了一个 JavaScript runtime 的相关概念，这有助于接下来的分析。</p>
+<h3 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h3><p>之所以被称为Event loop，是因为它以以下类似方式实现：</p>
+<pre><code>while(queue.waitForMessage()){
+  queue.processNextMessage();
+}
+</code></pre><p>正如上述所说，“任务队列”是一个事件的队列，如果I/O设备完成任务或用户触发事件（该事件指定了回调函数），那么相关事件处理函数就会进入“任务队列”，当主线程空闲时，就会调度“任务队列”里第一个待处理任务，（FIFO）。当然，对于定时器，当到达其指定时间时，才会把相应任务插到“任务队列”尾部。</p>
+<h4 id="“执行至完成”"><a href="#“执行至完成”" class="headerlink" title="“执行至完成”"></a>“执行至完成”</h4><p>每当某个任务执行完后，其它任务才会被执行。也就是说，当一个函数运行时，它不能被取代且会在其它代码运行前先完成。<br>当然，这也是Event Loop的一个<strong>缺点</strong>：当一个任务完成时间过长，那么应用就不能及时处理用户的交互（如点击事件），甚至导致该应用奔溃。一个比较好解决方案是：将任务完成时间缩短，或者尽可能将一个任务分成多个任务执行。</p>
+<h4 id="绝不阻塞"><a href="#绝不阻塞" class="headerlink" title="绝不阻塞"></a>绝不阻塞</h4><p>JavaScript与其它语言不同，其Event Loop的一个特性是永不阻塞。I/O操作通常是通过事件和回调函数处理。所以，当应用等待 indexedDB 或 XHR 异步请求返回时，其仍能处理其它操作（如用户输入）。</p>
+<p>例外是存在的，如alert或者同步XHR，但避免它们被认为是最佳实践。注意的是，例外的例外也是存在的（但通常是实现错误而非其它原因)。</p>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><h4 id="定时器的一些概念"><a href="#定时器的一些概念" class="headerlink" title="定时器的一些概念"></a>定时器的一些概念</h4><p>上面也提到，在到达指定时间时，定时器就会将相应回调函数插入“任务队列”尾部。这就是“定时器(timer)”功能。</p>
+<p><a href="http://dev.w3.org/html5/spec-preview/timers.html" target="_blank" rel="external">定时器</a> 包括setTimeout与setInterval两个方法。它们的第二个参数是指定其回调函数推迟\每隔多少毫秒数后执行。<br>对于第二个参数有以下需要注意的地方：</p>
+<ul>
+<li>当第二个参数缺省时，默认为0；</li>
+<li>当指定的值小于4毫秒，则增加到4ms（4ms是HTML5标准指定的，对于2010年及之前的浏览器则是10ms）；</li>
+</ul>
+<p>如果你理解上述知识，那么以下代码就应该对你没什么问题了：</p>
+<pre><code>console.log(1);
+setTimeout(function(){
+    console.log(2);
+},10);
+console.log(3);
+// 输出：1 3 2
+</code></pre><h4 id="深入了解定时器"><a href="#深入了解定时器" class="headerlink" title="深入了解定时器"></a>深入了解定时器</h4><h5 id="零延迟-setTimeout-func-0"><a href="#零延迟-setTimeout-func-0" class="headerlink" title="零延迟 setTimeout(func, 0)"></a>零延迟 setTimeout(func, 0)</h5><p>零延迟并不是意味着回调函数立刻执行。它取决于主线程当前是否空闲与“任务队列”里其前面正在等待的任务。</p>
+<p>看看以下代码：</p>
+<pre><code>(function () {
+
+  console.log(&apos;this is the start&apos;);
+
+  setTimeout(function cb() {
+    console.log(&apos;this is a msg from call back&apos;);
+  });
+
+  console.log(&apos;this is just a message&apos;);
+
+  setTimeout(function cb1() {
+    console.log(&apos;this is a msg from call back1&apos;);
+  }, 0);
+
+  console.log(&apos;this is the  end&apos;);
+
+})();
+
+// 输出如下：
+this is the start
+this is just a message
+this is the end
+undefined // 立即调用函数的返回值
+this is a msg from callback
+this is a msg from a callback1
+</code></pre><h5 id="setTimeout-func-0-的作用"><a href="#setTimeout-func-0-的作用" class="headerlink" title="setTimeout(func, 0)的作用"></a><strong>setTimeout(func, 0)的作用</strong></h5><ul>
+<li>让浏览器渲染当前的变化（很多浏览器UI render和js执行是放在一个线程中，线程阻塞会导致界面无法更新渲染） </li>
+<li>重新评估”scriptis running too long”警告</li>
+<li>改变执行顺序</li>
+</ul>
+<p>再看看以下代码：</p>
+<pre><code>&lt;button id=&apos;do&apos;&gt; Do long calc!&lt;/button&gt;
+&lt;div id=&apos;status&apos;&gt;&lt;/div&gt;
+&lt;div id=&apos;result&apos;&gt;&lt;/div&gt;
+
+
+$(&apos;#do&apos;).on(&apos;click&apos;, function(){
+
+  $(&apos;#status&apos;).text(&apos;calculating....&apos;);// 此处会触发redraw事件，但会放到队列里执行，直到long()执行完。
+
+  // 没设定定时器，用户将无法看到“calculating...”
+  long();// 执行长时间任务，造成阻塞
+
+  // 设定了定时器，用户就如期看到“calculating...”
+  //setTimeout(long,50);// 大约50ms后，将耗时长的long回调函数插入“任务队列”末尾，根据先进先出原则，其将在redraw之后被调度到主线程执行
+
+ });
+
+function long(){
+  var result = 0
+  for (var i = 0; i&lt;1000; i++){
+    for (var j = 0; j&lt;1000; j++){
+      for (var k = 0; k&lt;1000; k++){
+        result = result + i+j+k
+      }
+    } 
+  }
+  $(&apos;#status&apos;).text(&apos;calclation done&apos;); // 在本案例中，该语句必须放到这里，这将使它与回调函数的行为类似
+}
+</code></pre><h6 id="正版与翻版setInterval的区别"><a href="#正版与翻版setInterval的区别" class="headerlink" title="正版与翻版setInterval的区别"></a><strong>正版与翻版setInterval的区别</strong></h6><p>大家都可能知道通过setTimeout可以模仿setInterval的效果，下面我们看看以下代码的区别：</p>
+<pre><code>// 利用setTimeout模仿setInterval
+setTimeout(function(){
+    /* 执行一些操作. */
+    setTimeout(arguments.callee, 10);
+}, 1000);
+
+setInterval(function(){
+    /* 执行一些操作 */
+}, 1000);
+</code></pre><p>可能你认为这没什么区别。的确，当回调函数里的操作耗时很短时，并不能看出它们有什么区别。<br>其实：上面案例中的 setTimeout 总是会在其回调函数执行后延迟 10ms（或者更多，但不可能少）再次执行回调函数，从而实现setInterval的效果，而 setInterval 总是 10ms 执行一次，而不管它的回调函数执行多久。</p>
+<p>所以，如果 setInterval 的回调函数执行时间比你指定的间隔时间相等或者更长，那么其回调函数会连在一起执行。</p>
+<p>你可以试试运行以下代码：</p>
+<pre><code>var counter = 0;
+var initTime = new Date().getTime();
+var timer = setInterval(function(){
+    if(counter===2){
+        clearInterval(timer);
+    }
+    if(counter === 0){
+        for(var i = 0; i &lt; 1990000000; i++){
+            ;
+        }
+    }
+
+    console.log(&quot;第&quot;+counter+&quot;次：&quot; + (new Date().getTime() - initTime) + &quot; ms&quot;);
+
+    counter++;
+},1000);
+</code></pre><p>我电脑Chrome浏览器的输入如下：</p>
+<pre><code>第0次：2007 ms
+第1次：2013 ms
+第2次：3008 ms
+</code></pre><h3 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h3><h4 id="浏览器不是单线程的"><a href="#浏览器不是单线程的" class="headerlink" title="浏览器不是单线程的"></a>浏览器不是单线程的</h4><p>上面说了这么多关于JavaScript是单线程的，下面说说其宿主环境——浏览器。<br><strong>浏览器的内核是多线程</strong>的，它们在内核制控下相互配合以保持同步，一个浏览器至少实现三个常驻线程：</p>
+<ol>
+<li>javascript引擎线程 javascript引擎是基于事件驱动单线程执行的，JS引擎一直等待着任务队列中任务的到来，然后加以处理，浏览器无论什么时候都只有一个JS线程在运行JS程序。</li>
+<li>GUI渲染线程 GUI渲染线程负责渲染浏览器界面，当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时,该线程就会执行。但需要注意GUI渲染线程与JS引擎是互斥的，当JS引擎执行时GUI线程会被挂起，GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。</li>
+<li>浏览器事件触发线程 事件触发线程，当一个事件被触发时该线程会把事件添加到“任务队列”的队尾，等待JS引擎的处理。这些事件可来自JavaScript引擎当前执行的代码块如setTimeOut、也可来自浏览器内核的其他线程如鼠标点击、AJAX异步请求等，但由于JS是单线程执行的，所有这些事件都得排队等待JS引擎处理。</li>
+</ol>
+<p>在Chrome浏览器中，为了防止因一个标签页奔溃而影响整个浏览器，其每个标签页都是一个<strong>进程</strong>。当然，对于同一域名下的标签页是能够相互通讯的，具体可看 <a href="http://web.jobbole.com/82225/" target="_blank" rel="external">浏览器跨标签通讯</a>。在Chrome设计中存在很多的进程，并利用进程间通讯来完成它们之间的同步，因此这也是Chrome快速的法宝之一。对于Ajax的请求也需要特殊线程来执行，当需要发送一个Ajax请求时，浏览器会开辟一个新的线程来执行HTTP的请求，它并不会阻塞JavaScript线程的执行，当HTTP请求状态变更时，相应事件会被作为回调放入到“任务队列”中等待被执行。</p>
+<p>看看以下代码：</p>
+<pre><code>document.onclick = function(){
+    console.log(&quot;click&quot;)
+}
+
+for(var i = 0; i&lt; 100000000; i++);
+</code></pre><p>解释一下代码：首先向document注册了一个click事件，然后就执行了一段耗时的for循环，在这段for循环结束前，你可以尝试点击页面。当耗时操作结束后，console控制台就会输出之前点击事件的”click”语句。这视乎证明了点击事件（也包括其它各种事件）是由额外单独的线程触发的，事件触发后就会将回调函数放进了“任务队列”的末尾，等待着JavaScript主线程的执行。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>JavaScript是单线程的，同一时刻只能执行特定的任务。而浏览器是多线程的。</li>
+<li>异步任务（各种浏览器事件、定时器等）都是先添加到“任务队列”（定时器则到达其指定参数时）。当Stack栈（JS主线程）为空时，就会读取Queue队列（任务队列）的第一个任务（队首），然后执行。</li>
+</ul>
+<p>JavaScript为了避免复杂性，而实现单线程执行。而今JavaScript却变得越来越不简单了，当然这也是JavaScript迷人的地方。</p>
+<h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2><ol>
+<li><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="external">JavaScript 运行机制详解：再谈Event Loop</a></li>
+<li><a href="http://www.cnblogs.com/whitewolf/p/javascript-single-thread-and-browser-event-loop.html" target="_blank" rel="external">JavaScript单线程和浏览器事件循环简述</a></li>
+<li><a href="http://www.cnblogs.com/Mainz/p/3552717.html" target="_blank" rel="external">Javascript是单线程的深入分析</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop" target="_blank" rel="external">Concurrency model and Event Loop</a></li>
+<li><a href="http://imweb.io/topic/56642e21d91952db73b41f52" target="_blank" rel="external">也谈setTimeout</a></li>
+<li><a href="https://leohxj.gitbooks.io/front-end-database/content/theory/single-thread.html" target="_blank" rel="external">单线程的Javascript</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/21/2015-12-21-css-sticky-footer/" rel="next" title="让footer固定在页面（或视口）底部">
+                <i class="fa fa-chevron-left"></i> 让footer固定在页面（或视口）底部
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/20/2016-1-19-object-oriented-programming-notes/" rel="prev" title="《JavaScript（ES5）的面向对象精要》读书笔记">
+                《JavaScript（ES5）的面向对象精要》读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p style="margin:0;">热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/08/2016-1-8-javascript-thread/"
+           data-title="细说JavaSript单线程的一些事" data-url="http://yoursite.com/2016/01/08/2016-1-8-javascript-thread/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="刘健超" />
+          <p class="site-author-name" itemprop="name">刘健超</p>
+          <p class="site-description motion-element" itemprop="description">踏实 梦想 责任</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JChehe" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1995306965" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jobbole.com/members/q574805242/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  伯乐在线
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/jc" target="_blank">
+                  
+                    <i class="fa fa-Segmentfault"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://aotu.io/" target="_blank">凹凸实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gongmingwang.com/" target="_blank">莞青共鸣网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codcodog.github.io/" target="_blank">莫廖の博客</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先，说下为什么-JavaScript-是单线程？"><span class="nav-number">1.</span> <span class="nav-text">首先，说下为什么 JavaScript 是单线程？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发模式与Event-Loop"><span class="nav-number">2.</span> <span class="nav-text">并发模式与Event Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Runtime-概念"><span class="nav-number">2.1.</span> <span class="nav-text">Runtime 概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Stack（栈）"><span class="nav-number">2.1.1.</span> <span class="nav-text">Stack（栈）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Heap（堆）"><span class="nav-number">2.1.2.</span> <span class="nav-text">Heap（堆）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Queue（队列）"><span class="nav-number">2.1.3.</span> <span class="nav-text">Queue（队列）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Loop"><span class="nav-number">2.2.</span> <span class="nav-text">Event Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#“执行至完成”"><span class="nav-number">2.2.1.</span> <span class="nav-text">“执行至完成”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绝不阻塞"><span class="nav-number">2.2.2.</span> <span class="nav-text">绝不阻塞</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定时器"><span class="nav-number">2.3.</span> <span class="nav-text">定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定时器的一些概念"><span class="nav-number">2.3.1.</span> <span class="nav-text">定时器的一些概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深入了解定时器"><span class="nav-number">2.3.2.</span> <span class="nav-text">深入了解定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#零延迟-setTimeout-func-0"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">零延迟 setTimeout(func, 0)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#setTimeout-func-0-的作用"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">setTimeout(func, 0)的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#正版与翻版setInterval的区别"><span class="nav-number">2.3.2.2.1.</span> <span class="nav-text">正版与翻版setInterval的区别</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器"><span class="nav-number">2.4.</span> <span class="nav-text">浏览器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器不是单线程的"><span class="nav-number">2.4.1.</span> <span class="nav-text">浏览器不是单线程的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料："><span class="nav-number">4.</span> <span class="nav-text">参考资料：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘健超</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jchehe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qPe43l5UuF31pWPlmLIhg8E7-gzGzoHsz", "1sqA7g86Dtpv9ft1jen0Lg0r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

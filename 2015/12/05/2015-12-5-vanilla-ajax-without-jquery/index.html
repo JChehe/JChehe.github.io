@@ -1,0 +1,969 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="translation,ajax," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Ajax 是异步的JavaScript和XML的简称，是一种更新页面某部分的机制。它赋予了你从服务器获取数据后，更新页面某部分的权力，从而避免了刷新整个页面。另外，以此方式实现页面局部更新，不仅能有效地打造流畅的用户体验，而且减轻了服务器的负载。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="脱离jQuery，使用原生Ajax">
+<meta property="og:url" content="http://yoursite.com/2015/12/05/2015-12-5-vanilla-ajax-without-jquery/index.html">
+<meta property="og:site_name" content="刘健超(Jc)'s Blog">
+<meta property="og:description" content="Ajax 是异步的JavaScript和XML的简称，是一种更新页面某部分的机制。它赋予了你从服务器获取数据后，更新页面某部分的权力，从而避免了刷新整个页面。另外，以此方式实现页面局部更新，不仅能有效地打造流畅的用户体验，而且减轻了服务器的负载。">
+<meta property="og:image" content="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/08/1439883041onreadystate_vs_onload.jpg">
+<meta property="og:image" content="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/08/1439883644cache_busting_vanilla_ajax.jpg">
+<meta property="og:updated_time" content="2016-04-06T04:30:39.135Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="脱离jQuery，使用原生Ajax">
+<meta name="twitter:description" content="Ajax 是异步的JavaScript和XML的简称，是一种更新页面某部分的机制。它赋予了你从服务器获取数据后，更新页面某部分的权力，从而避免了刷新整个页面。另外，以此方式实现页面局部更新，不仅能有效地打造流畅的用户体验，而且减轻了服务器的负载。">
+<meta name="twitter:image" content="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/08/1439883041onreadystate_vs_onload.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 脱离jQuery，使用原生Ajax | 刘健超(Jc)'s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76019300-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d2eaa363b7db95e9ef065389dd27defe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">刘健超(Jc)'s Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="/resume" rel="section">
+            
+              <i class="menu-item-icon fa fa-thumbs-o-up fa-fw"></i> <br />
+            
+            简历
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                脱离jQuery，使用原生Ajax
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-05T10:51:31+08:00" content="2015-12-05">
+              2015-12-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/05/2015-12-5-vanilla-ajax-without-jquery/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/05/2015-12-5-vanilla-ajax-without-jquery/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/12/05/2015-12-5-vanilla-ajax-without-jquery/" class="leancloud_visitors" data-flag-title="脱离jQuery，使用原生Ajax">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+          
+            <div class="post-tags">
+              Tags:&nbsp;&nbsp;
+              
+                <a href="/tags/translation/" rel="tag">#translation</a>
+              
+                <a href="/tags/ajax/" rel="tag">#ajax</a>
+              
+            </div>
+          
+        </div>
+
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://en.wikipedia.org/wiki/Ajax_%28programming%29" target="_blank" rel="external">Ajax</a> 是异步的JavaScript和XML的简称，是一种更新页面某部分的机制。它赋予了你从服务器获取数据后，更新页面某部分的权力，从而避免了刷新整个页面。另外，以此方式实现页面局部更新，不仅能有效地打造流畅的用户体验，而且减轻了服务器的负载。<br><a id="more"></a><br>下面是对一个基本的 Ajax 请求进行剖析：</p>
+<pre><code>var xhr = new XMLHttpRequest();
+xhr.open(&apos;GET&apos;, &apos;send-ajax-data.php&apos;);
+xhr.send(null);
+</code></pre><p>在这里， 我们创建了一个能向服务器发出 HTTP 请求的类的实例。然后调用其 <code>open</code> 方法，其中第一个参数是 HTTP 请求方法，第二个参数是请求页面的 URL。最后，我们调用参数为 null 的 <code>send</code> 方法。假如使用 POST 请求方法（这里我们使用了 GET），那么 send 方法 的参数应该包含任何你想发送的数据。</p>
+<p>下面是我们如何处理服务器的响应：</p>
+<pre><code>xhr.onreadystatechange = function(){
+    var DONE = 4; // readyState 4 代表已向服务器发送请求
+    var OK = 200; // status 200 代表服务器返回成功
+    if(xhr.readyState === DONE){
+        if(xhr.status === OK){
+            console.log(xhr.responseText); // 这是返回的文本
+        } else{
+            console.log(&quot;Error: &quot;+ xhr.status); // 在此次请求中发生的错误
+        }
+    }
+}
+</code></pre><p><code>onreadystatechange</code> 是异步的，那么这就意味着它将可在任何时候被调用。这种类型的函数被称为回调函数——一旦某些处理完成后，它就会被调用。在此案例中，这个处理发生在服务器。</p>
+<p>对于想学习更多关于 Ajax 基础知识的同学，可关注 MDN 的这篇<a href="https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started" target="_blank" rel="external">教程</a>。</p>
+<h3 id="到底选择-jQuery-还是选择原生-JavaScript-呢？"><a href="#到底选择-jQuery-还是选择原生-JavaScript-呢？" class="headerlink" title="到底选择 jQuery 还是选择原生 JavaScript 呢？"></a>到底选择 jQuery 还是选择原生 JavaScript 呢？</h3><p>嗯，好消息是上述代码兼容所有最新的主流浏览器。而坏消息是使用起来十分复杂。的确令人恶心！我已经苦思出一个优雅的解决方案了。</p>
+<p>如果使用 jQuery，则能把上述代码压缩成这样：</p>
+<pre><code>$.ajax({
+    url: &quot;send-ajax-data.php&quot;
+}).done(function(res){
+    console.log(res);
+}).fail(function(){
+    console.log(&quot;Error: &quot; + err.status);
+})
+</code></pre><p>非常简洁易懂。对于大多数人（我想也包括你）来说，jQuery 已经成为了解决 Ajax 的默认标准。但你知道吗？情况不一定是这样的。jQuery 的存在是为了解决丑陋的 DOM API。但 Ajax 真的是丑陋或复杂的吗？</p>
+<p>在文章的剩余部分，我打算用原生 JavaScript 使 Ajax API 有所改善。关于 Ajax 的完整文档可以在 <a href="http://www.w3.org/TR/XMLHttpRequest/" target="_blank" rel="external">W3C</a> 找到。然而这份说明的标题使我非常受打击。竟然不是“XMLHttpRequest Level 2”，而是“XMLHttpRequest Level 1”——因为在2011年已将两个文档合并。展望未来，它们将被视为单一实体，而现存标准将其称为 <a href="https://xhr.spec.whatwg.org/" target="_blank" rel="external">XMLHttpRequest</a>。这表明社区坚持承诺只有一个标准，这对于想脱离 jQuery 的开发人员来说，是个好消息。</p>
+<p>所以，让我们一起开始吧！</p>
+<p>在这篇文章，我使用 <a href="https://nodejs.org/" target="_blank" rel="external">Node.js</a>作为后端。没错，这就可以全栈（浏览器和服务器）JS了。Node.js 是很简洁的，我鼓励你能在 <a href="https://github.com/sitepoint-editors/VanillaAjaxNojQuery" target="_blank" rel="external">Github</a>下载demo，并关注该项目。下面是服务器端的代码：</p>
+<pre><code>// app.js
+var app = http.createServer(function(req, res){
+    if(req.url.indexOf(&quot;/scripts/&quot;) &gt;= 0){
+        render(req.url.slice(1), &quot;application/javascript&quot;, httpHandler);
+    } else if(req.headers[&apos;x-requested-with&apos;] === &apos;XMLHttpRequest&apos;){
+        // Send Ajax response
+    } else{
+        render(&apos;views/index.html&apos;, &apos;text/html&apos;, httpHandler);
+    }
+}
+</code></pre><p>该代码段通过检测请求 URL，确定该app返回的相应内容。如果该请求来自 <code>scripts</code> 目录，那么服务器将返回内容类型（content type）为 <code>application/javascript</code> 的相应文件。如果请求头部的 <code>x-requested-with</code> 被设为 <code>XMLHttpRequest</code>，那么该请求是 Ajax 请求，然后返回相应数据。除了以上两种情况，服务器将会返回 <code>views/index.html</code>。</p>
+<p>下面我将会展开上一代码段处理 Ajax 请求的注释部分进行深入讲解。在 Node.js端，我已处理了 <code>render</code> 和 <code>httpHandler</code> 的体力活：</p>
+<pre><code>// app.js
+function render(path, contentType, fn) {
+    fs.readFile(__dirname + &apos;/&apos; + path, &apos;utf-8&apos;, function (err, str) {
+        fn(err, str, contentType);
+    });
+}
+var httpHandler = function (err, str, contentType) {
+    if (err) {
+        res.writeHead(500, {&apos;Content-Type&apos;: &apos;text/plain&apos;});
+        res.end(&apos;An error has occured: &apos; + err.message);
+    } else {
+        res.writeHead(200, {&apos;Content-Type&apos;: contentType});
+        res.end(str);
+    }
+};
+</code></pre><p><code>render</code> 函数异步读取被请求文件的内容。该函数向被作为回调函数的 <code>httpHandler</code> 传递一个引用。<br><code>httpHandler</code> 函数检测 error 对象是否存在（如：被请求文件不能被打开，该对象就会存在）。另外，指定类型是好的做法，那么服务器返回的文件内容就会拥有适当的 HTTP 状态码（status code）和内容类型（content type）。</p>
+<h3 id="测试-API"><a href="#测试-API" class="headerlink" title="测试 API"></a>测试 API</h3><p>让我们为后端API编写一些单元测试，从而确保它们能正确运行。对于这类测试，我会请求 <a href="https://www.npmjs.com/package/supertest" target="_blank" rel="external">supertest</a> 和 <a href="https://www.npmjs.com/package/mocha" target="_blank" rel="external">mocha</a>帮助。</p>
+<pre><code>// test/app.request.js
+it(&quot;responds with html&quot;, function(done){
+    request(app)
+        .get(&quot;/&quot;)
+        .expect(&quot;Content-Type&quot;, /html/)
+        .expect(200, done);
+});
+it(&apos;responds with javascript&apos;, function (done) {
+request(app)
+    .get(&apos;/scripts/index.js&apos;)
+    .expect(&apos;Content-Type&apos;, /javascript/)
+    .expect(200, done);
+});
+it(&apos;responds with json&apos;, function (done) {
+request(app)
+    .get(&apos;/&apos;)
+    .set(&apos;X-Requested-With&apos;, &apos;XMLHttpRequest&apos;)
+    .expect(&apos;Content-Type&apos;, /json/)
+    .expect(200, done);
+});
+</code></pre><p>这些测试确保了我们的 app 对于不同请求能返回正确的内容类型(content type)和HTTP 状态码（status code）。一旦你安装了这些依赖，那么你就能使用命令 <code>npm test</code> 运行这些测试。</p>
+<h3 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h3><p>现在，让我们看看用户界面的 HTML 代码：</p>
+<pre><code>// views/index.html
+&lt;h1&gt;Vanilla Ajax without jQuery&lt;/h1&gt;
+&lt;button id=&quot;retrieve&quot; data-url=&quot;/&quot;&gt;Retrieve&lt;/button&gt;
+&lt;p id=&quot;results&quot;&gt;&lt;/p&gt;
+</code></pre><p>上述的 HTML 代码看起来很简洁。没错，正如你所看到的，所有令人兴奋的事情都发生在 JavaScript。</p>
+<h3 id="onreadystate-vs-onload"><a href="#onreadystate-vs-onload" class="headerlink" title="onreadystate vs onload"></a>onreadystate vs onload</h3><p>如果你看过任何一本权威的、关于 Ajax 的书，你可能会发现 <code>onreadystate</code> 在书上随处可见。该回调函数需要通过嵌套的 ifs 或多个 case 语句完成，这使得难以记忆。让我们再次回顾 <code>onreadystate</code> 和  <code>onload</code> 事件。</p>
+<pre><code>(function() {
+    var retrieve = document.getElementById(&apos;retrieve&apos;),
+        results = document.getElementById(&apos;results&apos;),
+        toReadyStateDescription = function(state) {
+            switch (state) {
+                case 0:
+                    return &apos;UNSENT&apos;;
+                case 1:
+                    return &apos;OPENED&apos;;
+                case 2:
+                    return &apos;HEADERS_RECEIVED&apos;;
+                case 3:
+                    return &apos;LOADING&apos;;
+                case 4:
+                    return &apos;DONE&apos;;
+                default:
+                    return &apos;&apos;;
+            }
+        };
+    retrieve.addEventListener(&apos;click&apos;, function(e) {
+        var oReq = new XMLHttpRequest();
+        oReq.onload = function() {
+            console.log(&apos;Inside the onload event&apos;);
+        };
+        oReq.onreadystatechange = function() {
+            console.log(&apos;Inside the onreadystatechange ev![此处输入图片的描述][1]ent with readyState: &apos; +
+                toReadyStateDescription(oReq.readyState));
+        };
+        oReq.open(&apos;GET&apos;, e.target.dataset.url, true);
+        oReq.send();
+    });
+}());
+</code></pre><p>上述代码会在 控制台（console） 输出以下语句：</p>
+<p><img src="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/08/1439883041onreadystate_vs_onload.jpg" alt="此处输入图片的描述"></p>
+<p> <code>onreadystatechange</code> 事件能在请求的任何过程中被触发。如能在每个请求前、请求末。但根据文档，<code>onload</code> 事件只会在请求成功后触发。又因为 <code>onload</code> 事件是一个常见的 API，所以你能在很短时间内掌握它。<code>onreadystatechange</code> 事件可作为后备（原文是backwards compatible 向后兼容？）方案。而 <code>onload</code> 事件应该是你的首选。而且 <code>onload</code> 事件与 jQuery 的 <code>success</code> 回调函数类似，难道不是吗？</p>
+<h3 id="设置请求头部"><a href="#设置请求头部" class="headerlink" title="设置请求头部"></a>设置请求头部</h3><p> jQuery 私下帮你设置请求头部了，所以后端能检测这是一个 Ajax 请求。一般来说，后端并不关心 GET 请求是从哪而来，只要能返回正确的响应即可。当你相用同样的 web API 返回 Ajax 或 HTML 时，这就派上用场了。让我们看看如何通过原生 JavaScript 设置请求头部：</p>
+<pre><code>var oReq = new XMLHttpRequest();
+oReq.open(&apos;GET&apos;, e.target.dataset.url, true);
+oReq.setRequestHeader(&apos;X-Requested-With&apos;, &apos;XMLHttpRequest&apos;);
+oReq.send();
+</code></pre><p>与此同时，我们在 Node.js 做一个检测：</p>
+<pre><code>if (req.headers[&apos;x-requested-with&apos;] === &apos;XMLHttpRequest&apos;) {
+    res.writeHead(200, {&apos;Content-Type&apos;: &apos;application/json&apos;});
+    res.end(JSON.stringify({message: &apos;Hello World!&apos;}));
+}
+</code></pre><p>正如你所看到的，原生 Ajax 是一个灵活且现代化的前端 API。你可以利用请求头部做很多事情，其中一种是版本控制。例如，我想让某个 web API 支持多个版本。但我又不想利用 URL，取而代之的是：通过设置请求头部，使客户端能选择它们想要的版本。所以，我们能这样设置请求头部：</p>
+<pre><code>oReq.setRequestHeader(&apos;x-vanillaAjaxWithoutjQuery-version&apos;, &apos;1.0&apos;);
+</code></pre><p>然后，在后端写上相应代码：</p>
+<pre><code>if (req.headers[&apos;x-requested-with&apos;] === &apos;XMLHttpRequest&apos; &amp;&amp;
+    req.headers[&apos;x-vanillaajaxwithoutjquery-version&apos;] === &apos;1.0&apos;) {
+    // Send Ajax response
+}
+</code></pre><p>我们能利用 Node.js 为我们提供的 headers 对象进行相应检测。而唯一需要注意的地方是：以小写字母读取它们。</p>
+<h3 id="响应类型"><a href="#响应类型" class="headerlink" title="响应类型"></a>响应类型</h3><p>你可能想知道为什么 <code>responseText</code> 返回的是字符串，而不是能被我们操作的普通 JSON（Plain Old JSON）。原来是因为我没有设置合适的 <code>responseType</code> 属性。该 Ajax 属性会很好地告诉前端 API 所期望服务器返回的数据类型。所以，我们要好好利用它：</p>
+<pre><code>var oReq = new XMLHttpRequest();
+oReq.onload = function (e) {
+    results.innerHTML = e.target.response.message;
+};
+oReq.open(&apos;GET&apos;, e.target.dataset.url, true);
+oReq.responseType = &apos;json&apos;;
+oReq.send();
+</code></pre><p>哇，这样我们就不必再对返回的纯文本解析为 JSON 了，我们能告诉 API 我们期待接收的数据类型。该特性几乎得到了所有最新主流浏览器的支持。当然，jQuery 会自动帮我们转为适当的类型。但现在的原生 JavaScript 也具有方便的、完成同样事件的方法。 原生 Ajax 已经支持很多其它响应类型，如 XML。</p>
+<p>但遗憾的是，到 IE11 为止，开发团队仍未对 <a href="https://connect.microsoft.com/IE/feedback/details/794808" target="_blank" rel="external">xhr.responseType=’json’</a> 进行支持。虽然该特性目前在 <a href="http://caniuse.com/#feat=xhr2" target="_blank" rel="external">Microsoft Edge</a> 得到支持。但这个 Bug 提出几乎两年了。我坚信 Microsoft 团队一直在努力地改进浏览器。让我们期待 Microsoft Edge、aka Project Spartan 当初提出的承诺。<br>当然，你可以这个解决这个 IE 问题：</p>
+<pre><code>oReq.onload = function (e) {
+    var xhr = e.target;
+    if (xhr.responseType === &apos;json&apos;) {
+        results.innerHTML = xhr.response.message;
+    } else {
+        results.innerHTML = JSON.parse(xhr.responseText).message;
+    }
+};
+</code></pre><h3 id="避免缓存"><a href="#避免缓存" class="headerlink" title="避免缓存"></a>避免缓存</h3><p>对 Ajax 请求进行缓存的浏览器特性都快被我们忘记了。例如，IE 就默认是这样。我还曾因此导致我的 Ajax 不执行而苦恼了几个小时。幸运的是，jQuery 默认清除浏览器缓存。当然，你能在纯 Ajax 达到该目的，而且相当简单：</p>
+<pre><code>var bustCache = &apos;?&apos; + new Date().getTime();
+oReq.open(&apos;GET&apos;, e.target.dataset.url + bustCache, true);
+</code></pre><p>查看 <a href="http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings" target="_blank" rel="external">jQuery 文档</a>，可知道 jQuery 在每个请求（GET）后面追加一个时间戳作为查询字符串。这在某个程度上让请求变得独一无二，并避免浏览器缓存。每当你触发 HTTP Ajax 请求，你能看到类似如下请求：<br><img src="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/08/1439883644cache_busting_vanilla_ajax.jpg" alt="此处输入图片的描述"></p>
+<p>OK！这就没有戏剧性的事情发生了。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>我希望你能喜欢这篇关于原生 Ajax 的文章。Ajax 在过去某段时间里，被人们看作是一种可怕的怪兽。而事实上，我们已经覆盖了原生 Ajax 所有基础知识。</p>
+<p>最后，我会留给你一个简洁的方式进行Ajax调用：</p>
+<pre><code>var oReq = new XMLHttpRequest();
+oReq.onload = function (e) {
+    results.innerHTML = e.target.response.message;
+};
+oReq.open(&apos;GET&apos;, e.target.dataset.url + &apos;?&apos; + new Date().getTime(), true);
+oReq.responseType = &apos;json&apos;;
+oReq.send();
+</code></pre><p>不要忘记，你能在 <a href="https://github.com/sitepoint-editors/VanillaAjaxNojQuery" target="_blank" rel="external">Github</a> 找到整个案例。我希望在评论里看到你对原生 Ajax 的想法。</p>
+<hr>
+<p>感谢您的阅读。<br>如果你觉得这篇文章对您有帮助或者觉得我翻译得不错，那给我个 <a href="https://github.com/JChehe/translation/blob/master/%E8%84%B1%E7%A6%BBjQuery%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%94%9FAjax.md" target="_blank" rel="external">star</a> 吧.<br>英文出处：<a href="http://www.sitepoint.com/guide-vanilla-ajax-without-jquery/" target="_blank" rel="external">《A Guide to Vanilla Ajax Without jQuery》</a><br>翻译： <a href="https://github.com/JChehe" target="_blank" rel="external">刘健超 J.c</a></p>
+<p>注意：未经许可，禁止转载！</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/24/2015-11-24-read-css-mastery-advanced-web-standards-solutions-second-edition-again/" rel="next" title="再次阅读《精通CSS-高级Web标准解决方案（第二版）》">
+                <i class="fa fa-chevron-left"></i> 再次阅读《精通CSS-高级Web标准解决方案（第二版）》
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/10/2015-12-10-closures-are-not-magic/" rel="prev" title="其实闭包并不高深莫测">
+                其实闭包并不高深莫测 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p style="margin:0;">热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/05/2015-12-5-vanilla-ajax-without-jquery/"
+           data-title="脱离jQuery，使用原生Ajax" data-url="http://yoursite.com/2015/12/05/2015-12-5-vanilla-ajax-without-jquery/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="刘健超" />
+          <p class="site-author-name" itemprop="name">刘健超</p>
+          <p class="site-description motion-element" itemprop="description">踏实 梦想 责任</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JChehe" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1995306965" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jobbole.com/members/q574805242/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  伯乐在线
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/jc" target="_blank">
+                  
+                    <i class="fa fa-Segmentfault"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://aotu.io/" target="_blank">凹凸实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gongmingwang.com/" target="_blank">莞青共鸣网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codcodog.github.io/" target="_blank">莫廖の博客</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#到底选择-jQuery-还是选择原生-JavaScript-呢？"><span class="nav-number">1.</span> <span class="nav-text">到底选择 jQuery 还是选择原生 JavaScript 呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-API"><span class="nav-number">2.</span> <span class="nav-text">测试 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#界面"><span class="nav-number">3.</span> <span class="nav-text">界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onreadystate-vs-onload"><span class="nav-number">4.</span> <span class="nav-text">onreadystate vs onload</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置请求头部"><span class="nav-number">5.</span> <span class="nav-text">设置请求头部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应类型"><span class="nav-number">6.</span> <span class="nav-text">响应类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免缓存"><span class="nav-number">7.</span> <span class="nav-text">避免缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘健超</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jchehe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qPe43l5UuF31pWPlmLIhg8E7-gzGzoHsz", "1sqA7g86Dtpv9ft1jen0Lg0r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

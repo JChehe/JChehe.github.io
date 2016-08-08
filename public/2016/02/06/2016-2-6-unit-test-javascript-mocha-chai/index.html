@@ -1,0 +1,1075 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="BDD,chai,mocha,tdd," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="刘健超(Jc)'s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="你曾试过修改代码后，导致其它地方出现问题吗？
+也许有大多数人试过。因为这是几乎不可避免的，特别在庞大的代码面前。由于代码间可能是环环相扣的，改变一处会影响另一处。
+但如果这种情况不会发生呢？如果你有一种方法能知道改变后会出现的结果呢？这无疑是极好的。因为修改代码后无需担心会破坏什么东西，从而程序出现 bug 的概率更低，在 debug 上花费时间更少。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Mocha和Chai对JavaScript进行单元测试">
+<meta property="og:url" content="http://yoursite.com/2016/02/06/2016-2-6-unit-test-javascript-mocha-chai/index.html">
+<meta property="og:site_name" content="刘健超(Jc)'s Blog">
+<meta property="og:description" content="你曾试过修改代码后，导致其它地方出现问题吗？
+也许有大多数人试过。因为这是几乎不可避免的，特别在庞大的代码面前。由于代码间可能是环环相扣的，改变一处会影响另一处。
+但如果这种情况不会发生呢？如果你有一种方法能知道改变后会出现的结果呢？这无疑是极好的。因为修改代码后无需担心会破坏什么东西，从而程序出现 bug 的概率更低，在 debug 上花费时间更少。">
+<meta property="og:image" content="http://7xq7nb.com1.z0.glb.clouddn.com/1mocha-test-results.jpg">
+<meta property="og:image" content="http://7xq7nb.com1.z0.glb.clouddn.com/2mochatest-error.jpg">
+<meta property="og:image" content="http://7xq7nb.com1.z0.glb.clouddn.com/3running-mocha-in-the-terminal.png">
+<meta property="og:updated_time" content="2016-04-06T04:45:37.020Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用Mocha和Chai对JavaScript进行单元测试">
+<meta name="twitter:description" content="你曾试过修改代码后，导致其它地方出现问题吗？
+也许有大多数人试过。因为这是几乎不可避免的，特别在庞大的代码面前。由于代码间可能是环环相扣的，改变一处会影响另一处。
+但如果这种情况不会发生呢？如果你有一种方法能知道改变后会出现的结果呢？这无疑是极好的。因为修改代码后无需担心会破坏什么东西，从而程序出现 bug 的概率更低，在 debug 上花费时间更少。">
+<meta name="twitter:image" content="http://7xq7nb.com1.z0.glb.clouddn.com/1mocha-test-results.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 用Mocha和Chai对JavaScript进行单元测试 | 刘健超(Jc)'s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76019300-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d2eaa363b7db95e9ef065389dd27defe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">刘健超(Jc)'s Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用Mocha和Chai对JavaScript进行单元测试
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-06T11:28:13+08:00" content="2016-02-06">
+              2016-02-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/06/2016-2-6-unit-test-javascript-mocha-chai/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/06/2016-2-6-unit-test-javascript-mocha-chai/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/02/06/2016-2-6-unit-test-javascript-mocha-chai/" class="leancloud_visitors" data-flag-title="用Mocha和Chai对JavaScript进行单元测试">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+          
+            <div class="post-tags">
+              Tags:&nbsp;&nbsp;
+              
+                <a href="/tags/BDD/" rel="tag">#BDD</a>
+              
+                <a href="/tags/chai/" rel="tag">#chai</a>
+              
+                <a href="/tags/mocha/" rel="tag">#mocha</a>
+              
+                <a href="/tags/tdd/" rel="tag">#tdd</a>
+              
+            </div>
+          
+        </div>
+
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>你曾试过修改代码后，导致其它地方出现问题吗？</p>
+<p>也许有大多数人试过。因为这是几乎不可避免的，特别在庞大的代码面前。由于代码间可能是环环相扣的，改变一处会影响另一处。</p>
+<p>但如果这种情况不会发生呢？如果你有一种方法能知道改变后会出现的结果呢？这无疑是极好的。因为修改代码后无需担心会破坏什么东西，从而程序出现 bug 的概率更低，在 debug 上花费时间更少。<br><a id="more"></a><br>这就是单元测试的魅力。它能自动检测代码中的任何问题。在修改代码后进行相应测试，若有问题，能立刻知道问题是什么，问题在哪和正确的做法是什么。这完全消除任何猜测！</p>
+<p>在本文，我会让你了解如何对 JavaScript 代码进行单元测试。而且，在本文出现的案例和技术可同时应用到基于浏览器的代码和 Node.js 的代码。</p>
+<p>教程中的代码也可到我的 <a href="https://github.com/sitepoint-editors/mocha-unit-testing" target="_blank" rel="external">GitHub repo</a> 中得到。</p>
+<h2 id="什么是单元测试"><a href="#什么是单元测试" class="headerlink" title="什么是单元测试"></a>什么是单元测试</h2><p>当你对代码库进行测试时，可先取一段代码（如函数），然后在特定情况下，验证其行为是否正确。而单元测试就是这方面的一种结构化和自动化的方法。当然，写的测试越多，获得的益处也更大。这也让你进行开发时会更加自信。</p>
+<p>单元测试的核心思想是给函数特定的输入，测试其行为。也就是说，以特定的参数调用函数，然后检查是否得到正确的结果。</p>
+<pre><code>// Given 1 and 10 as inputs...
+// 输入 1 和 10...
+var result = Math.max(1, 10);
+
+// ...we should receive 10 as the output
+// ...应该输出 10
+if(result !== 10) {
+  throw new Error(&apos;Failed&apos;);
+}
+</code></pre><p>在实际中，测试有时会更复杂。例如，如果你的函数含有一个 Ajax 请求，那么测试就需要设定更多的东西。当然，“赋予特定的输入，期待得到一个特定的输出”原理仍然适用。</p>
+<h2 id="设置工具"><a href="#设置工具" class="headerlink" title="设置工具"></a>设置工具</h2><p>在本文，我们选择 Mocha。它入门简单，能同时适用于基于浏览器的测试和 Node.js 的测试，而且与其它测试工具运行良好。</p>
+<p>安装 Mocha 的最简单方式是 npm（为此，也需要安装 <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>）。如果你不懂得如何在你的电脑上安装 npm 或 Node.js，可查看我的教程 <a href="http://www.sitepoint.com/beginners-guide-node-package-manager/" target="_blank" rel="external">A Beginner’s Guide to npm — the Node Package Manager</a>。</p>
+<p>安装好 Node.js 后，在你的项目目录下打开 terminal 或 command line。</p>
+<ul>
+<li>如果你想在浏览器上测试代码，执行 <code>npm install mocha chai --save-dev</code>。</li>
+<li>如果你想测试 Node.js 代码，除了执行上面那行命令，也要执行 <code>npm install -g mocha</code>。</li>
+</ul>
+<p>这就安装了 <code>mocha</code> 和 <code>chai</code> 包（package）了。<a href="https://mochajs.org/" target="_blank" rel="external">Mocha</a> 是一个运行测试的库，而 <a href="http://chaijs.com/" target="_blank" rel="external">Chai</a> 包含一些有用的功能，我们能利用这些功能对我们的测试结果进行验证。</p>
+<h3 id="Node-js-vs-Browser-测试对比"><a href="#Node-js-vs-Browser-测试对比" class="headerlink" title="Node.js vs Browser 测试对比"></a>Node.js vs Browser 测试对比</h3><p>下面的案例是在浏览器上运行测试的。如果想为你的 Node.js 应用进行单元测试，要遵循以下步骤。</p>
+<ul>
+<li>对于 Node，无需测试运行文件（test runner file）。</li>
+<li>为了引入 Chari，需在测试文件顶部添加语句 <code>var chai = require(&#39;chai&#39;);</code>。</li>
+<li>用 <code>mocha</code> 命令执行单元测试，而不是打开浏览器。</li>
+</ul>
+<h2 id="设置目录结构"><a href="#设置目录结构" class="headerlink" title="设置目录结构"></a>设置目录结构</h2><p>为了让文件结构更清晰，应将测试文件放在主代码文件的一个独立目录下。这是为了方便以后添加其它类型的测试（如<a href="https://en.wikipedia.org/wiki/Integration_testing" target="_blank" rel="external">集成测试（integration tests）</a> 和 <a href="https://en.wikipedia.org/wiki/Functional_testing" target="_blank" rel="external">功能测试（functional tests）</a>）。</p>
+<p>对于 JavaScript，最流行的实践方案是在项目根目录下创建一个 <code>test/</code> 文件夹。然后，将每个测试文件放置在该文件夹下，如 <code>test/someModuleTest.js</code>。另一种方案是，在 <code>test/</code> 目录下，再创建文件夹。但我建议尽量保持简单——这样能保证在后面必要时进行（快速）修改。</p>
+<h2 id="设置测试运行器（Test-Runner）"><a href="#设置测试运行器（Test-Runner）" class="headerlink" title="设置测试运行器（Test Runner）"></a>设置测试运行器（Test Runner）</h2><p>为了能在浏览器上进行测试，我们需要创建一个简单的 HTML 页面作为测试运行页（test runner page）。该页面会加载 Mocha、测试库文件和实际测试文件。为了运行这些测试，我们只需在浏览器打开运行器（runner）。</p>
+<p>如果你使用 Node.js，你可跳过这一步。Node.js 的单元测试能通过命令 <code>mocha</code> 运行，前提是按照我推荐的目录结构。</p>
+<p>下面是我们用于测试运行器（test runner）的代码。我将其存为 <code>testrunner.html</code>。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Mocha Tests&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;node_modules/mocha/mocha.css&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;mocha&quot;&gt;&lt;/div&gt;
+    &lt;script src=&quot;node_modules/mocha/mocha.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;node_modules/chai/chai.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;mocha.setup(&apos;bdd&apos;)&lt;/script&gt;
+
+    &lt;!-- load code you want to test here --&gt;
+
+    &lt;!-- load your test files here --&gt;
+
+    &lt;script&gt;
+      mocha.run();
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>该测试运行器的几个重要点：</p>
+<ul>
+<li>为了让测试结果拥有漂亮的样式，我们加载了 Mocha 的 CSS 文件。</li>
+<li>创建了一个 ID 为 mochat 的 div 标签。测试结果将放在该标签内。</li>
+<li>加载 Mocha 和 Chai 脚本文件。由于这两个文件是通过 npm 安装的，它们被放在 node_modules 目录的相应文件夹下。</li>
+<li>通过调用 mocha.setup，开启 Mocha 的测试功能（testing helpers）。</li>
+<li>然后，加载需要的测试项和相应测试的文件。尽管我们还没在这放置任何代码。</li>
+<li>最后，调用了 mocha.run 执行相应测试。当然，要确保在资源和测试文件加载完成后才调用该函数。</li>
+</ul>
+<h2 id="基本的测试骨架"><a href="#基本的测试骨架" class="headerlink" title="基本的测试骨架"></a>基本的测试骨架</h2><p>现在我们可以运行测试了，下面就开始写点测试相关的东西吧。</p>
+<p>首先，创建 <code>test/arrayTest.js</code>。每个文件名都有其具体含义，显然它是个测试文件，并会测试 array 的基本功能。</p>
+<p>每个测试案例文件都会遵循以下基本模式。首先，有个 <code>describe</code> 块：</p>
+<pre><code>describe(&apos;Array&apos;, function() {
+  // Further code for tests goes here
+});
+</code></pre><p><code>describe</code> 用于把单独的测试聚合在一起。其第一个参数用于指示测试什么。在本例中，由于我们打算测试 array 功能，我传入一个 <code>&#39;Array&#39;</code> 字符串。</p>
+<p>然后，在 <code>describe</code> 内需有 <code>it</code> 块：</p>
+<pre><code>describe(&apos;Array&apos;, function() {
+  it(&apos;should start empty&apos;, function() {
+    // Test implementation goes here
+  });
+
+  // We can have more its here
+});
+</code></pre><p><code>it</code> 用于创建实际的测试。其第一个参数是对该测试的描述，且该描述的语言应该是人类可读的（而非编程语言）。如在本例中，“it should empty”能很好地描述了 array 的行为。实现该测试的具体代码则写在 <code>it</code> 的第二个参数 function 内。</p>
+<p>所有 Mocha 测试都以同样的骨架编写，而且它们遵循这相同且基本的模式。</p>
+<ul>
+<li>首先，使用 <code>describe</code> 表明我们测试什么，如“描述 array 该如何运行”。</li>
+<li>然后，使用多个 <code>it</code> 函数创建独立的测试，每个 <code>it</code> 应该描述一个特定的行为，如上述的案例 “it should start empty（array 运行前应为空）”</li>
+</ul>
+<h2 id="编写测试代码"><a href="#编写测试代码" class="headerlink" title="编写测试代码"></a>编写测试代码</h2><p>现在我们已经知道如何构造测试案例了，下面就开始更有趣的部分——实现测试。</p>
+<p>由于我们的测试是 array 初始值应为空，即我们需要创建一个数组并确保它为空。实现该测试是非常简单的：</p>
+<pre><code>var assert = chai.assert;
+
+describe(&apos;Array&apos;, function() {
+  it(&apos;should start empty&apos;, function() {
+    var arr = [];
+
+    assert.equal(arr.length, 0);
+  });
+});
+</code></pre><p>请注意首行代码，我们设置了 <code>assert</code> 变量。这样就不用每次需要它时输入 <code>chai.assert</code> 了。</p>
+<p>在 <code>it</code> 函数里，我们创建了一个数组并检查其长度。尽管简单，但很好地展示了测试是如何工作的。</p>
+<p>首先，你有东西需要被测试——这叫 <a href="https://zh.wikipedia.org/wiki/%E8%A2%AB%E6%B5%8B%E7%B3%BB%E7%BB%9F" target="_blank" rel="external">被测系统（System Under Test，SUT）</a>。若有需要，则对被测系统进行相应操作。对于上述案例，由于检查数组初始值是否为空，我们没做任何操作。</p>
+<p>测试的最后步骤应该是验证——对结果进行断言（assertion）检查。对于上述案例，我们对此使用 <code>assert.equal</code>。大多数断言函数的参数顺序是一致的：首先是“实际”值，然后是“期待”值。 </p>
+<p>实际值是测试代码的结果，因此，在该案例中是 <code>arr.length</code>。</p>
+<p>期待值是预想的结果。由于数组的初始值应为空，因此，在该案例中的期待值是 <code>0</code>。</p>
+<p>虽然 Chai 提供了两种不同的断言（assertion）编写方式，但现在为了保持简单，我们使用了 <a href="http://chaijs.com/api/assert/" target="_blank" rel="external">assert</a>。当你能熟练编写测试时，你可能更想用 <a href="http://chaijs.com/api/bdd/" target="_blank" rel="external">expect assertions</a> ，因为它提供了更灵活的操作。</p>
+<h2 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h2><p>为了运行该测试，我们需要将其添加到先前创建的测试运行器文件内。</p>
+<p>对于 Node.js，可跳过此步骤，然后使用命令 <code>mocha</code> 执行测试。你会在 terminal 里看到测试结果。</p>
+<p>向运行器添加该测试（针对浏览器端）：</p>
+<pre><code>&lt;!-- load your test files here --&gt;
+&lt;script src=&quot;test/arrayTest.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>你一旦添加了脚本，就可以加载测试运行器页面了（若选择在浏览器进行测试）。</p>
+<h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><p>当你运行这些测试，其测试结果看起来和下图类似：</p>
+<p><img src="http://7xq7nb.com1.z0.glb.clouddn.com/1mocha-test-results.jpg" alt="Mocha test results - 1 test passing"></p>
+<p>注意：在 <code>describe</code> 和 <code>it</code> 函数的描述语句都在页面展示出来了——测试项（如：should start empty）都分组放在描述（如：Array）下。当然，也可以对 <code>describe</code> 块再嵌套，以创建更深的子分组。</p>
+<p>下面看看测试失败是显示什么。</p>
+<p>将测试的该行代码进行修改：</p>
+<pre><code>assert.equal(arr.length, 0);
+</code></pre><p>将 0 改为 1。这无疑会导致测试失败，因为数组长度不再匹配期待值。</p>
+<p>如果你再次运行测试，那么在测试结果中，运行错误的描述将以红色显示。</p>
+<p><img src="http://7xq7nb.com1.z0.glb.clouddn.com/2mochatest-error.jpg" alt="Mocha test error - one test failing"></p>
+<p>测试的一项好处是能帮助你更快地找到 bug，尽管错误信息在这并不是非常详细。</p>
+<p>大多数断言函数都带有一个可选的 <code>message</code> 参数。该信息参数会在断言失败时显示。因此我们可以利用该参数，让错误信息更易被我们所理解。</p>
+<p>我们能像下面那样向断言添加 <code>message</code> 参数：</p>
+<pre><code>assert.equal(arr.length, 1, &apos;Array length was not 0&apos;);
+</code></pre><p>如果你再次运行测试，那么自定义的信息会取代默认的信息而显示出来。</p>
+<p>OK，让我们将 <code>1</code> 改回 <code>0</code>，确保测试通过。</p>
+<h2 id="综合案例"><a href="#综合案例" class="headerlink" title="综合案例"></a>综合案例</h2><p>到目前为止，案例都是相当简单的。那么下面就让我们将学到的知识付诸实践，看看如何测试一段实际当中所用到的代码。</p>
+<p>下面是一个将 CSS 类名添加到元素的函数。我们将该函数放进新文件 <code>js/className.js</code>。</p>
+<pre><code>function addClass(el, newClass) {
+  if(el.className.indexOf(newClass) === -1) {
+    el.className += newClass;
+  }
+}
+</code></pre><p>当元素的 <code>className</code> 属性不含有新类名时，才向元素添加新类名——毕竟谁想看到 <code>&lt;div class=&quot;hello hello hello hello&quot;&gt;</code>。</p>
+<p>在最好的情况下，我们要在编写代码前先为该函数编写测试。但 <a href="https://en.wikipedia.org/wiki/Test-driven_development" target="_blank" rel="external">测试驱动开发（test-driven development）</a> 是一个复杂的主题，因此我们现在仅专注于编写测试。</p>
+<p>开始前，让我们重温单元测试的基本思想：赋予函数特定的输入，然后验证函数的行为是否符合预期。所以，该函数的输入和行为是什么呢？</p>
+<p>给定一个元素和一个类名：</p>
+<ul>
+<li>若元素的 <code>className</code> 属性未含有该类名，则应添加。</li>
+<li>若元素的 <code>className</code> 属性已含有该类名，则不应添加。</li>
+</ul>
+<p>将这两种情况转化为两个测试。在 <code>test</code> 目录下，创建新文件 <code>classNameTest.js</code> 并添加以下内容： </p>
+<pre><code>describe(&apos;addClass&apos;, function() {
+  it(&apos;should add class to element&apos;);
+  it(&apos;should not add a class which already exists&apos;);
+});
+</code></pre><p>我们也可以将措词稍微地改成“it should do X”，虽然可读性更强一点，但本质上仍然与我们上述语句的可读性一致。根据原来的措词联想到相应的测试也不难。</p>
+<p>等等，测试函数跑去哪了？当我们省略 <code>it</code> 的第二个参数，Mocha 会在测试结果中标记这些测试为待测试项。这让设置多个测试变得更方便——就像一个备忘录，列着打算编写的测试。</p>
+<p>接着实现第一个测试。</p>
+<pre><code>describe(&apos;addClass&apos;, function() {
+  it(&apos;should add class to element&apos;, function() {
+    var element = { className: &apos;&apos; };
+
+    addClass(element, &apos;test-class&apos;);
+
+    assert.equal(element.className, &apos;test-class&apos;);
+  });
+
+  it(&apos;should not add a class which already exists&apos;);
+});
+</code></pre><p>在该测试中，我们创建了 <code>element</code> 变量，并将其与字符串 <code>test-class</code>（作为元素的新类名） 作为参数传入 <code>addClass</code> 函数。然后，使用断言检查该类名是否已包含在值（element.className）里。</p>
+<p>再一次，我们从初始的想法出发——给定一个元素和一个类名，将类名添加到 class 列表，然后以简单的方式将其转化为代码。</p>
+<p>尽管该函数（addClass）是针对 DOM 元素的，但我们在此使用了一个简单JS对象（plain JS object，根据 jQuery 官方定义：含有零个或多个键值对的对象）。是的，有时我们可以利用 JavaScript 的动态特性，以上述方式简化测试。如果不这样做，我们就要创建一个实际的元素，这无疑会使测试代码变复杂。当然，这还有另一个好处，由于没使用 DOM，该测试也能在 Node.js 运行。</p>
+<h3 id="在浏览器运行测试"><a href="#在浏览器运行测试" class="headerlink" title="在浏览器运行测试"></a>在浏览器运行测试</h3><p>为了在浏览器运行测试，你需要在运行器添加 <code>className.js</code> 和 <code>classNameTest.js</code>。</p>
+<pre><code>&lt;!-- load code you want to test here --&gt;
+&lt;script src=&quot;js/className.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- load your test files here --&gt;
+&lt;script src=&quot;test/classNameTest.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>正如 CodePen 所显示：一个测试通过，而另一个显示待测试。注意：为了让代码运行在 CodePen 环境下，代码需稍作调整。</p>
+<iframe height="268" scrolling="no" src="//codepen.io/SitePoint/embed/XXzXLX/?height=268&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/SitePoint/pen/XXzXLX/" target="_blank" rel="external">Unit Testing with Mocha (1)</a> by SitePoint (<a href="http://codepen.io/SitePoint" target="_blank" rel="external">@SitePoint</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p></p><p data-height="268" data-theme-id="0" data-slug-hash="XXzXLX" data-default-tab="result" data-user="SitePoint" class="codepen">See the Pen <a href="http://codepen.io/SitePoint/pen/XXzXLX/" target="_blank" rel="external">Unit Testing with Mocha (1)</a> by SitePoint (<a href="http://codepen.io/SitePoint" target="_blank" rel="external">@SitePoint</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>接着，实现第二个测试…</p>
+<pre><code>it(&apos;should not add a class which already exists&apos;, function() {
+  var element = { className: &apos;exists&apos; };
+
+  addClass(element, &apos;exists&apos;);
+
+  var numClasses = element.className.split(&apos; &apos;).length;
+  assert.equal(numClasses, 1);
+});
+</code></pre><p>经常运行测试是一种好习惯。因此，让我们现在运行测试看看会发生什么。</p>
+<p>不出所料，两者均通过。</p>
+<p>下面是在 CodePen 实现第二个测试的例子。</p>
+<iframe height="268" scrolling="no" src="//codepen.io/SitePoint/embed/pgdyzz/?height=268&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/SitePoint/pen/pgdyzz/" target="_blank" rel="external">Unit Testing with Mocha (2)</a> by SitePoint (<a href="http://codepen.io/SitePoint" target="_blank" rel="external">@SitePoint</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p></p><p data-height="268" data-theme-id="0" data-slug-hash="pgdyzz" data-default-tab="result" data-user="SitePoint" class="codepen">See the Pen <a href="http://codepen.io/SitePoint/pen/pgdyzz/" target="_blank" rel="external">Unit Testing with Mocha (2)</a> by SitePoint (<a href="http://codepen.io/SitePoint" target="_blank" rel="external">@SitePoint</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+<p>但事情没那么简单！该函数的第三种情况我们并没有考虑到，这也是该函数的一个非常严重的 Bug。虽然该函数只有三行代码，但你注意到了吗？</p>
+<p>下面为第三种情况编写多一个案例，让这个 Bug 暴露出来。</p>
+<pre><code>it(&apos;should append new class after existing one&apos;, function() {
+  var element = { className: &apos;exists&apos; };
+
+  addClass(element, &apos;new-class&apos;);
+
+  var classes = element.className.split(&apos; &apos;);
+  assert.equal(classes[1], &apos;new-class&apos;);
+});
+</code></pre><p>你可在下面的 CodePen 看到，这次测试失败了。导致该问题的原因很简单：元素上的 CSS 类名应以空格隔开。然而，现在实现的 <code>addClass</code> 并未加空格！</p>
+<iframe height="268" scrolling="no" src="//codepen.io/SitePoint/embed/oboxve/?height=268&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/SitePoint/pen/oboxve/" target="_blank" rel="external">Unit Testing with Mocha (3)</a> by SitePoint (<a href="http://codepen.io/SitePoint" target="_blank" rel="external">@SitePoint</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p></p><p data-height="268" data-theme-id="0" data-slug-hash="oboxve" data-default-tab="result" data-user="SitePoint" class="codepen">See the Pen <a href="http://codepen.io/SitePoint/pen/oboxve/" target="_blank" rel="external">Unit Testing with Mocha (3)</a> by SitePoint (<a href="http://codepen.io/SitePoint" target="_blank" rel="external">@SitePoint</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>修复该函数，让测试通过。</p>
+<pre><code>function addClass(el, newClass) {
+  if(el.className.indexOf(newClass) !== -1) {
+    return;
+  }
+
+  if(el.className !== &apos;&apos;) {
+    //ensure class names are separated by a space
+    newClass = &apos; &apos; + newClass;
+  }
+
+  el.className += newClass;
+}
+</code></pre><p>修复后，最终在 CodePen 测试通过。</p>
+<iframe height="268" scrolling="no" src="//codepen.io/SitePoint/embed/BjmKBG/?height=268&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/SitePoint/pen/BjmKBG/" target="_blank" rel="external">Unit Testing with Mocha (4)</a> by SitePoint (<a href="http://codepen.io/SitePoint" target="_blank" rel="external">@SitePoint</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p></p><p data-height="268" data-theme-id="0" data-slug-hash="BjmKBG" data-default-tab="result" data-user="SitePoint" class="codepen">See the Pen <a href="http://codepen.io/SitePoint/pen/BjmKBG/" target="_blank" rel="external">Unit Testing with Mocha (4)</a> by SitePoint (<a href="http://codepen.io/SitePoint" target="_blank" rel="external">@SitePoint</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="在-Node-运行测试"><a href="#在-Node-运行测试" class="headerlink" title="在 Node 运行测试"></a>在 Node 运行测试</h3><p>在 Node，由于 <code>className.js</code> 和 <code>classNameTest.js</code> 在不同文件下，我们需要一种方式将一个文件导出到另一个文件内。而标准的方式是通过 <code>module.exports</code>。如果你需要复习相关知识，你可以看看 <a href="http://www.sitepoint.com/understanding-module-exports-exports-node-js/" target="_blank" rel="external">Understanding module.exports and exports in Node.js</a>。</p>
+<p>代码本质不变，只是结构稍微不同：</p>
+<pre><code>// className.js
+
+module.exports = {
+  addClass: function(el, newClass) {
+    if(el.className.indexOf(newClass) !== -1) {
+      return;
+    }
+
+    if(el.className !== &apos;&apos;) {
+      //ensure class names are separated by a space
+      newClass = &apos; &apos; + newClass;
+    }
+
+    el.className += newClass;
+  }
+}
+
+
+// classNameTest.js
+
+var chai = require(&apos;chai&apos;);
+var assert = chai.assert;
+
+var className = require(&apos;../js/className.js&apos;);
+var addClass = className.addClass;
+
+// The rest of the file remains the same
+// 文件其它部分保持不变
+describe(&apos;addClass&apos;, function() {
+  ...
+});
+</code></pre><p>正如你所看到的，测试通过。</p>
+<p><img src="http://7xq7nb.com1.z0.glb.clouddn.com/3running-mocha-in-the-terminal.png" alt="Mocha terminal output - 4 tests passing"></p>
+<h2 id="下一步呢？"><a href="#下一步呢？" class="headerlink" title="下一步呢？"></a>下一步呢？</h2><p>正如你所看到的，测试并不复杂或困难。与编写 JavaScript 应用的其它方面一样，有一些重复的基本模式。一旦你熟悉这些，你可以一次又一次使用它们。</p>
+<p>但这些只是单元测试的皮毛，还有很多相关知识需要学习。</p>
+<ul>
+<li>测试更复杂的系统</li>
+<li>如何处理Ajax、数据库和其它“外部”的东西。</li>
+<li>测试驱动开发</li>
+</ul>
+<p>如果你想继续学习更多相关知识，可看看我编写的 <a href="http://codeutopia.net/blog/h/subscribe" target="_blank" rel="external">免费的 JavaScript 单元测试快速入门系列</a>。如果你觉得本文有用，你更应该点击 <a href="http://codeutopia.net/blog/h/subscribe" target="_blank" rel="external">这里</a> 看看。</p>
+<hr>
+<p>本文由 <a href="http://web.jobbole.com/" target="_blank" rel="external">伯乐在线</a> - <a href="http://www.jobbole.com/members/q574805242" target="_blank" rel="external">刘健超-J.c</a> 翻译，等待校稿。未经许可，禁止转载！ </p>
+<p>英文出处：<a href="http://www.sitepoint.com/unit-test-javascript-mocha-chai/" target="_blank" rel="external">Unit Test Your JavaScript Using Mocha and Chai</a>。欢迎加入翻译组。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/20/2016-1-19-object-oriented-programming-notes/" rel="next" title="《JavaScript（ES5）的面向对象精要》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《JavaScript（ES5）的面向对象精要》读书笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/24/2016-2-24-study-glob/" rel="prev" title="关于 Glob (gulp)的学习">
+                关于 Glob (gulp)的学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p style="margin:0;">热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/06/2016-2-6-unit-test-javascript-mocha-chai/"
+           data-title="用Mocha和Chai对JavaScript进行单元测试" data-url="http://yoursite.com/2016/02/06/2016-2-6-unit-test-javascript-mocha-chai/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="刘健超" />
+          <p class="site-author-name" itemprop="name">刘健超</p>
+          <p class="site-description motion-element" itemprop="description">踏实 梦想 责任</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JChehe" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1995306965" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jobbole.com/members/q574805242/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  伯乐在线
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/jc" target="_blank">
+                  
+                    <i class="fa fa-Segmentfault"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://aotu.io" target="_blank">凹凸实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gongmingwang.com/" target="_blank">莞青共鸣网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codcodog.github.io/" target="_blank">莫廖の博客</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是单元测试"><span class="nav-number">1.</span> <span class="nav-text">什么是单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置工具"><span class="nav-number">2.</span> <span class="nav-text">设置工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js-vs-Browser-测试对比"><span class="nav-number">2.1.</span> <span class="nav-text">Node.js vs Browser 测试对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置目录结构"><span class="nav-number">3.</span> <span class="nav-text">设置目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置测试运行器（Test-Runner）"><span class="nav-number">4.</span> <span class="nav-text">设置测试运行器（Test Runner）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本的测试骨架"><span class="nav-number">5.</span> <span class="nav-text">基本的测试骨架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写测试代码"><span class="nav-number">6.</span> <span class="nav-text">编写测试代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行测试"><span class="nav-number">7.</span> <span class="nav-text">运行测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试结果"><span class="nav-number">8.</span> <span class="nav-text">测试结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合案例"><span class="nav-number">9.</span> <span class="nav-text">综合案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在浏览器运行测试"><span class="nav-number">9.1.</span> <span class="nav-text">在浏览器运行测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-Node-运行测试"><span class="nav-number">9.2.</span> <span class="nav-text">在 Node 运行测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下一步呢？"><span class="nav-number">10.</span> <span class="nav-text">下一步呢？</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘健超</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jchehe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qPe43l5UuF31pWPlmLIhg8E7-gzGzoHsz", "1sqA7g86Dtpv9ft1jen0Lg0r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

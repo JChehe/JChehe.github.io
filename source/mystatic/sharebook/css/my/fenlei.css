@@ -1,0 +1,44 @@
+/*这个文件是类目分类(fenlei.html)的CSS文件*/
+
+
+
+
+/* main、content开始 */
+#content-wrap{
+    font-size: 14px;
+    margin-top: 64px;
+}
+.content-header{
+    margin-bottom: 25px;
+}
+#content-wrap .content-header h3{
+    margin: 12px 0;
+}
+.content-header h3 span{
+    text-decoration: underline;
+}
+.content-header p span{
+    color: #8cc152;
+}
+
+
+
+
+
+.thumbnail .caption{
+    padding: 25px 9px;
+}
+.caption a{
+    display: block;
+    height: 34px;
+    width: 100%;
+    background-color: #8cc152;
+    line-height: 34px;
+    border-radius: 4px;
+}
+
+
+/* main、content结束 */
+
+
+

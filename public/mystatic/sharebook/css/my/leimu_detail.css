@@ -1,0 +1,333 @@
+/*对应leimu_detail.html的CSS文件*/
+
+
+/*----------------------content开始----------------------*/
+
+.content-header a{
+    color: #666;
+
+}
+.breadcrumb li{
+   /*float: left;*/
+   display: inline-block;
+}
+.breadcrumb li a{
+    
+    text-decoration: underline;
+    color: #666;
+}
+.breadcrumb li.active{
+    color: #777;
+    text-decoration: none;
+    cursor: default;
+}
+.breadcrumb>li+li:before{
+    content: "/\00a0";
+    padding: 0 5px;
+    color: #ccc;
+}
+
+
+.content-header ol{
+    padding: 5px 15px;
+}
+.content-header ol:nth-child(n+2){
+    padding-left: 4em;
+}
+.content-header .label-group li{
+    display: inline-block;
+}
+
+
+
+.content-main{
+    font-size: 12px;
+}
+
+.content-main h3{
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0;
+}
+.content-main p.book-description{
+    text-indent: 2em;
+    min-height: 100px;
+    overflow: hidden;
+}
+
+.book-author{
+    float: right;
+    margin-bottom: 5px;
+}
+.share-info{
+    clear:both;
+    float: right;
+}
+.share-info p{
+    float: left;
+}
+.share-info p:first-of-type{
+    margin-right: 5px;
+}
+.share-info span{
+    background-color: #8cc152;
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+@media all and (max-width: 1200px){
+    .share-info p{
+        float: right;
+    }
+    .share-info p:first-of-type{
+        margin:0 0 3px 0;
+    }
+    .share-info span{
+        background-color: transparent;
+        color:#666;
+    }
+    .book-author{
+        margin-right: 3px;
+    }
+}
+
+
+.thumbnail button{
+    width: 100%;
+    color: #fff;
+    background-color: #8cc152;
+    border-radius: 4px;
+    line-height: 28px;
+    font-size: 13px;
+    /*margin-top: 14px;*/
+    margin: 14px 0;
+}
+
+
+/*-------------求书单开始-------------*/
+.book-form-panel{
+   
+    color: #fff;
+    /*padding: 0 0;*/
+}
+.book-form-panel .thumbnail{
+    background-color: #acd282;
+    border-radius: 4px;
+}
+.book-form-pane .book-form{
+   
+}
+.book-form-panel .protest{
+    font-size: 14px;
+    padding: 8px 0;
+}
+.protest span{
+    font-weight: bold;
+}
+.book-form-panel hr{
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-color: rgba(164, 207, 118,0.5);
+    border-bottom-color:#b0d784
+}
+.book-form-panel form{
+    margin: 10px 15px;
+}
+.book-form form label{
+    display: block;
+    width: 100%;
+    margin-bottom: 3%;
+}
+form label:after{
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+.book-form form input{
+    float: right;
+    color: #666;
+    width: 70%;
+    border:0;
+    
+    border-radius: 2px;
+    padding: 2px 5px;
+}
+.book-form input[type="submit"]{
+    font-size: 12px;
+    display: block;
+    margin: 10px auto;
+    float: none;
+    padding: 5px 25px;
+    background-color: #acd282;
+    color: #fff;
+    border:1px solid #c1dfa0;
+    border-radius: 4px;
+    box-shadow: 0 0 2px rgba(0,0,0,.2);
+}
+
+/*.book-form-panel */
+.book-form-panel h3{
+    font-size: 14px;
+}
+
+.tips{
+    padding: 5px
+}
+/*-------------求书单结束-------------*/
+
+/*---------------------content结束----------------------*/
+
+
+
+/*-------------弹出框开始-------------*/
+.dialog{
+    position: fixed;
+    left: 0;right: 0;
+    top: 0;bottom: 0;
+    background-color: rgba(0,0,0,.5);
+    display: none;
+}
+.dialog .close-btn{
+    position: absolute;
+    right: 0;top: 0;
+    background-color: #8cc152;
+    padding: 6px 15px;
+    border-top-right-radius:4px;
+    border-bottom-left-radius: 4px; 
+}
+.dialog .dialog-wrap{
+    position: relative;
+    margin: 100px auto;
+    width: 700px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 15px;
+    border:1px solid #ccc;
+}
+
+
+.dialog .thumbnail-box {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+.dialog .thumbnail-box:hover .figcaption{
+    bottom: 0;
+}
+.dialog .thumbnail-box:hover .figcaption h3:before{
+    content:"《";
+}
+.dialog .thumbnail-box:hover .figcaption h3:after{
+    content:"》";
+}
+.dialog .thumbnail-box:hover .figcaption h3{
+    font-weight: bold;
+}
+.contact-form{
+    display: inline-block;
+    vertical-align: top;
+    padding: 5px;
+}
+.figcaption{
+    padding: 5px 0;
+    color: #fff;
+    position: absolute;
+    bottom: -106px;
+    left: 0;right: 0;
+    background-color: rgba(0,0,0,.6);
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+.figcaption h3{
+    margin-bottom: 5px;
+}
+.contact-form>p{
+    margin: 20px 0 10px;
+    font-size: 13px;
+}
+.contact-form form{
+    width: 250px;
+}
+.contact-form label{
+    display: block;
+    margin-bottom: 5px;
+}
+.contact-form label span{
+    vertical-align: middle;
+}
+.contact-form label input{
+    float: right;
+}
+.contact-form label:last-child{
+    float: right;
+}
+.contact-form label input[type="checkbox"]{
+   float: none;
+   margin-right: 4px;
+   vertical-align: -4px;
+}
+.contact-form select{
+    float: right;
+    margin-right: 3px;
+}
+.contact-form label[for="contact-way"] input{
+    width: calc(100% - 126px);
+}
+.contact-form label[for="verify"] input{
+    width: calc(100% - 140px);
+}
+.contact-form .verify-img{
+    float: right;
+    height: 21px;
+    margin-left: 5px;
+}
+
+.contact-form input[type="submit"]{
+    background-color: #8cc152;
+    margin-top: 20px;
+    color: white;
+    padding: 6px;
+    display: block;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 14px;
+    border:0;
+}
+
+@media all and (max-width: 768px){
+    .dialog .dialog-wrap{
+        width: 90%;
+        margin: 100px auto;
+        padding: 20px 15px;
+    }
+    .thumbnail-box{
+        width: 45%;
+    }
+    .thumbnail-box img{
+        width: 100%;
+    }
+}
+@media all and (max-width: 590px){
+    .dialog .dialog-wrap{
+        width: 90%;
+        margin: 100px auto;
+        padding: 40px 15px;
+    }
+    .dialog-content{
+        text-align: center;
+    }
+    .thumbnail-box{
+        width: 60%;
+        border:1px solid rgba(0,0,0,.2);
+    }
+    .thumbnail-box img{
+        width: 100%;
+    }
+    .contact-form{
+        text-align: left;
+    }
+}
+/*-------------dialog结束-------------*/

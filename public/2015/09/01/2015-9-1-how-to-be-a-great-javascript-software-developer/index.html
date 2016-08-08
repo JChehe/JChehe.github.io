@@ -1,0 +1,815 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="translation,javascript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="刘健超(Jc)'s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="在成长的过程中，我的兴趣点不断发散，而且都是看似不相关的领域。我喜欢数学正如我喜欢历史一样。我的目标是成为一个 多才多艺的人 – 博学者-，能在多个领域成为优秀人才。这证实是一项艰巨的任务，我忽然面临着行行皆通，样样稀松的危险。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何成为一个JavaScript 大牛？">
+<meta property="og:url" content="http://yoursite.com/2015/09/01/2015-9-1-how-to-be-a-great-javascript-software-developer/index.html">
+<meta property="og:site_name" content="刘健超(Jc)'s Blog">
+<meta property="og:description" content="在成长的过程中，我的兴趣点不断发散，而且都是看似不相关的领域。我喜欢数学正如我喜欢历史一样。我的目标是成为一个 多才多艺的人 – 博学者-，能在多个领域成为优秀人才。这证实是一项艰巨的任务，我忽然面临着行行皆通，样样稀松的危险。">
+<meta property="og:updated_time" content="2016-04-06T04:33:22.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何成为一个JavaScript 大牛？">
+<meta name="twitter:description" content="在成长的过程中，我的兴趣点不断发散，而且都是看似不相关的领域。我喜欢数学正如我喜欢历史一样。我的目标是成为一个 多才多艺的人 – 博学者-，能在多个领域成为优秀人才。这证实是一项艰巨的任务，我忽然面临着行行皆通，样样稀松的危险。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 如何成为一个JavaScript 大牛？ | 刘健超(Jc)'s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76019300-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d2eaa363b7db95e9ef065389dd27defe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">刘健超(Jc)'s Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何成为一个JavaScript 大牛？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-01T11:23:45+08:00" content="2015-09-01">
+              2015-09-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/01/2015-9-1-how-to-be-a-great-javascript-software-developer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/01/2015-9-1-how-to-be-a-great-javascript-software-developer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/09/01/2015-9-1-how-to-be-a-great-javascript-software-developer/" class="leancloud_visitors" data-flag-title="如何成为一个JavaScript 大牛？">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+          
+            <div class="post-tags">
+              Tags:&nbsp;&nbsp;
+              
+                <a href="/tags/translation/" rel="tag">#translation</a>
+              
+                <a href="/tags/javascript/" rel="tag">#javascript</a>
+              
+            </div>
+          
+        </div>
+
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在成长的过程中，我的兴趣点不断发散，而且都是看似不相关的领域。我喜欢数学正如我喜欢历史一样。我的目标是成为一个 多才多艺的人 – 博学者-，能在多个领域成为优秀人才。这证实是一项艰巨的任务，我忽然面临着行行皆通，样样稀松的危险。</p>
+<a id="more"></a>
+<p>我开始考虑专注于某些领域，这样即使不能成为像文艺复兴时期的通才，但至少能精通某些方面。那我怎么样才能专注于某一领域的同时，掌握软件开发所需的庞大的知识体系呢？</p>
+<p>本帖内容是基于我过去 5 年经验编写的，概述了我成为一个优秀的 JavaScript 开发者所用到的技术和资源。</p>
+<p>当今大多数 web 开发者都面临着同样的问题：他们不得不擅长多个不同领域，从数据库到后端架构，再到前端的用户界面，用所精通的 CSS 知识去修改 UI 。</p>
+<h2 id="看书"><a href="#看书" class="headerlink" title="看书"></a>看书</h2><p>为了达到精通，专注与努力是首要条件。如果不投入全身心工作，最后你只会一知半解。例如通过阅读一些博客文章，因为初期时间投入较低，所以看起来会比较简单。但从长远来看，这种学习模式将会比专注于学习精髓的过程花费更多的时间。解决这个难题的方法很简单：看书。</p>
+<p>书籍让我们站在文明的肩膀上。而精炼的文字让我们的知识代代相传。而对于如何成为 web 技术专家这个问题，你在学习的过程中就要与 web 本身保持一定距离。因为 web 对于学习来说，其本身就是一个混杂且分散的媒介，所以我的第一个建议是阅读相关专业的书籍。</p>
+<p>对于 JavaScript，从 <a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank" rel="external">《JavaScript 语言精髓》</a> 这本被称为 JavaScript 圣经的书开始。这本书虽然比较旧，但非常适合入门。<a href="http://shop.oreilly.com/product/9780596805531.do" target="_blank" rel="external">《JavaScript权威指南》</a> 也是必备的，尽管你可能会将它作为一个参考书籍。另外，jQuery 作者 John Resig 的 <a href="http://blog.ustunozgur.com/javascript/programming/books/videos/2015/06/17/www.manning.com/resig/" target="_blank" rel="external">《JavaScript 忍者禁术》</a> 也是不容错过的。如果你在寻找好（在线免费的）书，可以看看 <a href="https://leanpub.com/javascript-allonge/" target="_blank" rel="external">《JavaScript Allongé》</a> 、<a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="external">《You Don’t Know JS》</a> 和 <a href="http://eloquentjavascript.net/" target="_blank" rel="external">《Eloquent JavaScript》</a>（<a href="https://watchandcode.com/courses/eloquent-javascript-the-annotated-version" target="_blank" rel="external">点击这里</a> 可以看它的注释版本）。这些都能以电子书或印刷版的形式购买。另外，Mozilla’s Developer Network 也有很好的 “<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank" rel="external">JavaScript 指南</a>”。</p>
+<h2 id="学习、使用并阅读库"><a href="#学习、使用并阅读库" class="headerlink" title="学习、使用并阅读库"></a>学习、使用并阅读库</h2><p>接下来最重要的一步是了解库。如果书籍教会你如何理解语言，则库教你如何表达它。对于库，你有两个重要的事情要做：使用它们并阅读它们的源代码。</p>
+<p>通过使用库，开始知道：jQuery、Backbone、underscore 和 React、Angular 、Ember 中的一个。当然，这不是说你必须使用这些库，但称职的 JavaScript 开发者都应该至少有这些库的使用经验（不管好坏）。</p>
+<p>对于提高 JavaScript 技能，第二重要的是阅读这些库的源代码。其中，我特别推荐 Backbone 和 underscore 的源代码，因为它们的代码写得特别漂亮。通过阅读和理解 underscore，你的函数编程能力将会得到提高。另一个是其他几个开发者推荐给我的库是 mootools （我个人没有 mootools 的使用和阅读经验，仅仅是传达信息。）</p>
+<p>理解上述列表里的其它库，如 React、Ember 等，可能有点难，但值得付出努力。至少略读其它库的源代码，看看它们是如何组织基础代码并尽量发现一些模式。其它一些值得使用和阅读源代码的库还有 d3、 highcharts 和 moment.js。</p>
+<h2 id="练习与问自己问题"><a href="#练习与问自己问题" class="headerlink" title="练习与问自己问题"></a>练习与问自己问题</h2><p>成为优秀 JavaScript 开发者的下一步是做大量的实践。理论上，这些实践的重点不在 DOM，而是语言，所以确保有测试工具能在 node.js 上运行。在 node.js 上做大量小练习。通过不同的方式使用 JavaScript 的闭包、原型、array-extras (map, filter) 等。当你经过大量练习后，头脑里就会对 JavaScript 有基本的想法。</p>
+<p>我朋友 Armagan 是一名杰出的 JavaScript 程序员兼老师，他在课堂里使用的课本 <a href="http://www.apress.com/9781590599082" target="_blank" rel="external">《JavaScript 设计模式》</a> 也是值得一看的。</p>
+<p>试着回答诸如：原型继承是如何工作的？闭包的定义是什么？this 关键字是如何改变的？如何使用 apply/bind/map/filter/call？收集一些 JavaScript 开发者常见问题并尝试用自己的语言解释它。用书面或口头的方式向别人解释这些概念，能极大地提高能力。在做实践的同时，尝试做“假设分析”。例如，“如果使用两次 bind，this 将会代表什么？jQuery 是如何确保 this 关键字是引用 jQuery 对象，而不是全局对象？这个库如何完成某个特性？”这些都是值得思考的常见问题。</p>
+<h2 id="学习标准"><a href="#学习标准" class="headerlink" title="学习标准"></a>学习标准</h2><p>下一步是学习更多关于 EcmaScript 标准。找到一份最新的 EcmaScript 标准并尝试阅读它。除了这些，也要尝试学习即将推出的 JavaScript 特性，如 ES 6 和 ES 7 新增的。最近有一些新特性如：promises、modules、generators、comprehensions 和 again。可以通过专门的书来学习标准，如 Zakas 的 ( <a href="https://leanpub.com/understandinges6" target="_blank" rel="external">Understanding EcmaScript 6</a> ) 或 Dr. Axel Rauschmayer 的 ES6 书 ( <a href="http://exploringjs.com/" target="_blank" rel="external">Exploring JS</a> ) 。阅读标准是获取专业知识和发现语言新特性的主要来源。</p>
+<h2 id="使用-web-上的资源"><a href="#使用-web-上的资源" class="headerlink" title="使用 web 上的资源"></a>使用 web 上的资源</h2><p>我之前提到使用 web 获取 web 知识的危险性，所以最后的建议是具体如何在 web 中获取最好的资源。Hacker News 是一个很好的资源，然而如果时刻关注它的话，将会花费较多时间，因为信噪比较低（表示 JavaScript 文章比例较低）。取而代之的是，关注 <a href="http://javascriptweekly.com/" target="_blank" rel="external">JavaScript Weekly</a> 之类的每周文摘。随着时间的推移，你会看到哪些库或技术是备受关注的。在 Twitter，尝试去关注那些有影响力的 JavaScript 开发者。这里是 Tutsplus 列出的 <a href="http://code.tutsplus.com/articles/33-developers-you-must-subscribe-to-as-a-javascript-junkie--net-18151" target="_blank" rel="external">33 个值得关注的 JavaScript 开发者</a>。其它在 web 上的资源还包括一些博客，如 <a href="http://www.toptal.com/section/front-end" target="_blank" rel="external">Toptal Blogs</a>、<a href="http://rmurphey.com/" target="_blank" rel="external">Rebecca Murphey’s blog</a> （如果你对这个博客的帖子感兴趣，也可以看看 <a href="http://rmurphey.com/blog/2015/03/23/a-baseline-for-front-end-developers-2015/" target="_blank" rel="external">A Baseline for Front-End [JS] Developers: 2015</a>）和 <a href="http://www.nczonline.net/" target="_blank" rel="external">Nicholas Zakas’ blog</a>。（如果你有其它好博客，请 Email 我，我会将它添加到该列表里。）</p>
+<p>另一个重要资源是大会视频和教育视频。对于大会，JSConf 系列都是高质量的。对于教育视频，我强烈建议 Pluralsight，因为他们拥有经验丰富的开发者准备的高质量课程。（我与 Pluralsgiht 没有隶属关系）</p>
+<h2 id="浓缩版"><a href="#浓缩版" class="headerlink" title="浓缩版"></a>浓缩版</h2><ul>
+<li>从阅读书籍开始，因为书籍能为你提供精华信息。</li>
+<li>学习主要的库，如 jQuery、underscore、Backbone，并阅读它们的源代码。</li>
+<li>多实践并尝试用自己的话解释“继承”之类的常见 JavaScript 概念。对上述主题进行演讲和交流。</li>
+<li>仔细阅读最新标准，并开始使用该语言的最新特性。</li>
+<li>关注 web 资源，每周关注一次文摘或博客，或观看会议视频和视频教程。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一直反复这些并完成大量项目，将会极大地提高你的 JavaScript 编程能力。只有努力不懈，才有希望在几年后成为一名专家。我觉得自己是一名优秀的 JavaScript 程序员，离专家仍有一大段路要走，有很多技术需要在我接下来的学习生涯中学到。另外，随时可以通过 <a href="">atustun@ustunozgur.com</a> 向我提出反馈和修正。</p>
+<p>本文由 <a href="http://web.jobbole.com/" target="_blank" rel="external">伯乐在线</a> - <a href="http://www.jobbole.com/members/q574805242" target="_blank" rel="external">刘健超-J.c</a> 翻译，<a href="http://www.jobbole.com/members/shutear" target="_blank" rel="external">shutear</a> 校稿。未经许可，禁止转载！<br>英文出处：<a href="http://blog.ustunozgur.com/javascript/programming/books/videos/2015/06/17/how_to_be_a_great_javascript_software_developer.html" target="_blank" rel="external">Ustun Ozgur</a>。</p>
+<p>感谢您的阅读。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/23/2015-8-23-build-similar-qqmusice-spa/" rel="next" title="实现类似 QQ音乐网页版 的单页面总结">
+                <i class="fa fa-chevron-left"></i> 实现类似 QQ音乐网页版 的单页面总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/24/2015-11-24-read-css-mastery-advanced-web-standards-solutions-second-edition-again/" rel="prev" title="再次阅读《精通CSS-高级Web标准解决方案（第二版）》">
+                再次阅读《精通CSS-高级Web标准解决方案（第二版）》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p style="margin:0;">热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/09/01/2015-9-1-how-to-be-a-great-javascript-software-developer/"
+           data-title="如何成为一个JavaScript 大牛？" data-url="http://yoursite.com/2015/09/01/2015-9-1-how-to-be-a-great-javascript-software-developer/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="刘健超" />
+          <p class="site-author-name" itemprop="name">刘健超</p>
+          <p class="site-description motion-element" itemprop="description">踏实 梦想 责任</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JChehe" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1995306965" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jobbole.com/members/q574805242/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  伯乐在线
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/jc" target="_blank">
+                  
+                    <i class="fa fa-Segmentfault"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://aotu.io" target="_blank">凹凸实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gongmingwang.com/" target="_blank">莞青共鸣网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codcodog.github.io/" target="_blank">莫廖の博客</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#看书"><span class="nav-number">1.</span> <span class="nav-text">看书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习、使用并阅读库"><span class="nav-number">2.</span> <span class="nav-text">学习、使用并阅读库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#练习与问自己问题"><span class="nav-number">3.</span> <span class="nav-text">练习与问自己问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习标准"><span class="nav-number">4.</span> <span class="nav-text">学习标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-web-上的资源"><span class="nav-number">5.</span> <span class="nav-text">使用 web 上的资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浓缩版"><span class="nav-number">6.</span> <span class="nav-text">浓缩版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘健超</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jchehe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qPe43l5UuF31pWPlmLIhg8E7-gzGzoHsz", "1sqA7g86Dtpv9ft1jen0Lg0r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

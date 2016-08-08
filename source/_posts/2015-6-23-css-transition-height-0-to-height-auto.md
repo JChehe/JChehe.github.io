@@ -1,6 +1,6 @@
 layout: posts
 title: 如何为不定高度(height:auto)的元素添加CSS3 transition-property:height 动画
-date: 2015-03-23 00:47:42
+date: 2015-06-23 00:47:42
 categories: 原创
 tags: [css3, transiton]
 
