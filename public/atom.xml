@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-19T12:20:04.008Z</updated>
+  <updated>2016-08-09T13:14:09.809Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/05/19/2016-5-19-css-flex/"/>
     <id>http://yoursite.com/2016/05/19/2016-5-19-css-flex/</id>
     <published>2016-05-19T12:14:06.000Z</published>
-    <updated>2016-05-19T12:20:04.008Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;之前以为Flexbox不成熟，兼容性不好，所以看了书本上的知识后就没有深入了解和实践。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -187,7 +187,7 @@
     <link href="http://yoursite.com/2016/05/18/2016-5-18-css-scerets-notes/"/>
     <id>http://yoursite.com/2016/05/18/2016-5-18-css-scerets-notes/</id>
     <published>2016-05-18T04:41:10.000Z</published>
-    <updated>2016-05-18T04:49:57.803Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;终于看完了《CSS揭秘》了，下面就做一下笔记。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -345,7 +345,7 @@
     <link href="http://yoursite.com/2016/05/10/2016-5-10-second-phone-interview/"/>
     <id>http://yoursite.com/2016/05/10/2016-5-10-second-phone-interview/</id>
     <published>2016-05-10T14:37:35.000Z</published>
-    <updated>2016-05-12T02:29:04.976Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;这次在联系时，出现多次失误：&lt;br&gt;①在地铁上吵杂，面试官大喊也不能听清楚（手机太烂了）&lt;br&gt;②洗澡，手机静音，漏接。&lt;/p&gt;
 &lt;p&gt;连面试官都不得不说：联系上你真的不容易。&lt;br&gt;在这里和面试官说一声：真的十分抱歉。&lt;/p&gt;
@@ -408,7 +408,7 @@
     <link href="http://yoursite.com/2016/05/05/2016-5-4-first-phone-interview/"/>
     <id>http://yoursite.com/2016/05/05/2016-5-4-first-phone-interview/</id>
     <published>2016-05-04T19:25:43.000Z</published>
-    <updated>2016-05-10T12:37:09.440Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;昨天（2016年5月3日）突然收到**实验室的微信好友请求，有点突如其来的感觉。之前在他们博客放了github地址，他们以为我是大三的（走校招）。我告诉对方我是大四的，他们回复我说大四要走社招（2016年4月19日），原以为没希望了，结果今天收到他们的微信好友请求。在我没打算找工作的时间段找到我，难道是上天的安排？ &lt;/p&gt;
 &lt;p&gt;Good luck to me.&lt;/p&gt;
@@ -495,7 +495,7 @@
     <link href="http://yoursite.com/2016/04/26/2016-4-26-javascript-patterns-notes/"/>
     <id>http://yoursite.com/2016/04/26/2016-4-26-javascript-patterns-notes/</id>
     <published>2016-04-26T13:05:42.000Z</published>
-    <updated>2016-05-04T19:28:00.004Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;在软件开发过程中，模式是指一个通用问题的解决方案。一个模式不仅仅是一个可以用来复制粘贴的代码解决方案，更多地是提供了一个更好的实践经验、有用的抽象化表示和解决一类问题的模板。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;对象有两大类：&lt;/p&gt;
 &lt;ul&gt;
@@ -917,7 +917,7 @@ console.log(newSum(2,3,5,4)); // 35
     <link href="http://yoursite.com/2016/04/10/2016-4-10-white-space-clever/"/>
     <id>http://yoursite.com/2016/04/10/2016-4-10-white-space-clever/</id>
     <published>2016-04-10T07:09:23.000Z</published>
-    <updated>2016-04-10T07:12:42.009Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;对于多个元素同在同一行的布局，如比较常见的是轮播。下面我将探讨这这一布局的做法：&lt;br&gt;首先约定&lt;code&gt;html&lt;/code&gt;结果如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;div.row
@@ -993,7 +993,7 @@ console.log(newSum(2,3,5,4)); // 35
     <link href="http://yoursite.com/2016/04/05/2016-4-5-illustration-http/"/>
     <id>http://yoursite.com/2016/04/05/2016-4-5-illustration-http/</id>
     <published>2016-04-05T00:47:42.000Z</published>
-    <updated>2016-04-06T04:47:16.037Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;h2 id=&quot;第一章&quot;&gt;&lt;a href=&quot;#第一章&quot; class=&quot;headerlink&quot; title=&quot;第一章&quot;&gt;&lt;/a&gt;第一章&lt;/h2&gt;&lt;p&gt;HTTP（HyperText Transfer Protocol，超文转移协议，超文本传输协议的译法并不严谨。）&lt;/p&gt;
 &lt;h3 id=&quot;网络基础-TCP-IP&quot;&gt;&lt;a href=&quot;#网络基础-TCP-IP&quot; class=&quot;headerlink&quot; title=&quot;网络基础 TCP/IP&quot;&gt;&lt;/a&gt;网络基础 TCP/IP&lt;/h3&gt;&lt;h4 id=&quot;TCP-IP-协议族&quot;&gt;&lt;a href=&quot;#TCP-IP-协议族&quot; class=&quot;headerlink&quot; title=&quot;TCP/IP 协议族&quot;&gt;&lt;/a&gt;TCP/IP 协议族&lt;/h4&gt;&lt;p&gt;TCP/IP 协议族是互联网相关联的协议的集合。从电缆的规格到IP地址的选定方法、寻找异地用户的方法、双方建立通信的顺序，以及Web页面显示需要处理的步骤，等等。而HTTP是属于它内部的一个子集。&lt;/p&gt;
@@ -1586,7 +1586,7 @@ console.log(newSum(2,3,5,4)); // 35
     <link href="http://yoursite.com/2016/03/08/2016-3-8-attr-and-prop/"/>
     <id>http://yoursite.com/2016/03/08/2016-3-8-attr-and-prop/</id>
     <published>2016-03-08T06:47:42.000Z</published>
-    <updated>2016-04-06T03:54:23.101Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;先提出问题：对于 checked 这类值是 true/false 的属性，用 jQuery 的 attr 或 prop 方法进行 读取或设置值是有区别的。&lt;/p&gt;
 &lt;p&gt;在看 jQuery 文档前，我们先看看 attribute 与 property 是什么：&lt;/p&gt;
@@ -1693,7 +1693,7 @@ if ($(elem).is(&amp;quot;:checked&amp;quot;))
     <link href="http://yoursite.com/2016/03/01/2016-2-30-javascript-modules-part-2-module-bundling/"/>
     <id>http://yoursite.com/2016/03/01/2016-2-30-javascript-modules-part-2-module-bundling/</id>
     <published>2016-03-01T03:32:56.000Z</published>
-    <updated>2016-04-06T04:44:46.188Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/2000/1*e0eQH_9X8jN7yC6AEqlvdQ.jpeg&quot; alt=&quot;此处输入图片的描述&quot;&gt;&lt;/p&gt;
 &lt;p&gt;在文章的 &lt;a href=&quot;https://github.com/JChehe/blog/blob/master/translation/JavaScript%20%E6%A8%A1%E5%9D%97%E3%80%90Part%201%E3%80%91%EF%BC%9A%E5%88%9D%E5%AD%A6%E8%80%85%E6%8C%87%E5%8D%97.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Part 1&lt;/a&gt;，我讲解了模块是什么、为何要使用模块和为程序整合为模块的各种方式。而在 Part 2，我将会详细讲解模块“打包”：为什么要打包模块，以不同的方式进行打包和模块在 web 开发上的未来。&lt;/p&gt;
@@ -1922,7 +1922,7 @@ filter([1, 2, 3], function(x) { return x === 2 });
     <link href="http://yoursite.com/2016/02/29/2016-2-29-javascript-modules-a-beginner-guide/"/>
     <id>http://yoursite.com/2016/02/29/2016-2-29-javascript-modules-a-beginner-guide/</id>
     <published>2016-02-29T03:31:16.000Z</published>
-    <updated>2016-05-08T18:04:25.618Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xq7nb.com1.z0.glb.clouddn.com/e36f4ad51fef734fae6cdf155b053239.jpeg&quot; alt=&quot;此处输入图片的描述&quot;&gt;&lt;/p&gt;
 &lt;p&gt;如果你刚接触 JavaScript，想必已经被“module bundlers vs. module loaders”、“Webpack vs. Browserify”和“AMD vs. CommonJS” 等诸如此类的行业术语所吓到。&lt;/p&gt;
@@ -2318,7 +2318,7 @@ console.log(counter.counter); // 2
     <link href="http://yoursite.com/2016/02/24/2016-2-24-study-glob/"/>
     <id>http://yoursite.com/2016/02/24/2016-2-24-study-glob/</id>
     <published>2016-02-24T04:47:42.000Z</published>
-    <updated>2016-04-06T04:40:55.672Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;参考资料：&lt;a href=&quot;https://github.com/isaacs/node-glob&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/isaacs/node-glob&lt;/a&gt;&lt;br&gt;下文是关于 Gulp 的 &lt;code&gt;gulp.src(globs[, options])&lt;/code&gt; 方法的第一个参数 &lt;code&gt;globs&lt;/code&gt; 的学习。&lt;br&gt;需要注意的是：&lt;br&gt;当该参数 &lt;code&gt;globs&lt;/code&gt; 为数组时，其包含的多个 glob 会&lt;strong&gt;按顺序进行解析&lt;/strong&gt;，这意味着以下意图是可以实现的：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;    // 排除所有以字母 b 开头的 js 文件，但不排除 bad.js&lt;br&gt;    gulp.src([‘&lt;em&gt;.js’, ‘!b&lt;/em&gt;.js’, ‘bad.js’])&lt;/p&gt;
 &lt;hr&gt;
@@ -2440,7 +2440,7 @@ a*s*d*f
     <link href="http://yoursite.com/2016/02/06/2016-2-6-unit-test-javascript-mocha-chai/"/>
     <id>http://yoursite.com/2016/02/06/2016-2-6-unit-test-javascript-mocha-chai/</id>
     <published>2016-02-06T03:28:13.000Z</published>
-    <updated>2016-04-06T04:45:37.020Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;你曾试过修改代码后，导致其它地方出现问题吗？&lt;/p&gt;
 &lt;p&gt;也许有大多数人试过。因为这是几乎不可避免的，特别在庞大的代码面前。由于代码间可能是环环相扣的，改变一处会影响另一处。&lt;/p&gt;
@@ -2744,7 +2744,7 @@ describe(&amp;apos;addClass&amp;apos;, function() {
     <link href="http://yoursite.com/2016/01/20/2016-1-19-object-oriented-programming-notes/"/>
     <id>http://yoursite.com/2016/01/20/2016-1-19-object-oriented-programming-notes/</id>
     <published>2016-01-20T02:04:36.000Z</published>
-    <updated>2016-04-06T04:38:03.371Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;2016年1月16日-17日两天看完了《JavaScript面向对象精要》（参加异步社区的活动送的），这本书虽然不够100页，但都是精华，不愧是《JavaScript高级程序设计》作者 Nicholas C.Zakas 的最新力作。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -3630,7 +3630,7 @@ console.log(person2.getAge()); // 23
     <link href="http://yoursite.com/2016/01/08/2016-1-8-javascript-thread/"/>
     <id>http://yoursite.com/2016/01/08/2016-1-8-javascript-thread/</id>
     <published>2016-01-08T01:58:07.000Z</published>
-    <updated>2016-04-06T04:39:24.555Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;首发地址：&lt;a href=&quot;http://www.codeceo.com/article/javascript-threaded.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;码农网《细说JavaScript单线程的一些事》&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;最近被同学问道 JavaScript 单线程的一些事，我竟回答不上。好吧，感觉自己的 JavaScript 白学了。下面是我这几天整理的一些关于 JavaScript 单线程的一些事。&lt;/p&gt;
@@ -3834,7 +3834,7 @@ for(var i = 0; i&amp;lt; 100000000; i++);
     <link href="http://yoursite.com/2015/12/21/2015-12-21-css-sticky-footer/"/>
     <id>http://yoursite.com/2015/12/21/2015-12-21-css-sticky-footer/</id>
     <published>2015-12-21T06:51:31.000Z</published>
-    <updated>2016-04-06T04:30:09.102Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;这是一个让网站footer固定在浏览器(页面内容小于浏览器高度时)/页面底部的技巧。由HTML和CSS实现，没有令人讨厌的hacks。所以这就能在所有主流浏览器上正常运行（甚至包括IE5和IE6）。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;如何通过用CSS让Footer固定在页面顶部。&quot;&gt;&lt;a href=&quot;#如何通过用CSS让Footer固定在页面顶部。&quot; class=&quot;headerlink&quot; title=&quot;如何通过用CSS让Footer固定在页面顶部。&quot;&gt;&lt;/a&gt;如何通过用CSS让Footer固定在页面顶部。&lt;/h3&gt;&lt;p&gt;在样式表单里添加下面几行CSS代码。&lt;code&gt;.wrapper&lt;/code&gt; 的负外边距与 &lt;code&gt;.footer&lt;/code&gt; 和 &lt;code&gt;.push&lt;/code&gt; 的高度相等。负外边距应该与footer的整体高度相等（包括padding、border）。&lt;/p&gt;
@@ -3871,7 +3871,7 @@ for(var i = 0; i&amp;lt; 100000000; i++);
     <link href="http://yoursite.com/2015/12/10/2015-12-10-closures-are-not-magic/"/>
     <id>http://yoursite.com/2015/12/10/2015-12-10-closures-are-not-magic/</id>
     <published>2015-12-10T03:24:47.000Z</published>
-    <updated>2016-04-06T04:29:25.088Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;几年前，我还是一名高中生时，我的一个朋友向我讲述了闭包的概念。虽然我当时一点也不明白他想表达的内容，但他在向我讲述时却表现得非常高大上。对于当时的我来说，闭包看来是一个深不可测的魔法。即使 Google 后也不能解除我的疑惑。而所有我能查阅的科技文章，都为高中生所难以理解。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -4098,7 +4098,7 @@ stack.pop(); // 4
     <link href="http://yoursite.com/2015/12/05/2015-12-5-vanilla-ajax-without-jquery/"/>
     <id>http://yoursite.com/2015/12/05/2015-12-5-vanilla-ajax-without-jquery/</id>
     <published>2015-12-05T02:51:31.000Z</published>
-    <updated>2016-04-06T04:30:39.135Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Ajax_%28programming%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Ajax&lt;/a&gt; 是异步的JavaScript和XML的简称，是一种更新页面某部分的机制。它赋予了你从服务器获取数据后，更新页面某部分的权力，从而避免了刷新整个页面。另外，以此方式实现页面局部更新，不仅能有效地打造流畅的用户体验，而且减轻了服务器的负载。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;下面是对一个基本的 Ajax 请求进行剖析：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;var xhr = new XMLHttpRequest();
@@ -4289,9 +4289,9 @@ oReq.send();
       <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-      <category term="ajax" scheme="http://yoursite.com/tags/ajax/"/>
-    
       <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
+    
+      <category term="ajax" scheme="http://yoursite.com/tags/ajax/"/>
     
   </entry>
   
@@ -4300,7 +4300,7 @@ oReq.send();
     <link href="http://yoursite.com/2015/11/24/2015-11-24-read-css-mastery-advanced-web-standards-solutions-second-edition-again/"/>
     <id>http://yoursite.com/2015/11/24/2015-11-24-read-css-mastery-advanced-web-standards-solutions-second-edition-again/</id>
     <published>2015-11-23T16:25:31.000Z</published>
-    <updated>2016-04-06T03:57:08.654Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;昨天（2015年11月21日） 在我们学校举行了大型招聘会。我面试了三家企业。有一家企业是先做笔试题的，做完后发现自己还是很多细节处理得不够。无论还有没有二面，我还是要重新把《精通CSS》和《JavaScript高级程序设计》这两本书重新看一遍。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -4530,7 +4530,7 @@ p{margin-left:200px}
     <link href="http://yoursite.com/2015/09/01/2015-9-1-how-to-be-a-great-javascript-software-developer/"/>
     <id>http://yoursite.com/2015/09/01/2015-9-1-how-to-be-a-great-javascript-software-developer/</id>
     <published>2015-09-01T03:23:45.000Z</published>
-    <updated>2016-04-06T04:33:22.147Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;在成长的过程中，我的兴趣点不断发散，而且都是看似不相关的领域。我喜欢数学正如我喜欢历史一样。我的目标是成为一个 多才多艺的人 – 博学者-，能在多个领域成为优秀人才。这证实是一项艰巨的任务，我忽然面临着行行皆通，样样稀松的危险。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -4582,7 +4582,7 @@ p{margin-left:200px}
     <link href="http://yoursite.com/2015/08/23/2015-8-23-build-similar-qqmusice-spa/"/>
     <id>http://yoursite.com/2015/08/23/2015-8-23-build-similar-qqmusice-spa/</id>
     <published>2015-08-23T08:13:00.000Z</published>
-    <updated>2016-04-06T04:33:06.048Z</updated>
+    <updated>2016-08-09T13:14:09.809Z</updated>
     
     <content type="html">&lt;p&gt;最近需要对创业团队的网站进行改版，而我负责前端设计和实现。&lt;br&gt;下面是一些总结与体会：&lt;br&gt;当设计完成之前，我就跟和我配合的Java 后台说用iframe实现，结果说麻烦不肯，到最后突然对我说还是用iframe吧，说他以前也用过，很简单–！…其实我之间也基本没用iframe，对它比较陌生，但是 QQmusic 网页版就是用iframe 做的，印象比较深刻！  &lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
