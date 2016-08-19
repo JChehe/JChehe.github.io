@@ -341,156 +341,6 @@
   </entry>
   
   <entry>
-    <title>记一波三折的电话二面</title>
-    <link href="http://yoursite.com/2016/05/10/2016-5-10-second-phone-interview/"/>
-    <id>http://yoursite.com/2016/05/10/2016-5-10-second-phone-interview/</id>
-    <published>2016-05-10T14:37:35.000Z</published>
-    <updated>2016-08-09T13:14:09.809Z</updated>
-    
-    <content type="html">&lt;p&gt;这次在联系时，出现多次失误：&lt;br&gt;①在地铁上吵杂，面试官大喊也不能听清楚（手机太烂了）&lt;br&gt;②洗澡，手机静音，漏接。&lt;/p&gt;
-&lt;p&gt;连面试官都不得不说：联系上你真的不容易。&lt;br&gt;在这里和面试官说一声：真的十分抱歉。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;面试官各方面都很快，可能我回答得不太好和面试时间比较晚，感觉没有深入问。&lt;/p&gt;
-&lt;h2 id=&quot;问答&quot;&gt;&lt;a href=&quot;#问答&quot; class=&quot;headerlink&quot; title=&quot;问答&quot;&gt;&lt;/a&gt;问答&lt;/h2&gt;&lt;p&gt;这次没做好记录（录音），大概整理一下（乱序）：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;为什么你不参加校招？&lt;br&gt;答：主要是考虑到自己当了大四班长，平时比较多班级事务要处理，而且学院也会有临时会议要开，所以选择了加入师兄的创业团队（当然，公司找我的时候就是开发摇一摇页面，我也对移动端的前端开发感兴趣）。公司离学校10分钟车程，请假各方面也比较方便。&lt;br&gt;补充：其实自己之前对职业的观念也不够强吧。&lt;br&gt;感想：后来和面试官交流后，发现可能因为我没选择校招这种正式渠道，会导致我就成为了一个“特例”，导致很费人力物力。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;班上有同学参加校招进入好的公司吗？&lt;br&gt;答：有，参加优酷的产品经理。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;jpg与png有什么差别？什么时候用？&lt;br&gt;答：png可带透明效果，而jpg不透明。jpg的文件大小也相对较小。  需要透明时就用png，不需要或背景颜色与图片颜色相同时用jpg（这都给我硬生生扯出来）。&lt;br&gt;补充：问题真的问得很细，我的回答应该得不到面试官的满意。后来发现在凹凸实验室的前端开发规范中有这方面的应用场景）。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;什么是响应式？有什么案例？&lt;br&gt;答：考虑到屏幕大小和网络状态（2g\3g\4g\wifi等）等对网页进行适配。&lt;br&gt;在我找案例的时候，面试官找到了共鸣网。我回答到：那是大二暑假时基于UIKit实现的。&lt;br&gt;补充：其实不止简历上的案例，但是一些作品并没有整理好放在网上。这题也视乎得不到面试官的满意。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;有看过雅虎前端35条规则吗？&lt;br&gt;答：有了解过，具体不清楚。但应用到的有与上面匹配。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如何启动3d加速？是什么属性？具体哪个？&lt;br&gt;答：设置z轴上的位移或will-change属性。translate3d()&lt;br&gt;补充：这段信息敲代码比较少，回答了transform3d，被面试官质疑后，立刻回答translate3d。而已当时觉得 translateZ 不好读，所以说了translate3d。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Flex？&lt;br&gt;答：之前有学习过，是用于布局的，看过阮一峰老师的《Flex教程》，但是在实际应用上比较少用，因此记不清楚。&lt;br&gt;补充：再次被问到这个问题，看来在移动端很常用到。在我印象中兼用性不好。要好好再学一次。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;有什么优化？延迟加载图片如何实现？&lt;br&gt;答：网络方面和前端面吧。例如同一域名下只能并发n个请求，因此对于静态资源可放到多个域名或CDN下。库的选型（是否适合和大小问题）、图片延迟加载。&lt;br&gt;图片延迟加载是通过getClientBoundingRect api（返回距离视口的距离）判断元素是否在视口内，若在则将data-src的值设置到图片的src上，从而下载图片。&lt;br&gt;补充：其实不止是图片延迟加载，还有其它资源（数据、脚本、css等），甚至还有预加载（在空闲时，预判用户将要获取的资源，提前下载资源，从而让需要该资源时，直接从缓存获取。）等等。这里提到的优化手段太少了。视乎不能让面试官满意。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;你们之前有设计师吗？那谁设计？还原过设计图吗？实习时有涉及到后台吗？&lt;br&gt;答：没有（惊呆面试官）；由于是创业公司，对设计这块要求并不细致，整体感觉OK就行。由我和老板（负责产品）设计。实习时没涉及到后台，公司后台主要有Java和PHP，PHP更多。&lt;br&gt;补充：这部分有些地方听不太清楚。其实还原设计稿是一个前端的基本工作，其实我还没真正接触过正规公司的流程，对于像素级别（0.5像素都不能差）有些压力。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;有用什么自动化工具吗？&lt;br&gt;答：用gulp。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;微信的分享接口是什么？&lt;br&gt;答：忘了。（你做微信方面的开发，难道对于分享都不熟悉？怎么实现分享，分享的API怎么拼？）因为公司只有我一个前端和三个后台，因此有些前端方面的东西他们也需要协调处理，真的忘了。&lt;br&gt;补充：对于微信方面的JS SDK，它们处理比较多，但我会编写分享后的回调函数。我们公司其实很多方面并不规范，因此会导致一些问题。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;有规划的方向吗？每日todolist？&lt;br&gt;答：目前主要是看书，学习基础方面的东西，例如设计模式和代码结构等。等这方面成熟后，会真正接触一些比较潮流的东西，如React、Angular、Vue等。&lt;br&gt;每天会写todo list，因为总是用脑记着，会有些牵挂着或漏掉。当然这个不限于技术，还有学校方面的事情。还有2016年的计划。（今天有写todo吗？）没有，今天和昨天晚上和同学去深圳了，刚刚才回到宿舍。&lt;br&gt;补充：其实还有优化方面的知识。  其实我也有点忘了自己写了2016计划，后来翻着有道云笔记发现了。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;rem&lt;br&gt;答：根据html元素的字体大小设置大小。&lt;br&gt;补充：这题再次被问到，其实我一开始不明白面试官的用意。后来想明白了，因为针对高像素比的设备（主要是iPhone）的dpr的不同，动态设置html元素的字体大小和meta元素的缩放比例（如dpr为2的屏幕，让根元素的字体大小是普通屏幕的两倍，然后设置页面的缩放比例为0.5，从而将4个像素压缩在1个像素（在视网膜屏幕下，1个CSS像素对应的是4个物理像素）），让视网膜的iPhone用户得到更加细腻精致的界面。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;缓存&lt;br&gt;答：localStorage和sessionStorage、还有HTTP头部字段的设置。&lt;br&gt;补充：这部分回答得很烂。需要学习。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Canvas&lt;br&gt;答：有学习过，之前看了《HTML5 Canvas 核心技术》这本书，写过一些小demo。&lt;br&gt;补充：之前比较早学的，还有个大概印象。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;React、Angular&lt;br&gt;答：React有学过，学的时候模仿了【卖座网】。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h2&gt;&lt;p&gt;第一次太嘈杂，听不清楚，第二次漏接电话，第三次才开始。一波三折啊。可能因为我回答得不太好，面试官基本没有深入问一些问题。语速也比较快，19分10秒搞掂了。但是这次我的表达也感觉比第一次好，是不是因为不是早上没睡醒的原因？还是面试官的快速带动了我呢？&lt;br&gt;一面重基础，二面重优化。&lt;br&gt;我这个没在正规公司呆过，没有参加校招，感觉在走特殊通道，导致要办很多额外手续的人，是否会继续呢？  &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这次在联系时，出现多次失误：&lt;br&gt;①在地铁上吵杂，面试官大喊也不能听清楚（手机太烂了）&lt;br&gt;②洗澡，手机静音，漏接。&lt;/p&gt;
-&lt;p&gt;连面试官都不得不说：联系上你真的不容易。&lt;br&gt;在这里和面试官说一声：真的十分抱歉。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="原创" scheme="http://yoursite.com/categories/%E5%8E%9F%E5%88%9B/"/>
-    
-    
-      <category term="interview" scheme="http://yoursite.com/tags/interview/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记突如其来的第一次电面</title>
-    <link href="http://yoursite.com/2016/05/05/2016-5-4-first-phone-interview/"/>
-    <id>http://yoursite.com/2016/05/05/2016-5-4-first-phone-interview/</id>
-    <published>2016-05-04T19:25:43.000Z</published>
-    <updated>2016-08-09T13:14:09.809Z</updated>
-    
-    <content type="html">&lt;p&gt;昨天（2016年5月3日）突然收到**实验室的微信好友请求，有点突如其来的感觉。之前在他们博客放了github地址，他们以为我是大三的（走校招）。我告诉对方我是大四的，他们回复我说大四要走社招（2016年4月19日），原以为没希望了，结果今天收到他们的微信好友请求。在我没打算找工作的时间段找到我，难道是上天的安排？ &lt;/p&gt;
-&lt;p&gt;Good luck to me.&lt;/p&gt;
-&lt;p&gt;下面是记录的面试题：&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;【备注】&lt;br&gt;答：基本和电面时回答的思路一样（当然通话时讲得比较乱）&lt;br&gt;补充：整理时，再思考的过程&lt;br&gt;感想：就是感想  &lt;/p&gt;
-&lt;h3 id=&quot;对实习的描述&quot;&gt;&lt;a href=&quot;#对实习的描述&quot; class=&quot;headerlink&quot; title=&quot;对实习的描述&quot;&gt;&lt;/a&gt;对实习的描述&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;实习经历&lt;br&gt;答：回答得翔一样。&lt;br&gt;补充：应该简洁地讲述总体过程，然后对工作的重点（与别人不同）进行详细描述。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在工作中主要负责前端吗？&lt;br&gt;答：是。另外公司只有我一个前端，对于一些页面我也会自己进行设计。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;设计使用Photoshop吗？Sketch有了解过吗？&lt;br&gt;答：是。Sketch 只是听说过，因为我用的 windows，所以没使用过。&lt;br&gt;感想：开发还是用Mac吧，尽管用过几次觉得没我现在的电脑好。也许是我没体验出Mac的真正优势吧。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;小结&quot;&gt;&lt;a href=&quot;#小结&quot; class=&quot;headerlink&quot; title=&quot;小结&quot;&gt;&lt;/a&gt;小结&lt;/h4&gt;&lt;p&gt;自己的表达能力欠缺，尽管之前对方告诉我“不需要准备什么”，当天晚上我就真的不准备了，而是继续整理班级的事务，连最基本的对自己做过的事情也没梳理清楚。我觉得这是对对方的一种不尊重吧，毕竟对方也因为你而付出了很多时间。&lt;/p&gt;
-&lt;h3 id=&quot;具体技术方面&quot;&gt;&lt;a href=&quot;#具体技术方面&quot; class=&quot;headerlink&quot; title=&quot;具体技术方面&quot;&gt;&lt;/a&gt;具体技术方面&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;CSS盒模型有了解过吗？&lt;br&gt; 答：块级元素（width、height、padding、margin组成）。考虑到box-sizing，当其值是border-box，width指定的值就是元素的总体宽度（包括内容宽度、padding和border）；当其值是content-box（默认值），width指定的值就是元素的内容宽度，元素的总体宽度由指定的width、padding和border决定；当然其实还有padding-box，但由于不常有，而且之前在看到该值已在标准中删除。&lt;br&gt; 当然min-width、max-width和width一样，取决于box-sizing。&lt;br&gt;&lt;img src=&quot;http://7xq7nb.com1.z0.glb.clouddn.com/first-phone-interview-2016-05-05_012009.jpg&quot; alt=&quot;此处输入图片的描述&quot;&gt;&lt;br&gt; 补充：当时主要回答了块级元素，其实display还有很多属性。现在对最常见的inline和inline-block进行补充：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;inline：垂直内边距、边框和外边距不影响行内框的高度。同样，显式设置高度或宽度也没有影响。修改行内框尺寸的唯一方法是修改行高或水平内边距、边框、外边距。&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;inline-block：让元素像行内元素一样水平依次排列，但框的内容仍然符合块级框的行为。支持IE8及以上。当初通过为元素设置 &lt;code&gt;*display:inline; zoom:1&lt;/code&gt; 可以模拟 &lt;code&gt;inline-block&lt;/code&gt; 的效果（其中 &lt;code&gt;*&lt;/code&gt; 是针对 IE6/7的 hack，而zoom:1 则触发元素在IE6/7特有的 hasLayout:true;）。具体可以看看《精通CSS》或《&lt;a href=&quot;https://blog.mozilla.org/webdev/2009/02/20/cross-browser-inline-block/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Cross-Browser inlne-block&lt;/a&gt;》。&lt;/p&gt;
-&lt;p&gt;感想：当时回答并不顺利也没这里这么详细。看似简单的概念，但是一被问到，竟然完全蒙住了，不知道回答什么，也难以将这些知识点联系起来，最后感谢感谢面试官的一些提醒。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;做自适应有什么方案？&lt;br&gt;答： 回答得好乱&lt;br&gt;补充：感觉对于这种开放式题目，一时半会比较难回答，需要对平时用到的解决方法进行快速总结。后来就和面试官说：看具体情况 –！&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;屏幕里，一行内如何显示3个正方形？&lt;br&gt; 答：当 padding-top/bottom、margin-top/bottom 是百分比时，会根据父元素的宽度进行计算。因此，以下代码能实现自适应的九宫格。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;title&amp;gt;九宫格&amp;lt;/title&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;style&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		*&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			margin: 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			padding: 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		.wrapper&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			width: 50%;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			text-align: center;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			font-size: 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		.col&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			display: inline-block;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			width: 30%;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			height: 0; // 显示设置height为0，避免内容影响元素的高度&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			padding-bottom: 30%; // 不设置 padding-top 是因为内容不受因 padding-top 而被挤下&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			background-color: orange;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			margin: 1.5%;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;/style&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;div class=&amp;quot;wrapper&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;div class=&amp;quot;col&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;div class=&amp;quot;col&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;div class=&amp;quot;col&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;div class=&amp;quot;col&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;div class=&amp;quot;col&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;div class=&amp;quot;col&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;div class=&amp;quot;col&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;div class=&amp;quot;col&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;div class=&amp;quot;col&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意：由于采用百分比，因此经过计算的值的具有小数的，而各个浏览器对小数的处理不一致，导致一行子元素的总占位大于父元素宽度，从而令每一行的最后一个元素挤到第二行。因此较好的方法是留有一些空白（如只对中间子元素设置margin-left/right，左右两侧子元素不设置margin-left/right），而不是完全采用margin将子元素隔开。   &lt;/p&gt;
-&lt;p&gt;补充：我当时没讲到这么详细，只是提到了当 padding-top/bottom 和 margin-top/bottom 的值是百分比时 是根据父元素宽度进行计算的。另外，应该还有其它解决方案，如 视口宽度单位 &lt;code&gt;vw&lt;/code&gt;、JS动态计算等等。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;最近流行一种根据rem来做自适应的，有了解过吗？&lt;br&gt; 答：回答的时候只说到了：rem 是根据跟元素（html）字体大小来设置大小的。&lt;br&gt; 补充： 因为之前只是了解这个属性，但在实际中比较少用到，看过相关帖子&lt;a href=&quot;http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《使用Flexible实现手淘H5页面的终端适配》&lt;/a&gt;。rem 是根据跟元素（html）字体大小来设置大小的。一般浏览器的根元素的字体大小是 &lt;code&gt;16px&lt;/code&gt;，设置根元素 &lt;code&gt;font-size: 62.5%&lt;/code&gt; 就是让根元素的字体大小为 &lt;code&gt;10px&lt;/code&gt;，方便后续元素的设置，如 &lt;code&gt;width:3rem&lt;/code&gt; 就是 &lt;code&gt;30px&lt;/code&gt;。我猜面试官是想问这个点吧：根据需求，如屏幕大小或 dpr，动态设置根元素的字体大小，而后续元素因为使用了 rem，与根元素的字体大小产生联系。从而实现自适应效果。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;平时写CSS是用原生还是其它工具呢？&lt;br&gt; 答：一般是直接写原生的，知道有预处理（SASS\LESS\STYLUS），但是感觉自己体现不出它们的优势，平时也考虑到团队中，只有我一个前端，使用起来不太方便（因为有时候写完CSS，交给后端同事时，发现需要修改CSS，那考虑到快捷，会直接在后端那边修改。如果我使用CSS处理器，岂不是要同步修改？归根结底，这是团队规范问题吧）。&lt;br&gt; 补充：其实之前学过SASS，但是感觉自己接触的项目不算大，体现不出它的优势。预处理让CSS拥有编程语言的一些特性，对于有助于提高CSS的重复性和可维护性。有时候想，预处理器会不会让原本直接简洁CSS变得复杂起来？当然，存在即合理，只不过我还没发现它的美。希望，自己尽早能在项目中使用它。当然还有postcss这类CSS处理器，但只是听说过而已。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Flexbox这种布局熟悉？&lt;br&gt;答：不熟悉，之前看过阮一峰老师的相关教程。由于没应用到项目中，久而久之就记不清楚了。&lt;br&gt;补充：阮一峰老师的Flex相关教程：&lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Flex 布局教程：语法篇&lt;/a&gt;、&lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/07/flex-examples.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Flex 布局教程：实例篇&lt;/a&gt;。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;有用过node.js吗？&lt;br&gt;答：有，毕业设计做的简单系统就用到了。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;你的系统有用到express吗？它的中间件是如何工作的？&lt;br&gt;答：有，中间件像竹子那样，只有通过上一步才能到下一步。在上一步操作中，要使用 next，才能到达下一步的处理。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如何对MongoDB数据进行定时备份？&lt;br&gt;答：没做个这个操作。&lt;br&gt;补充：之前都是手动通过mongodef（GUI）导入导出数据库文件。我猜答案是：编写定时备份的shell脚本吧。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;node程序reqiure一个库/文件/模块，它的查找过程是什么？&lt;br&gt;答：先区分是原生模块还是第三方模块，它们的处理是不同的，原生模块比较快，而第三方模块则会先从本地的node_modules文件夹找，若找不到，则会逐级向上查找。&lt;br&gt;补充：隐约记得朴灵的《深入浅出Node.js》里讲到的知识点吧。等有空把书上相关内容贴上来。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ES6 有了解过吗？&lt;br&gt;答：还是看阮一峰的ES6教程吧，但是并没有应该在项目上，只是敲一下小demo。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;你平时上网看一些博客和技术文档比较多是吧？我看你的翻译了好多。那些翻译是你自己找，还是伯乐在线指定你翻译的？&lt;br&gt;答：嗯，是的。前期加入伯乐在线的时候，主要是挑一些自己感兴趣或有用的文章进行翻译。后来，站长找我负责推荐前端方面的文章的工作，我每周都会向网站推荐一定数量的译文。因此，后来自己翻译就少了一点。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;简单说一下HTTP协议的三次握手。&lt;br&gt;答：建立连接前，客户端向服务器端发送一次请求，服务器端接收到该请求后就返回应答，而客户端收到服务器端的应答后，再次发送确认收到应答的信息。从而完成三次握手，然后可进行数据传输。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;设计这三次握手的目的是什么？&lt;br&gt;答： 确保双方知道对方，就好像打电话那样子。&lt;br&gt;补充：&lt;strong&gt;三次握手&lt;/strong&gt; 是为了准确无误地将数据送达目标处，TCP协议在发送数据的准备阶段采用了三次握手策略（若在握手过程中某个阶段中断，TCP协议会再次以相同的顺序发送相同的数据包）。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;学校这边的事情预计什么时候能弄完呢？&lt;br&gt;答：因为我担任大四班长，需要处理毕业的事情比较多。学校正式毕业的时间是6月底。不知道你们公司最好报道的时间是？（说得人家录取你一样，脸皮真厚！）&lt;br&gt;面试官回复：我们公司对于毕业生是7月份报道的。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;对于JS这块，你平时写原生JS多吗？&lt;br&gt;答：看需求吧，之前公司的项目一般比较赶，所以还是会用到一些库。对于需求较为简单的移动端页面，会使用原生JS编写。最主要还是看需要吧。&lt;br&gt;补充：其实我还是比较怕被问到这个问题，之前面试也被问到这个问题。当时的回答和这个次回答还是差不多。有点悲催，继续加油吧。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如果要使用原生JS实现图片的滚动加载，要如何实现？&lt;br&gt;答：这题回答不好。忘了如何实现，醉了。也说到了 节流。&lt;br&gt;补充：其实就是之前发布在github上的 lazyExcute 插件。电面后再codereview时，好像发现一个BUG，有空再修复。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;讲一下我去摇的ibeacon通信。&lt;br&gt;答：ibeacon是近场通信工具，用户通过打开蓝牙，在微信摇一摇功能中摇一摇可以在ibeacon感应范围打开活动页面。&lt;br&gt;补充：其实我这题回答不好。尽管公司虽小，但我很少主动去了解公司的一些产品，这也是我做得不好的地方。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;小结-1&quot;&gt;&lt;a href=&quot;#小结-1&quot; class=&quot;headerlink&quot; title=&quot;小结&quot;&gt;&lt;/a&gt;小结&lt;/h4&gt;&lt;p&gt;我个人觉得面试的问题还是比较全面的，尽管还是一些比较基本的问题。而且我也知道面试是看着我的Github问我问题，不知道是面试官放水还是验证我的Github有没有水分。我是个心机Boy，呵呵。&lt;/p&gt;
-&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;p&gt;原本以为只能参加社交，后来颇为突然的告诉我有应届生名额，惊喜。不知道是不是上天对我的眷恋。昨晚被蚊子和天气折腾到3点多才睡，早上8点多就起床等着电话的到来。迷迷糊糊地结束了人生第一次电面（25分钟）。&lt;br&gt;感觉电面需要较强的反应能力和思维能力，因为电话一般习惯不让对方对待，否则就好像挂断一样。&lt;br&gt;好好珍惜机会吧，不然只能看着机会慢慢地从你身边溜走。  &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;昨天（2016年5月3日）突然收到**实验室的微信好友请求，有点突如其来的感觉。之前在他们博客放了github地址，他们以为我是大三的（走校招）。我告诉对方我是大四的，他们回复我说大四要走社招（2016年4月19日），原以为没希望了，结果今天收到他们的微信好友请求。在我没打算找工作的时间段找到我，难道是上天的安排？ &lt;/p&gt;
-&lt;p&gt;Good luck to me.&lt;/p&gt;
-&lt;p&gt;下面是记录的面试题：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="原创" scheme="http://yoursite.com/categories/%E5%8E%9F%E5%88%9B/"/>
-    
-    
-      <category term="interview" scheme="http://yoursite.com/tags/interview/"/>
-    
-  </entry>
-  
-  <entry>
     <title>《JavaScript模式》读书笔记</title>
     <link href="http://yoursite.com/2016/04/26/2016-4-26-javascript-patterns-notes/"/>
     <id>http://yoursite.com/2016/04/26/2016-4-26-javascript-patterns-notes/</id>
@@ -4646,6 +4496,268 @@ p{margin-left:200px}
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
       <category term="hash" scheme="http://yoursite.com/tags/hash/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>7 个基本的 JS 函数</title>
+    <link href="http://yoursite.com/2015/06/23/2015-6-23-seven-essential-javascript-functions/"/>
+    <id>http://yoursite.com/2015/06/23/2015-6-23-seven-essential-javascript-functions/</id>
+    <published>2015-06-23T02:29:42.000Z</published>
+    <updated>2016-08-09T13:14:09.809Z</updated>
+    
+    <content type="html">&lt;p&gt;我记得早期的 JavaScript ，要完成任何事情几乎都绕不开一些简单的函数，因为浏览器提供商实现功能有所差异，而且不只是边缘功能，基础功能也一样，如 &lt;code&gt;addEventListener&lt;/code&gt; 和 &lt;code&gt;attachEvent&lt;/code&gt;。虽然时代变了，但仍有一些函数是每个开发者都应该掌握的，以便于完成某些功能和提高性能。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;debounce&quot;&gt;&lt;a href=&quot;#debounce&quot; class=&quot;headerlink&quot; title=&quot;debounce&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://davidwalsh.name/javascript-debounce-function&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;debounce&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;对于高耗能事件，debounce 函数是一种不错解决方案。如果你不对 &lt;code&gt;scroll&lt;/code&gt;、&lt;code&gt;resize&lt;/code&gt;、和 &lt;code&gt;key*&lt;/code&gt; 事件使用 debounce  函数，那么你几乎等同于犯了错误。下面的 &lt;code&gt;debounce&lt;/code&gt; 函数能让你的代码保持高效：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 返回一个函数，如果它被不间断地调用，它将不会得到执行。该函数在停止调用 N 毫秒后，再次调用它才会得到执行。如果有传递 ‘immediate’ 参数，会马上将函数安排到执行队列中，而不会延迟。
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate &amp;amp;&amp;amp; !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+
+// 用法
+var myEfficientFn = debounce(function() {
+    // 所有繁重的操作
+}, 250);
+window.addEventListener(&amp;apos;resize&amp;apos;, myEfficientFn);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;debounce&lt;/code&gt; 函数不允许回调函数在指定时间内执行多于一次。当为一个会频繁触发的事件分配一个回调函数时，该函数显得尤为重要。&lt;/p&gt;
+&lt;h3 id=&quot;poll&quot;&gt;&lt;a href=&quot;#poll&quot; class=&quot;headerlink&quot; title=&quot;poll&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://davidwalsh.name/javascript-polling&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;poll&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;尽管上面我提及了 &lt;code&gt;debounce&lt;/code&gt; 函数，但如果事件不存在时，你就不能插入一个事件以判断所需的状态，那么就需要每隔一段时间去检查状态是否达到你的要求。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function poll(fn, callback, errback, timeout, interval) {
+    var endTime = Number(new Date()) + (timeout || 2000);
+    interval = interval || 100;
+
+    (function p() {
+        // 如果条件满足，则执行！
+        if (fn()) {
+            callback();
+        }
+        // 如果条件不满足，但并未超时，再来一次
+        else if (Number(new Date()) &amp;lt; endTime) {
+            setTimeout(p, interval);
+        }
+        // 不匹配且时间消耗过长，则拒绝！
+        else {
+            errback(new Error(&amp;apos;timed out for &amp;apos; + fn + &amp;apos;: &amp;apos; + arguments));
+        }
+    })();
+}
+
+// 用法：确保元素可见
+poll(
+    function() {
+        return document.getElementById(&amp;apos;lightbox&amp;apos;).offsetWidth &amp;gt; 0;
+    },
+    function() {
+        // 执行，成功的回调函数
+    },
+    function() {
+        // 错误，失败的回调函数
+    }
+);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Polling 在 web 中已被应用很长时间了，并在将来仍会被使用。&lt;/p&gt;
+&lt;h3 id=&quot;once&quot;&gt;&lt;a href=&quot;#once&quot; class=&quot;headerlink&quot; title=&quot;once&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://davidwalsh.name/javascript-once&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;once&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;有时候，你想让一个给定的功能只发生一次，类似于 &lt;code&gt;onload&lt;/code&gt; 事件。下面的代码提供了你所说的功能：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function once(fn, context) {
+    var result;
+
+    return function() {
+        if (fn) {
+            result = fn.apply(context || this, arguments);
+            fn = null;
+        }
+
+        return result;
+    };
+}
+
+// 用法
+var canOnlyFireOnce = once(function() {
+    console.log(&amp;apos;Fired!&amp;apos;);
+});
+
+canOnlyFireOnce(); // &amp;quot;Fired!&amp;quot;
+canOnlyFireOnce(); // // 没有执行指定函数
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;once&lt;/code&gt; 函数确保给定函数只能被调用一次，从而防止重复初始化！&lt;/p&gt;
+&lt;h3 id=&quot;getAbsoluteUrl&quot;&gt;&lt;a href=&quot;#getAbsoluteUrl&quot; class=&quot;headerlink&quot; title=&quot;getAbsoluteUrl&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://davidwalsh.name/get-absolute-url&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;getAbsoluteUrl&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;从一个字符串变量得到一个绝对 URL，并不是你想象中这么简单。对于某些 &lt;code&gt;URL&lt;/code&gt; 构造器，如果你不提供必要的参数就会出问题（而有时候你真的不知道提供什么参数）。下面有一个优雅的技巧，只需要你传递一个字符串就能得到相应的绝对 URL。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var getAbsoluteUrl = (function() {
+    var a;
+    return function(url) {
+        if (!a) a = document.createElement(&amp;apos;a&amp;apos;);
+        a.href = url;
+
+        return a.href;
+    };
+})();
+
+// 用法
+getAbsoluteUrl(&amp;apos;/something&amp;apos;); // http://davidwalsh.name/something
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;a 元素的 &lt;code&gt;href&lt;/code&gt; 处理和 url 处理看似无意义，而 return 语句返回了一个可靠的绝对 URL。&lt;/p&gt;
+&lt;h3 id=&quot;isNative&quot;&gt;&lt;a href=&quot;#isNative&quot; class=&quot;headerlink&quot; title=&quot;isNative&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://davidwalsh.name/detect-native-function&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;isNative&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;如果你想知道一个指定函数是否是原生的，或者能不能通过声明来覆盖它。下面这段便于使用的代码能给你答案：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;;(function() {
+
+    // Used to resolve the internal `[[Class]]` of values
+    var toString = Object.prototype.toString;
+
+    // Used to resolve the decompiled source of functions
+    var fnToString = Function.prototype.toString;
+
+    // Used to detect host constructors (Safari &amp;gt; 4; really typed array specific)
+    var reHostCtor = /^\[object .+?Constructor\]$/;
+
+    // Compile a regexp using a common native method as a template.
+    // We chose `Object#toString` because there&amp;apos;s a good chance it is not being mucked with.
+    var reNative = RegExp(&amp;apos;^&amp;apos; +
+        // Coerce `Object#toString` to a string
+        String(toString)
+        // Escape any special regexp characters
+        .replace(/[.*+?^${}()|[\]\/\\]/g, &amp;apos;\\$&amp;amp;&amp;apos;)
+        // Replace mentions of `toString` with `.*?` to keep the template generic.
+        // Replace thing like `for ...` to support environments like Rhino which add extra info
+        // such as method arity.
+        .replace(/toString|(function).*?(?=\\\()| for .+?(?=\\\])/g, &amp;apos;$1.*?&amp;apos;) + &amp;apos;$&amp;apos;
+    );
+
+    function isNative(value) {
+        var type = typeof value;
+        return type == &amp;apos;function&amp;apos;
+            // Use `Function#toString` to bypass the value&amp;apos;s own `toString` method
+            // and avoid being faked out.
+            ? reNative.test(fnToString.call(value))
+            // Fallback to a host object check because some environments will represent
+            // things like typed arrays as DOM methods which may not conform to the
+            // normal native pattern.
+            : (value &amp;amp;&amp;amp; type == &amp;apos;object&amp;apos; &amp;amp;&amp;amp; reHostCtor.test(toString.call(value))) || false;
+    }
+
+    // export however you want
+    module.exports = isNative;
+}());
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个函数虽不完美，但它能完成任务！&lt;/p&gt;
+&lt;h3 id=&quot;insertRule&quot;&gt;&lt;a href=&quot;#insertRule&quot; class=&quot;headerlink&quot; title=&quot;insertRule&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://davidwalsh.name/add-rules-stylesheets&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;insertRule&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;我们都知道能通过选择器（通过 &lt;code&gt;document.querySelectorAll&lt;/code&gt; ）获取一个 NodeList ，并可为每个元素设置样式，但有什么更高效的方法为选择器设置样式呢（例如你可以在样式表里完成）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var sheet = (function() {
+    // 创建 &amp;lt;style&amp;gt; 标签
+    var style = document.createElement(&amp;apos;style&amp;apos;);
+
+    // 如果你需要指定媒介类型，则可以在此添加一个 media (和/或 media query) 
+    // style.setAttribute(&amp;apos;media&amp;apos;, &amp;apos;screen&amp;apos;)
+    // style.setAttribute(&amp;apos;media&amp;apos;, &amp;apos;only screen and (max-width : 1024px)&amp;apos;)
+
+    // WebKit hack :(
+    style.appendChild(document.createTextNode(&amp;apos;&amp;apos;));
+
+    // 将 &amp;lt;style&amp;gt; 元素添加到页面
+    document.head.appendChild(style);
+
+    return style.sheet;
+})();
+
+// 用法
+sheet.insertRule(&amp;quot;header { float: left; opacity: 0.8; }&amp;quot;, 1);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这对于一个动态且重度依赖 AJAX 的网站来说是特别有用的。如果你为一个选择器设置样式，那么你就不需要为每个匹配到的元素都设置样式（现在或将来）。&lt;/p&gt;
+&lt;h3 id=&quot;matchesSelector&quot;&gt;&lt;a href=&quot;#matchesSelector&quot; class=&quot;headerlink&quot; title=&quot;matchesSelector&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://davidwalsh.name/element-matches-selector&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;matchesSelector&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;我们经常会在进行下一步操作前进行输入校验，以确保是一个可靠值，或确保表单数据是有效的，等等。但我们平时是怎么确保一个元素是否有资格进行进一步操作呢？如果一个元素有给定匹配的选择器，那么你可以使用 &lt;code&gt;matchesSelector&lt;/code&gt; 函数来校验：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function matchesSelector(el, selector) {
+    var p = Element.prototype;
+    var f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function(s) {
+        return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
+    };
+    return f.call(el, selector);
+}
+
+// 用法
+matchesSelector(document.getElementById(&amp;apos;myDiv&amp;apos;), &amp;apos;div.someSelector[some-attribute=true]&amp;apos;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;就这样啦，上述 7 个 JavaScript 函数是每个开发者都应该时刻记着的。有哪个函数我错过了呢？请把它分享出来！&lt;/p&gt;
+&lt;p&gt;本文由 &lt;a href=&quot;http://web.jobbole.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;伯乐在线&lt;/a&gt; - &lt;a href=&quot;http://www.jobbole.com/members/q574805242&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;刘健超-J.c&lt;/a&gt; 翻译，&lt;a href=&quot;http://www.jobbole.com/members/8zjl8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;周进林&lt;/a&gt; 校稿。未经许可，禁止转载！&lt;br&gt;英文出处：&lt;a href=&quot;http://davidwalsh.name/essential-javascript-functions&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;davidwalsh.name&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;感谢您的阅读。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我记得早期的 JavaScript ，要完成任何事情几乎都绕不开一些简单的函数，因为浏览器提供商实现功能有所差异，而且不只是边缘功能，基础功能也一样，如 &lt;code&gt;addEventListener&lt;/code&gt; 和 &lt;code&gt;attachEvent&lt;/code&gt;。虽然时代变了，但仍有一些函数是每个开发者都应该掌握的，以便于完成某些功能和提高性能。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
+    
+    
+      <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何为不定高度(height:auto)的元素添加CSS3 transition-property:height 动画</title>
+    <link href="http://yoursite.com/2015/06/23/2015-6-23-css-transition-height-0-to-height-auto/"/>
+    <id>http://yoursite.com/2015/06/23/2015-6-23-css-transition-height-0-to-height-auto/</id>
+    <published>2015-06-22T16:47:42.000Z</published>
+    <updated>2016-08-09T13:14:09.809Z</updated>
+    
+    <content type="html">&lt;p&gt;但一个元素不设置height时，它的默认值是 auto，浏览器会计算出实际的高度。&lt;br&gt;但如果想给一个 height:auto 的块级元素的高度添加 CSS3 动画时，该怎么办呢？&lt;br&gt;从 MDN 的可以查到 CSS 支持动画的属性中的 height 属性如下：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;height ：yes, as a length, percentage or calc(); // 当 height 的值是 length，百分比或 calc() 时支持 CSS3 过渡。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;所以当元素 height : auto 时，是不支持 CSS3 动画的。&lt;/p&gt;
+&lt;p&gt;除了通过 JS 获取精确的 height 值的方法外，其实我们可以使用 max-height 代替 height。&lt;/p&gt;
+&lt;p&gt;只要我们设置一个肯定比元素自增长大的高度值就可以了。当然，因为是根据 max-height 值进行过渡效果，所以最好不要大得离谱，否则动画效果不理想。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+        &amp;lt;style&amp;gt;
+            *{
+                margin: 0;
+                padding:0;
+            }
+            div{
+
+                display: inline-block;
+                overflow: hidden;
+                background-color: orange;
+                max-height: 20px;
+                -webkit-transition: max-height 1s;
+                transition: max-height 1s;
+            }
+            div:hover{
+                max-height:200px;
+            }
+        &amp;lt;/style&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;div&amp;gt;
+            &amp;lt;p&amp;gt;我不是height，是max-height&amp;lt;/p&amp;gt;
+            &amp;lt;p&amp;gt;我不是height，是max-height&amp;lt;/p&amp;gt;
+            &amp;lt;p&amp;gt;我不是height，是max-height&amp;lt;/p&amp;gt;
+            &amp;lt;p&amp;gt;我不是height，是max-height&amp;lt;/p&amp;gt;
+            &amp;lt;p&amp;gt;我不是height，是max-height&amp;lt;/p&amp;gt;
+            &amp;lt;p&amp;gt;我不是height，是max-height&amp;lt;/p&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;参考资源：&lt;a href=&quot;http://stackoverflow.com/questions/3508605/css-transition-height-0-to-height-auto&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/3508605/css-transition-height-0-to-height-auto&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这是我第一篇博客文章，希望能让大家学到东西。当然，我更希望收到大家对我的建议！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;但一个元素不设置height时，它的默认值是 auto，浏览器会计算出实际的高度。&lt;br&gt;但如果想给一个 height:auto 的块级元素的高度添加 CSS3 动画时，该怎么办呢？&lt;br&gt;从 MDN 的可以查到 CSS 支持动画的属性中的 height 属性如下：&lt;br&gt;
+    
+    </summary>
+    
+      <category term="原创" scheme="http://yoursite.com/categories/%E5%8E%9F%E5%88%9B/"/>
+    
+    
+      <category term="css3" scheme="http://yoursite.com/tags/css3/"/>
+    
+      <category term="transiton" scheme="http://yoursite.com/tags/transiton/"/>
     
   </entry>
   
