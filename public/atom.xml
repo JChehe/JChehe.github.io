@@ -17,8 +17,8 @@
   
   <entry>
     <title>我的第一次移动端页面制作 — 总结与思考</title>
-    <link href="http://yoursite.com/2016/11/13/2016-11-08-first-mobile-rebuild/"/>
-    <id>http://yoursite.com/2016/11/13/2016-11-08-first-mobile-rebuild/</id>
+    <link href="http://yoursite.com/2016/11/13/2016-11-8-first-mobile-rebuild/"/>
+    <id>http://yoursite.com/2016/11/13/2016-11-8-first-mobile-rebuild/</id>
     <published>2016-11-13T11:52:51.000Z</published>
     <updated>2016-11-13T11:55:44.000Z</updated>
     
@@ -4795,9 +4795,9 @@ p{margin-left:200px}
       <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-      <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
-    
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+      <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
     
   </entry>
   
