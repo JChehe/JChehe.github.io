@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -27,18 +27,45 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -54,7 +81,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -67,26 +94,42 @@
 <meta property="og:url" content="http://yoursite.com/about/index.html">
 <meta property="og:site_name" content="刘健超(Jc)'s Blog">
 <meta property="og:description" content="关于我因大一上学期期末考试复习时看到某个酷炫的页面效果而对前端产生兴趣，大一寒假就开始自学，弄出了第一个页面，发现做一个网站是需要很多方面的知识。由于求成心切，大一暑假就去了某培训机构学习《Web网页设计课程》，寒假40多天刚好学完设计的部分就回校学习，培训时我也买了《精通CSS》和网上的电子书《CSS设计指南》看，而且每天下课回到出租屋，我也会反复看《JavaScript的视频》，所以之后再也没">
-<meta property="og:updated_time" content="2016-08-09T13:14:09.809Z">
+<meta property="og:updated_time" content="2016-11-13T11:28:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="about">
 <meta name="twitter:description" content="关于我因大一上学期期末考试复习时看到某个酷炫的页面效果而对前端产生兴趣，大一寒假就开始自学，弄出了第一个页面，发现做一个网站是需要很多方面的知识。由于求成心切，大一暑假就去了某培训机构学习《Web网页设计课程》，寒假40多天刚好学完设计的部分就回校学习，培训时我也买了《精通CSS》和网上的电子书《CSS设计指南》看，而且每天下课回到出租屋，我也会反复看《JavaScript的视频》，所以之后再也没">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/about/"/>
+
+
+
+
 
   <title>
   
@@ -169,7 +212,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -179,7 +222,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -189,7 +232,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -199,7 +242,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -213,6 +256,8 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -223,6 +268,14 @@
             
 
   <div id="posts" class="posts-expand">
+  <header class="post-header">
+
+	<h2 class="post-title" itemprop="name headline">about</h2>
+
+
+
+</header>
+
     
     
       <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>因大一上学期期末考试复习时看到某个酷炫的页面效果而对前端产生兴趣，大一寒假就开始自学，弄出了<a href="../mystatic/firstpage/index.html">第一个页面</a>，发现做一个网站是需要很多方面的知识。由于求成心切，大一暑假就去了某培训机构学习《Web网页设计课程》，寒假40多天刚好学完设计的部分就回校学习，培训时我也买了《精通CSS》和网上的电子书《CSS设计指南》看，而且每天下课回到出租屋，我也会反复看《JavaScript的视频》，所以之后再也没去补回剩余的课程。这次培训经历的最大收获是PS的应用和人生的一段难忘经历。</p>
@@ -239,7 +292,7 @@
           </div>
           
 
-  <p style="margin:0;">热评文章</p>
+  <p>热评文章</p>
   <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
@@ -272,7 +325,7 @@
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -283,7 +336,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -300,7 +353,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -321,36 +374,36 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/JChehe" target="_blank">
+                <a href="https://github.com/JChehe" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/u/1995306965" target="_blank">
+                <a href="http://weibo.com/u/1995306965" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.jobbole.com/members/q574805242/" target="_blank">
+                <a href="http://www.jobbole.com/members/q574805242/" target="_blank" title="伯乐在线">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   伯乐在线
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://segmentfault.com/u/jc" target="_blank">
+                <a href="https://segmentfault.com/u/jc" target="_blank" title="Segmentfault">
                   
-                    <i class="fa fa-Segmentfault"></i>
+                    <i class="fa fa-fw fa-segmentfault"></i>
                   
                   Segmentfault
                 </a>
@@ -363,33 +416,34 @@
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-            <div class="links-of-blogroll-title">友情链接</div>
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://aotu.io" target="_blank">凹凸实验室</a>
+                  <a href="https://aotu.io" title="凹凸实验室" target="_blank">凹凸实验室</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://gongmingwang.com/" target="_blank">莞青共鸣网</a>
+                  <a href="http://gongmingwang.com/" title="莞青共鸣网" target="_blank">莞青共鸣网</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://codcodog.github.io/" target="_blank">莫廖の博客</a>
+                  <a href="http://codcodog.github.io/" title="莫廖の博客" target="_blank">莫廖の博客</a>
                 </li>
               
             </ul>
-          
-        </div>
-        <div class="links-of-blogroll motion-element">
-          <div class="links-of-blogroll-title" style="text-align:left; margin-bottom:5px;">关注公众号</div>
-          <img src="/images/o2_qrcode.jpg" alt="O2实验室公众号" />
-        </div>
+          </div>
+        
+
+        
+
 
       </section>
-
 
       
 
@@ -413,8 +467,9 @@
   <span class="author" itemprop="copyrightHolder">刘健超</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -425,7 +480,9 @@
 </div>
 
 
+        
 
+        
       </div>
     </footer>
 
@@ -436,12 +493,6 @@
 
   
 
-
-  
-
-
-
-
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
@@ -449,25 +500,42 @@
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
@@ -475,18 +543,18 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
 
 
-
-  
 
   
 
+  
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
@@ -511,14 +579,21 @@
 
   
     
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
+
+
+
   
   
+
   
 
   
@@ -554,6 +629,14 @@
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
           }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
         })
         .fail(function (object, error) {
           console.log("Error: " + error.code + " " + error.message);
@@ -584,6 +667,12 @@
             });
           } else {
             var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
             newcounter.set("title", title);
             newcounter.set("url", url);
             newcounter.set("time", 1);
@@ -617,6 +706,9 @@
 
 
   
+
+  
+
 
 </body>
 </html>

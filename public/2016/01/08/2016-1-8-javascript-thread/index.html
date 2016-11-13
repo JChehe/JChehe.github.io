@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -27,18 +27,45 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="javascript,thread," />
@@ -52,7 +79,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -69,7 +96,7 @@
 最近被同学问道 JavaScript 单线程的一些事，我竟回答不上。好吧，感觉自己的 JavaScript 白学了。下面是我这几天整理的一些关于 JavaScript 单线程的一些事。">
 <meta property="og:image" content="http://images.51cto.com/files/uploadimg/20090804/1503300.jpg">
 <meta property="og:image" content="https://developer.mozilla.org/files/4617/default.svg">
-<meta property="og:updated_time" content="2016-08-09T13:14:09.809Z">
+<meta property="og:updated_time" content="2016-11-13T11:28:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="细说JavaSript单线程的一些事">
 <meta name="twitter:description" content="首发地址：码农网《细说JavaScript单线程的一些事》
@@ -78,19 +105,35 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/01/08/2016-1-8-javascript-thread/"/>
+
+
+
+
 
   <title> 细说JavaSript单线程的一些事 | 刘健超(Jc)'s Blog </title>
 </head>
@@ -167,7 +210,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -177,7 +220,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -187,7 +230,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -197,7 +240,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -210,6 +253,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -224,16 +269,30 @@
     
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/08/2016-1-8-javascript-thread/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="刘健超">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="刘健超(Jc)'s Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="刘健超(Jc)'s Blog" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
+
         
         
           <h1 class="post-title" itemprop="name headline">
@@ -252,9 +311,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-08T09:58:07+08:00" content="2016-01-08">
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-08T09:58:07+08:00">
               2016-01-08
             </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T19:28:54+08:00">
+              2016-11-13
+            </time>
+            
           </span>
 
           
@@ -265,7 +334,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/原创/" itemprop="url" rel="index">
                     <span itemprop="name">原创</span>
                   </a>
@@ -283,7 +352,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/01/08/2016-1-8-javascript-thread/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/2016-1-8-javascript-thread/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/2016-1-8-javascript-thread/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -302,18 +371,12 @@
                <span class="leancloud-visitors-count"></span>
               </span>
           
-          
-            <div class="post-tags">
-              Tags:&nbsp;&nbsp;
-              
-                <a href="/tags/javascript/" rel="tag">#javascript</a>
-              
-                <a href="/tags/thread/" rel="tag">#thread</a>
-              
-            </div>
-          
-        </div>
 
+          
+          
+          
+
+        </div>
       </header>
     
 
@@ -506,20 +569,32 @@ for(var i = 0; i&lt; 100000000; i++);
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
+
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/thread/" rel="tag"># thread</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -530,6 +605,8 @@ for(var i = 0; i&lt; 100000000; i++);
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -551,7 +628,10 @@ for(var i = 0; i&lt; 100000000; i++);
     <div class="post-spread">
       
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+</div>
+
       
     </div>
   </div>
@@ -560,7 +640,7 @@ for(var i = 0; i&lt; 100000000; i++);
           </div>
           
 
-  <p style="margin:0;">热评文章</p>
+  <p>热评文章</p>
   <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
@@ -602,7 +682,7 @@ for(var i = 0; i&lt; 100000000; i++);
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -613,7 +693,7 @@ for(var i = 0; i&lt; 100000000; i++);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -630,7 +710,7 @@ for(var i = 0; i&lt; 100000000; i++);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -651,36 +731,36 @@ for(var i = 0; i&lt; 100000000; i++);
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/JChehe" target="_blank">
+                <a href="https://github.com/JChehe" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/u/1995306965" target="_blank">
+                <a href="http://weibo.com/u/1995306965" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.jobbole.com/members/q574805242/" target="_blank">
+                <a href="http://www.jobbole.com/members/q574805242/" target="_blank" title="伯乐在线">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   伯乐在线
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://segmentfault.com/u/jc" target="_blank">
+                <a href="https://segmentfault.com/u/jc" target="_blank" title="Segmentfault">
                   
-                    <i class="fa fa-Segmentfault"></i>
+                    <i class="fa fa-fw fa-segmentfault"></i>
                   
                   Segmentfault
                 </a>
@@ -693,45 +773,51 @@ for(var i = 0; i&lt; 100000000; i++);
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-            <div class="links-of-blogroll-title">友情链接</div>
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://aotu.io" target="_blank">凹凸实验室</a>
+                  <a href="https://aotu.io" title="凹凸实验室" target="_blank">凹凸实验室</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://gongmingwang.com/" target="_blank">莞青共鸣网</a>
+                  <a href="http://gongmingwang.com/" title="莞青共鸣网" target="_blank">莞青共鸣网</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://codcodog.github.io/" target="_blank">莫廖の博客</a>
+                  <a href="http://codcodog.github.io/" title="莫廖の博客" target="_blank">莫廖の博客</a>
                 </li>
               
             </ul>
-          
-        </div>
-        <div class="links-of-blogroll motion-element">
-          <div class="links-of-blogroll-title" style="text-align:left; margin-bottom:5px;">关注公众号</div>
-          <img src="/images/o2_qrcode.jpg" alt="O2实验室公众号" />
-        </div>
+          </div>
+        
+
+        
+
 
       </section>
 
-
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先，说下为什么-JavaScript-是单线程？"><span class="nav-number">1.</span> <span class="nav-text">首先，说下为什么 JavaScript 是单线程？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发模式与Event-Loop"><span class="nav-number">2.</span> <span class="nav-text">并发模式与Event Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Runtime-概念"><span class="nav-number">2.1.</span> <span class="nav-text">Runtime 概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Stack（栈）"><span class="nav-number">2.1.1.</span> <span class="nav-text">Stack（栈）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Heap（堆）"><span class="nav-number">2.1.2.</span> <span class="nav-text">Heap（堆）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Queue（队列）"><span class="nav-number">2.1.3.</span> <span class="nav-text">Queue（队列）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Loop"><span class="nav-number">2.2.</span> <span class="nav-text">Event Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#“执行至完成”"><span class="nav-number">2.2.1.</span> <span class="nav-text">“执行至完成”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绝不阻塞"><span class="nav-number">2.2.2.</span> <span class="nav-text">绝不阻塞</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定时器"><span class="nav-number">2.3.</span> <span class="nav-text">定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定时器的一些概念"><span class="nav-number">2.3.1.</span> <span class="nav-text">定时器的一些概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深入了解定时器"><span class="nav-number">2.3.2.</span> <span class="nav-text">深入了解定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#零延迟-setTimeout-func-0"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">零延迟 setTimeout(func, 0)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#setTimeout-func-0-的作用"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">setTimeout(func, 0)的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#正版与翻版setInterval的区别"><span class="nav-number">2.3.2.2.1.</span> <span class="nav-text">正版与翻版setInterval的区别</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器"><span class="nav-number">2.4.</span> <span class="nav-text">浏览器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器不是单线程的"><span class="nav-number">2.4.1.</span> <span class="nav-text">浏览器不是单线程的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料："><span class="nav-number">4.</span> <span class="nav-text">参考资料：</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -754,8 +840,9 @@ for(var i = 0; i&lt; 100000000; i++);
   <span class="author" itemprop="copyrightHolder">刘健超</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -766,7 +853,9 @@ for(var i = 0; i&lt; 100000000; i++);
 </div>
 
 
+        
 
+        
       </div>
     </footer>
 
@@ -777,12 +866,6 @@ for(var i = 0; i&lt; 100000000; i++);
 
   
 
-
-  
-
-
-
-
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
@@ -790,48 +873,65 @@ for(var i = 0; i&lt; 100000000; i++);
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
 
-  
-  
 
-
-  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
@@ -856,14 +956,21 @@ for(var i = 0; i&lt; 100000000; i++);
 
   
     
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
+
+
+
   
   
+
   
 
   
@@ -899,6 +1006,14 @@ for(var i = 0; i&lt; 100000000; i++);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
           }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
         })
         .fail(function (object, error) {
           console.log("Error: " + error.code + " " + error.message);
@@ -929,6 +1044,12 @@ for(var i = 0; i&lt; 100000000; i++);
             });
           } else {
             var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
             newcounter.set("title", title);
             newcounter.set("url", url);
             newcounter.set("time", 1);
@@ -962,6 +1083,9 @@ for(var i = 0; i&lt; 100000000; i++);
 
 
   
+
+  
+
 
 </body>
 </html>

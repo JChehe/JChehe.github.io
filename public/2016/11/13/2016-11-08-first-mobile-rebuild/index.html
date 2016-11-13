@@ -1,0 +1,1047 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mobile-rebuild html css," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="刘健超(Jc)'s Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="最近被分配到移动端开发组，支持某活动的页面页面制作。这算是我第一次真正接触移动端页面制作，下面就谈谈个人总结和思考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的第一次移动端页面制作 — 总结与思考">
+<meta property="og:url" content="http://yoursite.com/2016/11/13/2016-11-08-first-mobile-rebuild/index.html">
+<meta property="og:site_name" content="刘健超(Jc)'s Blog">
+<meta property="og:description" content="最近被分配到移动端开发组，支持某活动的页面页面制作。这算是我第一次真正接触移动端页面制作，下面就谈谈个人总结和思考。">
+<meta property="og:image" content="http://yoursite.com//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/linear-gradient.jpg">
+<meta property="og:image" content="http://yoursite.com//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/tag1.png">
+<meta property="og:image" content="http://yoursite.com//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/tag2.png">
+<meta property="og:image" content="http://yoursite.com//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/coupon.png">
+<meta property="og:image" content="http://yoursite.com//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/multi-line1.png">
+<meta property="og:image" content="http://yoursite.com//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/multi-line2.png">
+<meta property="og:updated_time" content="2016-11-13T11:54:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我的第一次移动端页面制作 — 总结与思考">
+<meta name="twitter:description" content="最近被分配到移动端开发组，支持某活动的页面页面制作。这算是我第一次真正接触移动端页面制作，下面就谈谈个人总结和思考。">
+<meta name="twitter:image" content="http://yoursite.com//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/linear-gradient.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/13/2016-11-08-first-mobile-rebuild/"/>
+
+
+
+
+
+  <title> 我的第一次移动端页面制作 — 总结与思考 | 刘健超(Jc)'s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76019300-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d2eaa363b7db95e9ef065389dd27defe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">刘健超(Jc)'s Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/13/2016-11-08-first-mobile-rebuild/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="刘健超">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="刘健超(Jc)'s Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="刘健超(Jc)'s Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                我的第一次移动端页面制作 — 总结与思考
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-13T19:52:51+08:00">
+              2016-11-13
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T19:54:16+08:00">
+              2016-11-13
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/原创/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/13/2016-11-08-first-mobile-rebuild/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/13/2016-11-08-first-mobile-rebuild/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/13/2016-11-08-first-mobile-rebuild/" class="leancloud_visitors" data-flag-title="我的第一次移动端页面制作 — 总结与思考">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近被分配到移动端开发组，支持某活动的页面页面制作。这算是我第一次真正接触移动端页面制作，下面就谈谈个人总结和思考。</p>
+<a id="more"></a>
+<h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><p>开会大体讲解、讨论与排期 -&gt; 交互设计 -&gt; 视觉设计 -&gt; 页面页面制作 -&gt; 前端开发 -&gt; 测试</p>
+<p>每个步骤环环相扣，每个职位都需要和其前后的人沟通协调。</p>
+<p>测试遇到问题则会反馈到相应环节负责人。</p>
+<p>当然，涉及的职位也不仅于此，还有法务同事审核内容是否符合当前法规等等。</p>
+<h2 id="构建工具"><a href="#构建工具" class="headerlink" title="构建工具"></a>构建工具</h2><h3 id="Athena"><a href="#Athena" class="headerlink" title="Athena"></a>Athena</h3><p>前端开发离不开构建工具，除了敲代码，其余都交给构建工具（如组件开发、CSS 兼容处理、图片 Base64、图片雪碧图和压缩处理等）。<br>在 <a href="https://athena.aotu.io/" target="_blank" rel="external">Athena</a> 中，文件层级结构如下：项目 project -&gt; 模块 module（具体每个活动） -&gt; 页面 page -&gt; 部件 widget。  </p>
+<p>举例： 某项目 -&gt; X、Y 活动 -&gt; 预热页和高潮页 -&gt; 头部、弹框等 widget。一般文件目录如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Xproject</div><div class="line">    - gb (公共部分，如初始化样式和一些常用 widget)</div><div class="line">    - X活动</div><div class="line">        - page</div><div class="line">            - 预热页</div><div class="line">            - 高潮页</div><div class="line">        - widget</div><div class="line">            - header</div><div class="line">            - footer</div><div class="line">            - diglog</div><div class="line">    - Y 活动</div><div class="line">    - ...</div></pre></td></tr></table></figure></p>
+<p>刚开始接触时，存在这样的一个疑惑：什么是 widget，一个不可复用的页面头部可以作为 widget 吗？<br>答：我最初的想法是：“错误地把 widget 当成 component，component 一直被强调的 特性之一是<strong>可复用性</strong>。对于不可复用的部分就不应该抽出为一个widget了？”<strong>其实对于一个相对独立的功能，我们就可把它抽出来。</strong>这无疑会增强程序的可维护性。 </p>
+<p>对于一个项目，一般一个模块由一个人负责。但考虑到每个模块间可能存在（或未来存在）可复用的 widget，需要规范命名以形成命名空间，防止冲突（具体会在下面的规范-命名中阐述）。</p>
+<blockquote>
+<p>Component 与 Widget 的区别<br>Component 是更加广义抽象的概念，而Widget是更加具体现实的概念。所以Component的范围要比Widget大得多，通常 Component 是由多个 Widget 组成。<br>举个例子，可能不是很恰当，希望帮助你的理解，比如家是由床，柜子等多个 Component 组成，柜子是由多个抽屉 Widget 组成的。<br>而 Component 和 Widget 的目的都是为了模块化开发。</p>
+</blockquote>
+<p>其实，在这里并没有对 widget 和 component 做这么细的区分。</p>
+<h2 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h2><h3 id="widget"><a href="#widget" class="headerlink" title="widget"></a>widget</h3><p>正如上面讨论的，一个页面由多个 widget 组成。因此，一个页面看起来如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;body ontouchstart&gt;</div><div class="line">  &lt;div class=&quot;wrapper&quot;&gt;</div><div class="line">    &lt;!-- S 主会场头部 --&gt;</div><div class="line">    &lt;%= widget.load(&quot;app_market_main_header&quot;) %&gt;</div><div class="line">    &lt;!-- E 主会场头部 --&gt;</div><div class="line">    &lt;!-- S 达人问答区 --&gt;</div><div class="line">    &lt;%= widget.load(&quot;app_market_answer&quot;) %&gt;</div><div class="line">    &lt;!-- E 达人问答区 --&gt;</div><div class="line">    &lt;!-- S 优惠券 --&gt;</div><div class="line">    &lt;%= widget.load(&quot;app_market_coupons&quot;) %&gt;</div><div class="line">    &lt;!-- E 优惠券 --&gt;</div><div class="line">    &lt;!-- S 达人集中营 --&gt;</div><div class="line">    &lt;%= widget.load(&quot;app_market_camp&quot;) %&gt;</div><div class="line">    &lt;!-- E 达人集中营 --&gt;</div><div class="line">    &lt;!-- S 达人穿搭公式 --&gt;</div><div class="line">    &lt;%= widget.load(&quot;app_market_collocation&quot;) %&gt;</div><div class="line">    &lt;!-- E 达人穿搭公式 --&gt;</div><div class="line">    &lt;!-- S 卡券相关弹框 --&gt;</div><div class="line">    &lt;%= widget.load(&quot;app_market_dialog&quot;) %&gt;</div><div class="line">    &lt;!-- E 卡券相关弹框 --&gt;</div><div class="line">  &lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>widget 一般存在可复用性。但如何控制细粒度呢？分得越细代码就越简洁，但工作量和维护难度可能会上升，因此需要权衡你当时的情况。</p>
+<h3 id="CSS-命名"><a href="#CSS-命名" class="headerlink" title="CSS 命名"></a>CSS 命名</h3><h4 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h4><p>由于一个项目中，一个模块由某一个人负责，但模块之间的 widget 存在或未来存在可复用的可能（而且开发可能会为你的页面添加已有的组件，如页面会嵌在某 APP 内，该 APP 已有现成的一些提示框）。因此，需要命名空间将其它们进行区分以防止冲突。由于 CSS 不存在命名空间，因此只能通过类似 BEM 的方式（具体根据团队的规范），如：<code>app_market_header</code>、<code>app_market_list_item</code>。<code>app_market</code> 是模块（即某个活动）的标识，在该项目下，它是唯一的。</p>
+<p>另外，还有一点：类名是否要按照 html 层级关系层层添加呢？如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">div.app_market_header</div><div class="line">    div.app_market_header_icon</div><div class="line">    div.app_market_header_**</div></pre></td></tr></table></figure></p>
+<p>对于 <code>app_market_header_icon</code>，尽管在 header 中，但 icon 并不只属于 header，而属于整个模块（活动），那么我们就可以改为 <code>app_market_icon</code>。</p>
+<h4 id="命名存在的问题"><a href="#命名存在的问题" class="headerlink" title="命名存在的问题"></a>命名存在的问题</h4><p>老司机 Code review 后，讲了以下内容：<br>反面教材：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;app_market_answer&quot;&gt;</div><div class="line">  &lt;div class=&quot;app_market_secheader&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;app_market_answer_list&quot;&gt;</div><div class="line">    &lt;div class=&quot;app_market_answer_item&quot;&gt;</div><div class="line">      &lt;div class=&quot;app_market_answer_item_top&quot;&gt;&lt;/div&gt;</div><div class="line">      &lt;div class=&quot;app_market_answer_item_middle&quot;&gt;&lt;/div&gt;</div><div class="line">      &lt;a href=&quot;javascript:;&quot; class=&quot;app_market_answer_item_bottom&quot;&gt;去围观&lt;/a&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>存在的问题是：嵌套层级越深，类名就越长。</p>
+<p>较好的解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;app_market_answer&quot;&gt;</div><div class="line">  &lt;div class=&quot;app_market_secheader&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;app_market_answer_list&quot;&gt;</div><div class="line">    &lt;div class=&quot;app_market_answer_item&quot;&gt;</div><div class="line">      &lt;div class=&quot;app_market_answer_itop&quot;&gt;&lt;/div&gt;***</div><div class="line">      &lt;div class=&quot;app_market_answer_imid&quot;&gt;&lt;/div&gt;***</div><div class="line">      &lt;a href=&quot;javascript:;&quot; class=&quot;app_market_answer_ibtm&quot;&gt;去围观&lt;/a&gt;***</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>这是基于『姓名』原理进行优化的，举例：<code>app_market_answer_item</code> 是姓名（库日天），那么它的子元素只需继承它的『姓』（库姆斯） <code>app_market_answer_itop</code>，而不是它的姓名（库日天姆斯） <code>app_market_answer_item_top</code>。每当类名达到三到四个单词长时，就要考虑简化名字。</p>
+<p>进一步优化，app_market 可以看成是『复姓』，有时为了书写便利，可以以两个单词的首字母结合形成一个新的『新姓』- 『am』。当然，追求便利的副作用是牺牲了代码的可读性。如果你负责的项目或页面没有太大的二次维护或者交叉维护的可能性，推荐做此简化。</p>
+<p>BTW：此简化后的『姓』可以在代码中稍加注释说明，如下代码所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;!-- am = app_market --&gt;</div><div class="line">&lt;div class=&quot;am_answer&quot;&gt;</div><div class="line">  &lt;div class=&quot;am_secheader&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;am_answer_list&quot;&gt;</div><div class="line">    &lt;div class=&quot;am_answer_item&quot;&gt;</div><div class="line">      &lt;div class=&quot;am_answer_itop&quot;&gt;&lt;/div&gt;</div><div class="line">      &lt;div class=&quot;am_answer_imid&quot;&gt;&lt;/div&gt;</div><div class="line">      &lt;a href=&quot;javascript:;&quot; class=&quot;am_answer_ibtm&quot;&gt;去围观&lt;/a&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="针对类名书写样式"><a href="#针对类名书写样式" class="headerlink" title="针对类名书写样式"></a>针对类名书写样式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">    &lt;a href=&quot;javascript:;&quot;&gt;...&lt;/a&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>至少加一个类名，任何时候都尽量要『针对类名书写样式，而不是针对元素书写样式』，除非你能预判元素是末级元素。<br>因此对于以下 CSS：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.app_market_coupons &gt; div &#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可优化成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.app_market_coupons &gt; .xxx &#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="技术涉及"><a href="#技术涉及" class="headerlink" title="技术涉及"></a>技术涉及</h2><h3 id="REM"><a href="#REM" class="headerlink" title="REM"></a>REM</h3><p>移动端采用 rem 布局方式。通过动态修改 html 的 font-size 实现自适应。</p>
+<h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><p>REM 布局有两种实现方式：CSS 媒介查询和 JavaScript 动态修改。由于 JavaScript 更为灵活，因此现在更多地采用此方式。</p>
+<h5 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h5><p>凹凸的实现方式是：在 <code>head</code> 标签末加入以下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    !function()&#123;</div><div class="line">      var maxWidth=750;</div><div class="line">      document.write(&apos;&lt;style id=&quot;o2HtmlFontSize&quot;&gt;&lt;/style&gt;&apos;);</div><div class="line">      var o2_resize=function()&#123;</div><div class="line">          var cw,ch;</div><div class="line">          if(document&amp;&amp;document.documentElement)&#123;</div><div class="line">              cw=document.documentElement.clientWidth,ch=document.documentElement.clientHeight;</div><div class="line">          &#125;</div><div class="line">          if(!cw||!ch)&#123;</div><div class="line">              if(window.localStorage[&quot;o2-cw&quot;]&amp;&amp;window.localStorage[&quot;o2-ch&quot;])&#123;</div><div class="line">                  cw=parseInt(window.localStorage[&quot;o2-cw&quot;]),ch=parseInt(window.localStorage[&quot;o2-ch&quot;]);</div><div class="line">              &#125;else&#123;</div><div class="line">                  chk_cw();//定时检查</div><div class="line">                  return ;//出错了</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line"></div><div class="line">          var zoom=maxWidth&amp;&amp;maxWidth&lt;cw?maxWidth/375:cw/375,zoomY=ch/603;//由ip6 weChat</div><div class="line">          window.localStorage[&quot;o2-cw&quot;]=cw,window.localStorage[&quot;o2-ch&quot;]=ch;</div><div class="line">          //zoom=Math.min(zoom,zoomY);//保证ip6 wechat的显示比率</div><div class="line">          window.zoom=window.o2Zoom=zoom;</div><div class="line">          document.getElementById(&quot;o2HtmlFontSize&quot;).innerHTML=&apos;html&#123;font-size:&apos;+(zoom*20)+&apos;px;&#125;.o2-zoom,.zoom&#123;zoom:&apos;+(zoom/2)+&apos;;&#125;.o2-scale&#123;-webkit-transform: scale(&apos;+zoom/2+&apos;); transform: scale(&apos;+zoom/2+&apos;);&#125; .sq_sns_pic_item,.sq_sns_picmod_erea_img&#123;-webkit-transform-origin: 0 0;transform-origin: 0 0;-webkit-transform: scale(&apos;+zoom/2+&apos;);transform: scale(&apos;+zoom/2+&apos;);&#125;&apos;;</div><div class="line">      &#125;,</div><div class="line">      siv,</div><div class="line">      chk_cw=function()&#123;</div><div class="line">          if(siv)return ;//已经存在</div><div class="line">          siv=setInterval(function()&#123;</div><div class="line">              //定时检查</div><div class="line">              document&amp;&amp;document.documentElement&amp;&amp;document.documentElement.clientWidth&amp;&amp;document.documentElement.clientHeight&amp;&amp;(o2_resize(),clearInterval(siv),siv=undefined);</div><div class="line">          &#125;,100);</div><div class="line">      &#125;;</div><div class="line">      o2_resize();//立即初始化</div><div class="line">      window.addEventListener(&quot;resize&quot;,o2_resize);</div><div class="line">  &#125;();</div><div class="line">  &lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>从以上代码可得出以下信息：  </p>
+<ol>
+<li>以 iPhone 6 为基准，iPhone 6 的缩放比 <code>zoom</code> 为 <code>1</code></li>
+<li>由于只针对移动端，因此最大宽度为768（恰好等于 iPad 的竖屏宽度）</li>
+<li>通过 document.documentElement.clientWidth 获取视口宽度</li>
+<li>resize 事件主要考虑横竖屏切换和你在PC上调试时🙃</li>
+<li>zoom 系数是 20。系数决定了在宽度 375 的 iPhone6 下，1 rem 的值是多少 px（20px）。当然如果想过渡到 vw，可以将 zoom 系数设置为 3.75，那么 100rem 就是 375px 了</li>
+</ol>
+<h4 id="为什么要用"><a href="#为什么要用" class="headerlink" title="为什么要用"></a>为什么要用</h4><p>有人说 rem 布局是 <code>vw</code> 和 <code>vh</code> 的替换方案，当 <code>vw</code> 和 <code>vh</code> 成熟时，两者可能会各司其职吧。</p>
+<blockquote>
+<p><a href="http://caniuse.com/#search=vw" target="_blank" rel="external">vw 的兼容性</a>：在安卓 4.3 及以下是不支持的。</p>
+</blockquote>
+<h5 id="哪些地方要用"><a href="#哪些地方要用" class="headerlink" title="哪些地方要用"></a>哪些地方要用</h5><p>由于 rem 布局是相对于视口宽度，因此任何需要根据屏幕大小进行变化的元素（width、height、position 等）都可以用 rem 单位。</p>
+<p>但 rem 也有它的缺点——不精细（在下一节阐述），其实这涉及到了浏览器渲染引擎的处理。因此，对于需要精细处理的地方（如通过 CSS 实现的 icon），可以用 px 等绝对单位，然后再通过 transform: scale() 方法等比缩放。</p>
+<h5 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h5><p>那 <code>font-size</code> 是否也要用 rem 单位呢？ 这也是我曾经纠结的地方。如果不等比缩放，对不起设计师，而且对于小屏幕，一些元素内的字体会换行或溢出。当然这可以通过 CSS3 媒介查询解决这种状况。</p>
+<p>字体不采用 rem 的好处是：在大屏手机下，能显示更多字体。</p>
+<p>看到 <a href="http://3g.163.com/" target="_blank" rel="external">网易新闻</a> 和 <a href="https://jhs.m.taobao.com/m/index.htm#!all" target="_blank" rel="external">聚划算</a> 的字体大小都采用 rem 单位，我就不纠结了。当然，也有其它网站是采用绝对单位的，两者没有绝对的对与错，取决于你的实际情况。</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><h5 id="小数点（不精细，有间隙）"><a href="#小数点（不精细，有间隙）" class="headerlink" title="小数点（不精细，有间隙）"></a>小数点（不精细，有间隙）</h5><p>由于 rem 布局是基于某一设备实现的（目前一般采用 iPhone6），对于 375 倍数宽的设备无疑会拥有最佳的显示效果。而对于非 375 倍数宽的设备，zoom 就可能是拥有除不尽的小数，根元素的字体大小也相应会有小数。而浏览器对小数的处理方式不一致，导致该居中的地方没完全居中，但你又不能为此设置特定样式（如 margin-top: *px;），因为浏览器多如牛毛，这个浏览器微调居中了，而原本居中的浏览器变得不居中了。</p>
+<p>对于图标 icon，rem 的不精细导致通过多个元素（伪元素）组合而成的 icon 会形成错位/偏差。因此，在这种情况下，需要权衡是否需要使用 CSS 实现了。</p>
+<h3 id="SASS"><a href="#SASS" class="headerlink" title="SASS"></a>SASS</h3><p>SASS 无疑增强了原本声明式的 CSS，为 CSS 注入了可编程等能力。在这次项目，算是我第一次使用 SASS，由于构建工具和基础库的完善，只需通过查看/模仿已有项目的 SASS 用法，就能快速上手。后续还是要系统地学习，以更合理地使用 SASS。</p>
+<p>使用 SASS 的最大问题是：层级嵌套过深，这也是对 SASS 理解不深入的原因。可以关注一下转译后的 CSS。</p>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>这次项目的 APP 采用手机自带浏览器内核，而这些浏览器内核依赖于系统版本等因素。另外，国产机也会对这些内核进行定制和修改。特别是华为、OPPO。</p>
+<p>下面列出我所遇到的兼容性问题（不列具体机型，因为这些兼容性处理终会过时，不必死记硬背，遇到了能解决就好（要求基础扎实））：</p>
+<ul>
+<li>flexbox：在构建工具处理下（实现了新旧语法）可以大胆用，但个别设备不支持 flex-wrap: wrap。因此对于想使用 flex-wrap 实现自动分行的情况，建议使用其他实现。如果个数固定（如 N  行，每行 M 个），则可使用 N 个 flexbox（这样就可以使用 flexbox 的特性了）。flexbox 的其他属性也有支持不好的情况，可以通过显式声明 display、overflow、width、height 等方法解决。</li>
+<li>background-size：需要单独写，否则在 <a href="http://caniuse.com/#search=background-size" target="_blank" rel="external">安卓 4.3 及以下，IOS 6.1及以下不兼容</a>。</li>
+<li>渐变：线性渐变大胆使用，径向渐变有兼容性问题。但是不建议对整体背景使用，会有性能问题（可简单地通过 1px 高的图片替代，注意，不要 background-size: 100% auto; 应该采用 background-size: 100% 1px; 因为有些浏览器（视口宽度较小）会忽略小数点【<code>auto = img.Height * (screen.Width/img.Width)</code>】，导致图片未显示）。另外，需要注意的是：透明的色标在iOS 默认是黑色的，即 transparent 等于 rgba(0,0,0,0)。因此即使是完全透明的色标，也要指定颜色。否则后果如下：<br><img src="//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/linear-gradient.jpg" alt="此处输入图片的描述"></li>
+<li>classlist.remove(String[, String])，传递多个参数时，会有不兼容的情况。建议每次写一个。add (String[, String])同理。</li>
+<li><p>根节点 html font-size 渲染错误：在华为、魅族的某设备上（手Q），会出现一个非常奇葩的渲染 Bug，同一个网页，“扫一扫”打开 html 的 font-size 正常，直接点击链接会出现<strong>渲染出来的 html font-size 会比设置得值大</strong>（如：设置25.8，渲染出来是 29），因此导致整体变大，且布局错乱。<br>我的方法是：为 html font-size 重新设置大小：渲染字体大小 - (渲染与正常差值)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function getStyle(ele, style) &#123;</div><div class="line">    return document.defaultView.getComputedStyle(ele, null)[style]</div><div class="line">&#125;</div><div class="line">;(function fixFontSize() &#123;</div><div class="line">    var target = window.o2Zoom * 20</div><div class="line">    var cur = parseInt(getStyle(document.documentElement, &quot;fontSize&quot;))</div><div class="line">    while(cur - target &gt;= 1) &#123;</div><div class="line">        document.documentElement.style[&quot;fontSize&quot;] = target - (cur - target) + &quot;px&quot;</div><div class="line">        cur = parseInt(getStyle(document.documentElement, &quot;fontSize&quot;))</div><div class="line">    &#125;          </div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>有网友提供这个方法 <code>&lt;meta name=&quot;wap-font-scale&quot; content=&quot;no&quot;&gt;</code>，经测试不可行。此方法是针对 UC 浏览器的。</p>
+<p>上面主要列出了对使用有影响的兼容性问题，有些由于浏览器渲染引擎导致的问题（不影响使用），若无法通过 transform、z-index 等解决，也许只能通过 JavaScript 解决或进行取舍了。</p>
+<h3 id="其他一些知识点"><a href="#其他一些知识点" class="headerlink" title="其他一些知识点"></a>其他一些知识点</h3><ul>
+<li><p>图片占位元素：对于宽高比例固定的坑位（如商品列表项），通过将图片放置在占位元素中，可避免图片加载时引起的页面抖动和图片尺寸不一致而导致的页面布局错乱。代码实现：</p>
+<pre><code>.img_placeholder {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  padding-top: placeholder 的高/宽%; // padding-top/bottom: 百分比; 是基于父元素的宽度
+  img {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      left: 0;
+      top: 0;
+  }
+}
+</code></pre></li>
+<li><p>1px：在 retina 屏幕下，1 CSS像素是用 4 个物理像素表示，为了在该屏幕下显示更精细，通过为 ::after 应用以下代码（以上边框为例）：</p>
+<pre><code>div {
+    position: relative;
+    &amp;::after {
+        content: &apos;&apos;;
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+        background: $borderColor;
+        height: 1px;left: 0;right: 0;top: 0;
+        @media only screen and (-webkit-min-device-pixel-ratio:2) {
+            &amp;{
+                -webkit-transform: scaleY(0.5);
+                -webkit-transform-origin: 50% 0%;
+            }
+        }
+    }
+}
+</code></pre></li>
+<li><p>根据元素个数应用特定样式：</p>
+<pre><code>/* one item */
+li:first-child:nth-last-child(1) {
+    width: 100%;
+}
+/* two items */
+li:first-child:nth-last-child(2),
+li:first-child:nth-last-child(2) ~ li {
+    width: 50%;
+}
+/* three items */
+li:first-child:nth-last-child(3),
+li:first-child:nth-last-child(3) ~ li {
+    width: 33.3333%;
+}
+/* four items */
+li:first-child:nth-last-child(4),
+li:first-child:nth-last-child(4) ~ li {
+    width: 25%;
+}
+</code></pre><p>  应用样例有：根据元素个数自适应标签样式。<br>  <img src="//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/tag1.png" alt="根据元素个数自适应标签样式"><br>  而对于反方向标签，可先首先对整体 transform: scale(-1)，然后再对字体 transform: scale(-1) 恢复从左向右的方向。效果如下：<br><img src="//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/tag2.png" alt="标签反向">  </p>
+</li>
+<li>卡券：『带孔且背景是渐变的卡券』在复杂背景中的实现。由于背景是复杂的（非纯色），因此孔不能简单地通过覆盖（与背景同色）产生。这里可以应用径向渐变 <code>background-image: radial-gradient(rem(189/2) 100%, circle, transparent 0, transparent 3px, #fa2c66 3px);</code>，其中 3px 是孔的半径。另外，卡券的上下部分是线性渐变的，因此可以在上下部分分别通过伪类元素添加 <code>background-image: linear-gradient(to top, #fa2e67 0, #fb5584 100%);</code>，当然，要从离外上/下边界 3px 的地方开始。虽然这不能完美地从最边界开始，但效果还是可以的。但由于径向渐变的兼容性问题，我最终还是用图片替换了这种实现。🙄<br><img src="//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/coupon.png" alt="带孔且背景是渐变的卡券">  </li>
+<li>多行文本的多行padding：让背景只出现在有文字的地方，可直接设置 <code>display: inline;</code>，但还会存在一个问题是：padding 只会出现在多行文本的首和尾，对于需要为每行文本的首尾都需要相同的 padding，可以参考这篇文章：<a href="https://css-tricks.com/multi-line-padded-text/" target="_blank" rel="external">《multi-line-padded-text》</a> 。该文章提供了多种实现方式，根据具体情况选择一种即可。另外，对于每行的间距，可通过设置 line-height 和 padding-top/bottom 实现，其中 line-height 要大于（字体高度+padding-top/bottom）。<br><img src="//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/multi-line1.png" alt="此处输入图片的描述"><br><img src="//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/multi-line2.png" alt="此处输入图片的描述">  </li>
+<li>最小字体限制：PC上最小字体是 12px、移动端最小是 8px，当然可通过 transform:scale() 突破限制。</li>
+</ul>
+<h3 id="不止页面页面制作"><a href="#不止页面页面制作" class="headerlink" title="不止页面页面制作"></a>不止页面页面制作</h3><ol>
+<li>基础：合理运用 CSS 的威力更好地完成对设计稿的重现目的。  </li>
+<li>沟通：由于分工较细，只负责页面制作的同学，需要与产品和设计沟通，以达到交给开发后更少修改的目的。如哪些地方可跳转、哪些地方最多显示几行文字、超出如何处理（直接隐藏/省略号等）、坑位中的图片摆放（顶部对齐/居中等）等等。  </li>
+<li>代码上的沟通：HTML 注释要写好、HTML 与 CSS 代码要规范（命名等）清晰。  </li>
+</ol>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>由于工具的成熟，我不需要考虑构建工具的搭建。<br>由于发布方式的成熟，页面制作和开发能更好地分离，页面制作者负责输出 HTML、CSS，开发负责 copy html 代码和引入 CSS 页面片。CSS 页面片由页面制作者更新发布，开发无需关心。这达到了互不干扰、多线程并行的效果。<br>成熟的基础设施让我们免除了非代码相关的烦恼，但这也让我担心：假如有一天我脱离了这些基础设施，我该如何保持高效。</p>
+<h4 id="延伸：页面片是什么？"><a href="#延伸：页面片是什么？" class="headerlink" title="延伸：页面片是什么？"></a>延伸：页面片是什么？</h4><p>CSS 页面片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- #include virtual=&quot;/folder/branch.shtml&quot; --&gt;</div><div class="line">&lt;link combofile=&quot;/folder/branch.shtml&quot; rel=&quot;stylesheet&quot; href=&quot;//website/folder/gb.min_1151b5b0.css,/folder/branch.min_925332fc.css&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>JS 页面片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- #include virtual=&quot;/folder/branch_js.shtml&quot; --&gt;</div><div class="line">&lt;script combofile=&quot;/folder/branch.shtml&quot; src=&quot;//website/path/branch.min_8971778a.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Combo Handler是Yahoo!开发的一个Apache模块，它实现了开发人员简单方便地通过URL来合并JavaScript和CSS文件，从而大大减少文件请求数。 <a href="http://www.cnblogs.com/zhengyun_ustc/archive/2012/07/18/combo.html" target="_blank" rel="external">http://www.cnblogs.com/zhengyun_ustc/archive/2012/07/18/combo.html</a></p>
+</blockquote>
+<hr>
+<p>这就是我的第一次…🙈 学习很多，完！</p>
+<p>以上仅是我个人完成某项目页面制作的思考和总结，不小心暴露了团队下限。🌚</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mobile-rebuild-html-css/" rel="tag"># mobile-rebuild html css</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/23/2016-8-23-webvr/" rel="next" title="浅谈 WebVR">
+                <i class="fa fa-chevron-left"></i> 浅谈 WebVR
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/13/2016-11-08-first-mobile-rebuild/"
+           data-title="我的第一次移动端页面制作 — 总结与思考" data-url="http://yoursite.com/2016/11/13/2016-11-08-first-mobile-rebuild/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="刘健超" />
+          <p class="site-author-name" itemprop="name">刘健超</p>
+          <p class="site-description motion-element" itemprop="description">踏实 梦想 责任</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JChehe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1995306965" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jobbole.com/members/q574805242/" target="_blank" title="伯乐在线">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  伯乐在线
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/jc" target="_blank" title="Segmentfault">
+                  
+                    <i class="fa fa-fw fa-segmentfault"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://aotu.io" title="凹凸实验室" target="_blank">凹凸实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gongmingwang.com/" title="莞青共鸣网" target="_blank">莞青共鸣网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codcodog.github.io/" title="莫廖の博客" target="_blank">莫廖の博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#整体流程"><span class="nav-number">1.</span> <span class="nav-text">整体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建工具"><span class="nav-number">2.</span> <span class="nav-text">构建工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Athena"><span class="nav-number">2.1.</span> <span class="nav-text">Athena</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范"><span class="nav-number">3.</span> <span class="nav-text">规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#widget"><span class="nav-number">3.1.</span> <span class="nav-text">widget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-命名"><span class="nav-number">3.2.</span> <span class="nav-text">CSS 命名</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命名空间"><span class="nav-number">3.2.1.</span> <span class="nav-text">命名空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命名存在的问题"><span class="nav-number">3.2.2.</span> <span class="nav-text">命名存在的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#针对类名书写样式"><span class="nav-number">3.2.3.</span> <span class="nav-text">针对类名书写样式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术涉及"><span class="nav-number">4.</span> <span class="nav-text">技术涉及</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#REM"><span class="nav-number">4.1.</span> <span class="nav-text">REM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现方式"><span class="nav-number">4.1.1.</span> <span class="nav-text">实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JavaScript"><span class="nav-number">4.1.1.1.</span> <span class="nav-text">JavaScript</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要用"><span class="nav-number">4.1.2.</span> <span class="nav-text">为什么要用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#哪些地方要用"><span class="nav-number">4.1.2.1.</span> <span class="nav-text">哪些地方要用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字体"><span class="nav-number">4.1.2.2.</span> <span class="nav-text">字体</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">4.1.3.</span> <span class="nav-text">缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#小数点（不精细，有间隙）"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">小数点（不精细，有间隙）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SASS"><span class="nav-number">4.2.</span> <span class="nav-text">SASS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#兼容性"><span class="nav-number">4.3.</span> <span class="nav-text">兼容性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他一些知识点"><span class="nav-number">4.4.</span> <span class="nav-text">其他一些知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不止页面页面制作"><span class="nav-number">4.5.</span> <span class="nav-text">不止页面页面制作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思考"><span class="nav-number">4.6.</span> <span class="nav-text">思考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#延伸：页面片是什么？"><span class="nav-number">4.6.1.</span> <span class="nav-text">延伸：页面片是什么？</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘健超</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jchehe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qPe43l5UuF31pWPlmLIhg8E7-gzGzoHsz", "1sqA7g86Dtpv9ft1jen0Lg0r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

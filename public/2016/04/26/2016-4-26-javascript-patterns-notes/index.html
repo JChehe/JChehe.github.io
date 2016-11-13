@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -27,21 +27,48 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="notes,javascript," />
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,notes," />
 
 
 
@@ -52,7 +79,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -65,26 +92,42 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/26/2016-4-26-javascript-patterns-notes/index.html">
 <meta property="og:site_name" content="刘健超(Jc)'s Blog">
 <meta property="og:description" content="简介在软件开发过程中，模式是指一个通用问题的解决方案。一个模式不仅仅是一个可以用来复制粘贴的代码解决方案，更多地是提供了一个更好的实践经验、有用的抽象化表示和解决一类问题的模板。">
-<meta property="og:updated_time" content="2016-08-09T13:14:09.809Z">
+<meta property="og:updated_time" content="2016-11-13T11:28:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《JavaScript模式》读书笔记">
 <meta name="twitter:description" content="简介在软件开发过程中，模式是指一个通用问题的解决方案。一个模式不仅仅是一个可以用来复制粘贴的代码解决方案，更多地是提供了一个更好的实践经验、有用的抽象化表示和解决一类问题的模板。">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/04/26/2016-4-26-javascript-patterns-notes/"/>
+
+
+
+
 
   <title> 《JavaScript模式》读书笔记 | 刘健超(Jc)'s Blog </title>
 </head>
@@ -161,7 +204,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -171,7 +214,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -181,7 +224,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -191,7 +234,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -204,6 +247,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -218,16 +263,30 @@
     
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/26/2016-4-26-javascript-patterns-notes/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="刘健超">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="刘健超(Jc)'s Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="刘健超(Jc)'s Blog" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
+
         
         
           <h1 class="post-title" itemprop="name headline">
@@ -246,9 +305,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-26T21:05:42+08:00" content="2016-04-26">
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-26T21:05:42+08:00">
               2016-04-26
             </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T19:28:54+08:00">
+              2016-11-13
+            </time>
+            
           </span>
 
           
@@ -259,7 +328,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/原创/" itemprop="url" rel="index">
                     <span itemprop="name">原创</span>
                   </a>
@@ -277,7 +346,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/04/26/2016-4-26-javascript-patterns-notes/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/2016-4-26-javascript-patterns-notes/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/2016-4-26-javascript-patterns-notes/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -296,18 +365,12 @@
                <span class="leancloud-visitors-count"></span>
               </span>
           
-          
-            <div class="post-tags">
-              Tags:&nbsp;&nbsp;
-              
-                <a href="/tags/notes/" rel="tag">#notes</a>
-              
-                <a href="/tags/javascript/" rel="tag">#javascript</a>
-              
-            </div>
-          
-        </div>
 
+          
+          
+          
+
+        </div>
       </header>
     
 
@@ -355,7 +418,7 @@
 <p>隐式创建的全局变量与明确定义的全局变量的不同之处在于：是否能被 <code>delete</code> 操作符删除。</p>
 <ul>
 <li>使用 var 创建的全局变量（在函数外创建）不能删除</li>
-<li>不使用 var 创建的隐式全局变量（就算在函数内创建）可以删除<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">b = 2;</span><br><span class="line">(function()&#123;</span><br><span class="line">    c = 3;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">delete a; // false;</span><br><span class="line">delete b; // true;</span><br><span class="line">delete c; // true</span><br><span class="line"></span><br><span class="line">typeof a; // number</span><br><span class="line">typeof b; // undefined</span><br><span class="line">typeof c; // undefined</span><br></pre></td></tr></table></figure>
+<li>不使用 var 创建的隐式全局变量（就算在函数内创建）可以删除<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var a = 1;</div><div class="line">b = 2;</div><div class="line">(function()&#123;</div><div class="line">    c = 3;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">delete a; // false;</div><div class="line">delete b; // true;</div><div class="line">delete c; // true</div><div class="line"></div><div class="line">typeof a; // number</div><div class="line">typeof b; // undefined</div><div class="line">typeof c; // undefined</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>在ES5 strict模式下，为未声明的变量赋值会抛出错误。</p>
@@ -626,8 +689,8 @@ console.log(newSum(2,3,5,4)); // 35
 <h2 id="对象创建模式"><a href="#对象创建模式" class="headerlink" title="对象创建模式"></a>对象创建模式</h2><p>JavaScript语言本身很简单、直观，也没有其他语言的一些语言特性：命名空间、模块、包、私有属性以及静态成员。本章将介绍一些常用的模式，以此实现这些语言特性。</p>
 <p>我们将对命名空间、依赖声明、模块模式以及沙箱模式进行初探——它们可以帮助我们更好地组织应用程序的代码，有效地减少全局污染的问题。除此之外，还会讨论私有和特权成员、静态和私有静态成员、对象常量、链式调用以及一种像类式语言一样定义构造函数的方法等话题。</p>
 <h3 id="命名空间模式"><a href="#命名空间模式" class="headerlink" title="命名空间模式"></a>命名空间模式</h3><p>使用命名空间可以减少全局变量的数量，与此同时，还能有效地避免命名冲突和前缀的滥用。</p>
-<p>本章后续要介绍的沙箱模式则可以避免这些缺点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 重构前：5个全局变量</span><br><span class="line">// 注意：反模式</span><br><span class="line">// 构造函数</span><br><span class="line">function Parent() &#123;&#125; </span><br><span class="line">function Child() &#123;&#125;</span><br><span class="line">// 一个变量</span><br><span class="line">var some_var = 1;</span><br><span class="line"></span><br><span class="line">// 一些对象</span><br><span class="line">var module1 = &#123;&#125;; </span><br><span class="line">module1.data = &#123;a: 1, b: 2&#125;; </span><br><span class="line">var module2 = &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>可以通过创建一个全局对象（通常代表应用名）比如MYAPP来重构上述这类代码，然后将上述例子中的函数和变量都变为该全局对象的属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 重构后：一个全局变量</span><br><span class="line">// 全局对象</span><br><span class="line">var MYAPP = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 构造函数</span><br><span class="line">MYAPP.Parent = function () &#123;&#125;; </span><br><span class="line">MYAPP.Child = function () &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 一个变量</span><br><span class="line">MYAPP.some_var = 1;</span><br><span class="line"></span><br><span class="line">// 一个对象容器</span><br><span class="line">MYAPP.modules = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 嵌套的对象</span><br><span class="line">MYAPP.modules.module1 = &#123;&#125;; </span><br><span class="line">MYAPP.modules.module1.data = &#123;a: 1, b: 2&#125;; </span><br><span class="line">MYAPP.modules.module2 = &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>本章后续要介绍的沙箱模式则可以避免这些缺点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 重构前：5个全局变量</div><div class="line">// 注意：反模式</div><div class="line">// 构造函数</div><div class="line">function Parent() &#123;&#125; </div><div class="line">function Child() &#123;&#125;</div><div class="line">// 一个变量</div><div class="line">var some_var = 1;</div><div class="line"></div><div class="line">// 一些对象</div><div class="line">var module1 = &#123;&#125;; </div><div class="line">module1.data = &#123;a: 1, b: 2&#125;; </div><div class="line">var module2 = &#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p>可以通过创建一个全局对象（通常代表应用名）比如MYAPP来重构上述这类代码，然后将上述例子中的函数和变量都变为该全局对象的属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 重构后：一个全局变量</div><div class="line">// 全局对象</div><div class="line">var MYAPP = &#123;&#125;;</div><div class="line"></div><div class="line">// 构造函数</div><div class="line">MYAPP.Parent = function () &#123;&#125;; </div><div class="line">MYAPP.Child = function () &#123;&#125;;</div><div class="line"></div><div class="line">// 一个变量</div><div class="line">MYAPP.some_var = 1;</div><div class="line"></div><div class="line">// 一个对象容器</div><div class="line">MYAPP.modules = &#123;&#125;;</div><div class="line"></div><div class="line">// 嵌套的对象</div><div class="line">MYAPP.modules.module1 = &#123;&#125;; </div><div class="line">MYAPP.modules.module1.data = &#123;a: 1, b: 2&#125;; </div><div class="line">MYAPP.modules.module2 = &#123;&#125;;</div></pre></td></tr></table></figure></p>
 <p>这种模式在大多数情况下非常适用，但也有它的缺点：</p>
 <ul>
 <li>代码量稍有增加；在每个函数和变量前加上这个命名空间对象的前缀，会增加代码量，增大文件大小</li>
@@ -635,11 +698,11 @@ console.log(newSum(2,3,5,4)); // 35
 <li>命名的深度嵌套会减慢属性值的查询</li>
 </ul>
 <p>本章后续要介绍的沙箱模式则可以避免这些缺点。</p>
-<h4 id="通用命名空间函数"><a href="#通用命名空间函数" class="headerlink" title="通用命名空间函数"></a>通用命名空间函数</h4><p>随着程序复杂度的提高，代码会被分拆在不同的文件中以按照页面需要来加载，这样一来，就不能保证你的代码一定是第一个定义命名空间或者某个属性的，甚至会发生属性覆盖的问题。所以，在创建命名空间或者添加属性的时候，最好先检查下是否存在，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 不安全的做法</span><br><span class="line">var MYAPP = &#123;&#125;;</span><br><span class="line">// 更好的做法</span><br><span class="line">if (typeof MYAPP === &quot;undefined&quot;) &#123;</span><br><span class="line">    var MYAPP = &#123;&#125;; </span><br><span class="line">&#125;</span><br><span class="line">// 简写</span><br><span class="line">var MYAPP = MYAPP || &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>如上所示，如果每次做类似操作都要这样检查一下就会有很多重复的代码。例如，要声明MYAPP.modules.module2，就要重复三次这样的检查。所以，我们需要一个可复用的namespace()函数来专门处理这些检查工作，然后用它来创建命名空间，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 使用命名空间函数</span><br><span class="line">MYAPP.namespace(&apos;MYAPP.modules.module2&apos;);</span><br><span class="line"></span><br><span class="line">// 等价于：</span><br><span class="line">// var MYAPP = &#123;</span><br><span class="line">//  modules: &#123;</span><br><span class="line">//      module2: &#123;&#125;</span><br><span class="line">//  &#125;</span><br><span class="line">// &#125;;</span><br></pre></td></tr></table></figure></p>
-<p>下面是上述namespace函数的实现示例。这种实现是非破坏性的，意味着如果要创建的命名空间已经存在，则不会再重复创建：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">var MYAPP = MYAPP || &#123;&#125;;</span><br><span class="line"></span><br><span class="line">MYAPP.namespace = function(ns_string)&#123;</span><br><span class="line">    var parts = ns_string.split(&quot;.&quot;),</span><br><span class="line">        parent = MYAPP;</span><br><span class="line"></span><br><span class="line">    if(parts[0] === &quot;MYAPP&quot;)&#123;</span><br><span class="line">        parts.shift();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for(var i = 0, len = parts.length; i &lt; len; i++)&#123;</span><br><span class="line">        if(parent[parts[i]] === undefined)&#123;</span><br><span class="line">            parent[parts[i]] = &#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        parent = parent[parts[i]]</span><br><span class="line">    &#125;</span><br><span class="line">    return parent;</span><br><span class="line">&#125;</span><br><span class="line">var module2 = MYAPP.namespace(&quot;MYAPP.modules.module2&quot;);</span><br><span class="line">console.log(module2 === MYAPP.modules.module2); // true</span><br><span class="line"></span><br><span class="line">var modules = MYAPP.namespace(&quot;modules&quot;);</span><br><span class="line">console.log(modules === MYAPP.modules); // true</span><br></pre></td></tr></table></figure></p>
+<h4 id="通用命名空间函数"><a href="#通用命名空间函数" class="headerlink" title="通用命名空间函数"></a>通用命名空间函数</h4><p>随着程序复杂度的提高，代码会被分拆在不同的文件中以按照页面需要来加载，这样一来，就不能保证你的代码一定是第一个定义命名空间或者某个属性的，甚至会发生属性覆盖的问题。所以，在创建命名空间或者添加属性的时候，最好先检查下是否存在，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 不安全的做法</div><div class="line">var MYAPP = &#123;&#125;;</div><div class="line">// 更好的做法</div><div class="line">if (typeof MYAPP === &quot;undefined&quot;) &#123;</div><div class="line">    var MYAPP = &#123;&#125;; </div><div class="line">&#125;</div><div class="line">// 简写</div><div class="line">var MYAPP = MYAPP || &#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p>如上所示，如果每次做类似操作都要这样检查一下就会有很多重复的代码。例如，要声明MYAPP.modules.module2，就要重复三次这样的检查。所以，我们需要一个可复用的namespace()函数来专门处理这些检查工作，然后用它来创建命名空间，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 使用命名空间函数</div><div class="line">MYAPP.namespace(&apos;MYAPP.modules.module2&apos;);</div><div class="line"></div><div class="line">// 等价于：</div><div class="line">// var MYAPP = &#123;</div><div class="line">//  modules: &#123;</div><div class="line">//      module2: &#123;&#125;</div><div class="line">//  &#125;</div><div class="line">// &#125;;</div></pre></td></tr></table></figure></p>
+<p>下面是上述namespace函数的实现示例。这种实现是非破坏性的，意味着如果要创建的命名空间已经存在，则不会再重复创建：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">var MYAPP = MYAPP || &#123;&#125;;</div><div class="line"></div><div class="line">MYAPP.namespace = function(ns_string)&#123;</div><div class="line">    var parts = ns_string.split(&quot;.&quot;),</div><div class="line">        parent = MYAPP;</div><div class="line"></div><div class="line">    if(parts[0] === &quot;MYAPP&quot;)&#123;</div><div class="line">        parts.shift();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    for(var i = 0, len = parts.length; i &lt; len; i++)&#123;</div><div class="line">        if(parent[parts[i]] === undefined)&#123;</div><div class="line">            parent[parts[i]] = &#123;&#125;</div><div class="line">        &#125;</div><div class="line">        parent = parent[parts[i]]</div><div class="line">    &#125;</div><div class="line">    return parent;</div><div class="line">&#125;</div><div class="line">var module2 = MYAPP.namespace(&quot;MYAPP.modules.module2&quot;);</div><div class="line">console.log(module2 === MYAPP.modules.module2); // true</div><div class="line"></div><div class="line">var modules = MYAPP.namespace(&quot;modules&quot;);</div><div class="line">console.log(modules === MYAPP.modules); // true</div></pre></td></tr></table></figure></p>
 <h3 id="依赖声明"><a href="#依赖声明" class="headerlink" title="依赖声明"></a>依赖声明</h3><p>JavaScript库往往是模块化而且有用到命名空间的，这使得你可以只使用你需要的模块。比如在YUI2中，全局变量YAHOO就是一个命名空间，各个模块都是全局变量的属性，比如YAHOO.util.Dom（DOM模块）、YAHOO.util.Event（事件模块）。</p>
-<p>将你的代码依赖在函数或者模块的顶部进行声明是一个好主意。声明就是创建一个本地变量，指向你需要用到的模块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var myFunction = function () &#123;</span><br><span class="line">    // 依赖</span><br><span class="line">    var event = YAHOO.util.Event,</span><br><span class="line">        dom = YAHOO.util.Dom;</span><br><span class="line"></span><br><span class="line">    // 在函数后面的代码中使用event和dom……</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>将你的代码依赖在函数或者模块的顶部进行声明是一个好主意。声明就是创建一个本地变量，指向你需要用到的模块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var myFunction = function () &#123;</div><div class="line">    // 依赖</div><div class="line">    var event = YAHOO.util.Event,</div><div class="line">        dom = YAHOO.util.Dom;</div><div class="line"></div><div class="line">    // 在函数后面的代码中使用event和dom……</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <p><strong>这是一个相当简单的模式，但是有很多的好处：</strong></p>
 <ul>
 <li>明确的依赖声明是告知使用你代码的开发者，需要保证指定的脚本文件被包含在页面中。</li>
@@ -647,16 +710,16 @@ console.log(newSum(2,3,5,4)); // 35
 <li>本地变量（如dom）永远会比全局变量（如YAHOO）要快，甚至比全局变量的属性（如YAHOO.util.Dom）还要快，这样会有更好的性能。使用了依赖声明模式之后，全局变量的解析在函数中只会进行一次，在此之后将会使用更快的本地变量（备注：本地变量直接指向最后一级对象，event）。</li>
 <li>一些高级的代码压缩工具比如YUI Compressor和Google Closure compiler会重命名本地变量（比如event可能会被压缩成一个字母，如A），这会使代码更精简，但这个操作不会对全局变量进行，因为这样做不安全。</li>
 </ul>
-<h3 id="私有属性和方法"><a href="#私有属性和方法" class="headerlink" title="私有属性和方法"></a>私有属性和方法</h3><h4 id="私有成员"><a href="#私有成员" class="headerlink" title="私有成员"></a>私有成员</h4><p>通过闭包实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function Gadget() &#123;</span><br><span class="line">    // 私有成员</span><br><span class="line">    var name = &apos;iPod&apos;;</span><br><span class="line">    // 公有函数</span><br><span class="line">    this.getName = function () &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line">var toy = new Gadget();</span><br><span class="line"></span><br><span class="line">// name是是私有的</span><br><span class="line">console.log(toy.name); // undefined</span><br><span class="line">// 公有方法可以访问到name</span><br><span class="line">console.log(toy.getName()); // &quot;iPod&quot;</span><br></pre></td></tr></table></figure></p>
+<h3 id="私有属性和方法"><a href="#私有属性和方法" class="headerlink" title="私有属性和方法"></a>私有属性和方法</h3><h4 id="私有成员"><a href="#私有成员" class="headerlink" title="私有成员"></a>私有成员</h4><p>通过闭包实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function Gadget() &#123;</div><div class="line">    // 私有成员</div><div class="line">    var name = &apos;iPod&apos;;</div><div class="line">    // 公有函数</div><div class="line">    this.getName = function () &#123;</div><div class="line">        return name;</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var toy = new Gadget();</div><div class="line"></div><div class="line">// name是是私有的</div><div class="line">console.log(toy.name); // undefined</div><div class="line">// 公有方法可以访问到name</div><div class="line">console.log(toy.getName()); // &quot;iPod&quot;</div></pre></td></tr></table></figure></p>
 <h4 id="特权方法"><a href="#特权方法" class="headerlink" title="特权方法"></a>特权方法</h4><p>特权方法的概念不涉及到任何语法，它只是一个给可以访问到私有成员的公有方法的名字（就好像它们有更多权限一样）。<br>在前面的例子中，getName()就是一个特权方法，因为它有访问name属性的特殊权限。</p>
-<h4 id="私有成员失效"><a href="#私有成员失效" class="headerlink" title="私有成员失效"></a>私有成员失效</h4><p>当你直接通过特权方法返回一个私有变量，而这个私有变量恰好是一个对象或者数组时，外部的代码可以修改这个私有变量，因为它是按引用传递的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Gadget() &#123;</span><br><span class="line">    // 私有成员</span><br><span class="line">    var specs = &#123;</span><br><span class="line">        screen_width: 320,</span><br><span class="line">        screen_height: 480,</span><br><span class="line">        color: &quot;white&quot;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    // 公有函数</span><br><span class="line">    this.getSpecs = function () &#123;</span><br><span class="line">        return specs; // 直接返回对象（数组也是对象），会导致私有对象能在外面被修改</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="私有成员失效"><a href="#私有成员失效" class="headerlink" title="私有成员失效"></a>私有成员失效</h4><p>当你直接通过特权方法返回一个私有变量，而这个私有变量恰好是一个对象或者数组时，外部的代码可以修改这个私有变量，因为它是按引用传递的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function Gadget() &#123;</div><div class="line">    // 私有成员</div><div class="line">    var specs = &#123;</div><div class="line">        screen_width: 320,</div><div class="line">        screen_height: 480,</div><div class="line">        color: &quot;white&quot;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    // 公有函数</div><div class="line">    this.getSpecs = function () &#123;</div><div class="line">        return specs; // 直接返回对象（数组也是对象），会导致私有对象能在外面被修改</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><strong>解决方法：</strong>返回精简后新对象（返回需要用到的部分属性），或对私有对象进行复制（返回副本）。</p>
 <blockquote>
 <p>众所周知的“最低授权原则”（Principle of Least Authority，简称POLA），指永远不要给出比真实需要更多的东西。</p>
 </blockquote>
-<h4 id="原型和私有成员"><a href="#原型和私有成员" class="headerlink" title="原型和私有成员"></a>原型和私有成员</h4><p>使用构造函数创建私有成员的一个弊端是，每一次调用构造函数创建对象时这些私有成员都会被创建一次。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function Gadget() &#123;</span><br><span class="line">    // 私有成员</span><br><span class="line">    var name = &apos;iPod&apos;;</span><br><span class="line">    // 公有函数</span><br><span class="line">    this.getName = function () &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Gadget.prototype = (function () &#123;</span><br><span class="line">    // 私有成员</span><br><span class="line">    var browser = &quot;Mobile Webkit&quot;;</span><br><span class="line">    // 公有函数</span><br><span class="line">    return &#123;</span><br><span class="line">        getBrowser: function () &#123;</span><br><span class="line">            return browser;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line">var toy = new Gadget();</span><br><span class="line">console.log(toy.getName()); // 自有的特权方法 </span><br><span class="line">console.log(toy.getBrowser()); // 来自原型的特权方法</span><br></pre></td></tr></table></figure></p>
+<h4 id="原型和私有成员"><a href="#原型和私有成员" class="headerlink" title="原型和私有成员"></a>原型和私有成员</h4><p>使用构造函数创建私有成员的一个弊端是，每一次调用构造函数创建对象时这些私有成员都会被创建一次。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">function Gadget() &#123;</div><div class="line">    // 私有成员</div><div class="line">    var name = &apos;iPod&apos;;</div><div class="line">    // 公有函数</div><div class="line">    this.getName = function () &#123;</div><div class="line">        return name;</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Gadget.prototype = (function () &#123;</div><div class="line">    // 私有成员</div><div class="line">    var browser = &quot;Mobile Webkit&quot;;</div><div class="line">    // 公有函数</div><div class="line">    return &#123;</div><div class="line">        getBrowser: function () &#123;</div><div class="line">            return browser;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;());</div><div class="line"></div><div class="line">var toy = new Gadget();</div><div class="line">console.log(toy.getName()); // 自有的特权方法 </div><div class="line">console.log(toy.getBrowser()); // 来自原型的特权方法</div></pre></td></tr></table></figure></p>
 <h4 id="将私有函数暴露为公有方法"><a href="#将私有函数暴露为公有方法" class="headerlink" title="将私有函数暴露为公有方法"></a>将私有函数暴露为公有方法</h4><p>“暴露模式”是指将已经有的私有函数暴露为公有方法。</p>
-<p>我们来看一个例子，它建立在对象字面量的私有成员模式之上：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var myarray;</span><br><span class="line"></span><br><span class="line">(function () &#123;</span><br><span class="line"></span><br><span class="line">    var astr = &quot;[object Array]&quot;,</span><br><span class="line">        toString = Object.prototype.toString;</span><br><span class="line"></span><br><span class="line">    function isArray(a) &#123;</span><br><span class="line">        return toString.call(a) === astr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function indexOf(haystack, needle) &#123;</span><br><span class="line">        var i = 0,</span><br><span class="line">            max = haystack.length;</span><br><span class="line">        for (; i &lt; max; i += 1) &#123;</span><br><span class="line">            if (haystack[i] === needle) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return −1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    myarray = &#123;</span><br><span class="line">        isArray: isArray,</span><br><span class="line">        indexOf: indexOf,</span><br><span class="line">        inArray: indexOf</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
+<p>我们来看一个例子，它建立在对象字面量的私有成员模式之上：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">var myarray;</div><div class="line"></div><div class="line">(function () &#123;</div><div class="line"></div><div class="line">    var astr = &quot;[object Array]&quot;,</div><div class="line">        toString = Object.prototype.toString;</div><div class="line"></div><div class="line">    function isArray(a) &#123;</div><div class="line">        return toString.call(a) === astr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    function indexOf(haystack, needle) &#123;</div><div class="line">        var i = 0,</div><div class="line">            max = haystack.length;</div><div class="line">        for (; i &lt; max; i += 1) &#123;</div><div class="line">            if (haystack[i] === needle) &#123;</div><div class="line">                return i;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return −1;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    myarray = &#123;</div><div class="line">        isArray: isArray,</div><div class="line">        indexOf: indexOf,</div><div class="line">        inArray: indexOf</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">&#125;());</div></pre></td></tr></table></figure></p>
 <h3 id="模块模式"><a href="#模块模式" class="headerlink" title="模块模式"></a>模块模式</h3><p>模块模式使用得很广泛，因为它可以为代码提供特定的结构，帮助组织日益增长的代码。不像其它语言，JavaScript没有专门的“包”（package）的语法，但模块模式提供了用于创建独立解耦的代码片段的工具，这些代码可以被当成黑盒，当你正在写的软件需求发生变化时，这些代码可以被添加、替换、移除。</p>
 <p>模块模式是我们目前讨论过的好几种模式的组合，即：</p>
 <ul>
@@ -665,26 +728,26 @@ console.log(newSum(2,3,5,4)); // 35
 <li>私有和特权成员模式</li>
 <li>依赖声明模式</li>
 </ul>
-<p>第一步是初始化一个命名空间。我们使用本章前面部分的namespace()函数，创建一个提供数组相关方法的套件模块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MYAPP.namespace(&apos;MYAPP.utilities.array&apos;);</span><br></pre></td></tr></table></figure></p>
-<p>下一步是定义模块。使用一个即时函数来提供私有作用域供私有成员使用。即时函数返回一个对象，也就是带有公有接口的真正的模块，可以供其它代码使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MYAPP.utilities.array = (function () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        // todo...</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
-<p>下一步，给公有接口添加一些方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">MYAPP.utilities.array = (function () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        inArray: function (needle, haystack) &#123;</span><br><span class="line">            // ...</span><br><span class="line">        &#125;,</span><br><span class="line">        isArray: function (a) &#123;</span><br><span class="line">            // ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
-<p>如果需要的话，你可以在即时函数提供的闭包中声明私有属性和私有方法。同样，依赖声明放置在函数顶部，在变量声明的下方可以选择性地放置辅助初始化模块的一次性代码。函数最终返回的是一个包含模块公共API的对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">MYAPP.namespace(&apos;MYAPP.utilities.array&apos;);</span><br><span class="line">MYAPP.utilities.array = (function () &#123;</span><br><span class="line"></span><br><span class="line">        // 依赖声明</span><br><span class="line">    var uobj = MYAPP.utilities.object,</span><br><span class="line">        ulang = MYAPP.utilities.lang,</span><br><span class="line"></span><br><span class="line">        // 私有属性</span><br><span class="line">        array_string = &quot;[object Array]&quot;,</span><br><span class="line">        ops = Object.prototype.toString;</span><br><span class="line"></span><br><span class="line">        // 私有方法</span><br><span class="line">        // ……</span><br><span class="line"></span><br><span class="line">        // 结束变量声明</span><br><span class="line"></span><br><span class="line">    // 选择性放置一次性初始化的代码</span><br><span class="line">    // ……</span><br><span class="line"></span><br><span class="line">    // 公有API</span><br><span class="line">    return &#123;</span><br><span class="line"></span><br><span class="line">        inArray: function (needle, haystack) &#123;</span><br><span class="line">            for (var i = 0, max = haystack.length; i &lt; max; i += 1) &#123;</span><br><span class="line">                if (haystack[i] === needle) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        isArray: function (a) &#123;</span><br><span class="line">            return ops.call(a) === array_string;</span><br><span class="line">        &#125;</span><br><span class="line">        // ……更多的方法和属性</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
+<p>第一步是初始化一个命名空间。我们使用本章前面部分的namespace()函数，创建一个提供数组相关方法的套件模块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MYAPP.namespace(&apos;MYAPP.utilities.array&apos;);</div></pre></td></tr></table></figure></p>
+<p>下一步是定义模块。使用一个即时函数来提供私有作用域供私有成员使用。即时函数返回一个对象，也就是带有公有接口的真正的模块，可以供其它代码使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">MYAPP.utilities.array = (function () &#123;</div><div class="line">    return &#123;</div><div class="line">        // todo...</div><div class="line">    &#125;;</div><div class="line">&#125;());</div></pre></td></tr></table></figure></p>
+<p>下一步，给公有接口添加一些方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">MYAPP.utilities.array = (function () &#123;</div><div class="line">    return &#123;</div><div class="line">        inArray: function (needle, haystack) &#123;</div><div class="line">            // ...</div><div class="line">        &#125;,</div><div class="line">        isArray: function (a) &#123;</div><div class="line">            // ...</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;());</div></pre></td></tr></table></figure></p>
+<p>如果需要的话，你可以在即时函数提供的闭包中声明私有属性和私有方法。同样，依赖声明放置在函数顶部，在变量声明的下方可以选择性地放置辅助初始化模块的一次性代码。函数最终返回的是一个包含模块公共API的对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">MYAPP.namespace(&apos;MYAPP.utilities.array&apos;);</div><div class="line">MYAPP.utilities.array = (function () &#123;</div><div class="line"></div><div class="line">        // 依赖声明</div><div class="line">    var uobj = MYAPP.utilities.object,</div><div class="line">        ulang = MYAPP.utilities.lang,</div><div class="line"></div><div class="line">        // 私有属性</div><div class="line">        array_string = &quot;[object Array]&quot;,</div><div class="line">        ops = Object.prototype.toString;</div><div class="line"></div><div class="line">        // 私有方法</div><div class="line">        // ……</div><div class="line"></div><div class="line">        // 结束变量声明</div><div class="line"></div><div class="line">    // 选择性放置一次性初始化的代码</div><div class="line">    // ……</div><div class="line"></div><div class="line">    // 公有API</div><div class="line">    return &#123;</div><div class="line"></div><div class="line">        inArray: function (needle, haystack) &#123;</div><div class="line">            for (var i = 0, max = haystack.length; i &lt; max; i += 1) &#123;</div><div class="line">                if (haystack[i] === needle) &#123;</div><div class="line">                    return true;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line"></div><div class="line">        isArray: function (a) &#123;</div><div class="line">            return ops.call(a) === array_string;</div><div class="line">        &#125;</div><div class="line">        // ……更多的方法和属性</div><div class="line">    &#125;;</div><div class="line">&#125;());</div></pre></td></tr></table></figure></p>
 <p>模块模式被广泛使用，是一种值得强烈推荐的模式，它可以帮助我们组织代码，尤其是代码量在不断增长的时候。</p>
 <h4 id="暴露模块模式"><a href="#暴露模块模式" class="headerlink" title="暴露模块模式"></a>暴露模块模式</h4><p>我们在本章中讨论私有成员模式时已经讨论过暴露模式。模块模式也可以用类似的方法来组织，将所有的方法保持私有，只在最后暴露需要使用的方法来初始化API。</p>
-<p>上面的例子可以变成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">MYAPP.utilities.array = (function () &#123;</span><br><span class="line"></span><br><span class="line">        // 私有属性</span><br><span class="line">    var array_string = &quot;[object Array]&quot;,</span><br><span class="line">        ops = Object.prototype.toString,</span><br><span class="line"></span><br><span class="line">        // 私有方法</span><br><span class="line">        inArray = function (haystack, needle) &#123;</span><br><span class="line">            for (var i = 0, max = haystack.length; i &lt; max; i += 1) &#123;</span><br><span class="line">                if (haystack[i] === needle) &#123;</span><br><span class="line">                    return i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return −1;</span><br><span class="line">        &#125;,</span><br><span class="line">        isArray = function (a) &#123;</span><br><span class="line">            return ops.call(a) === array_string;</span><br><span class="line">        &#125;;</span><br><span class="line">        // 结束变量定义</span><br><span class="line"></span><br><span class="line">    // 暴露公有API</span><br><span class="line">    return &#123;</span><br><span class="line">        isArray: isArray,</span><br><span class="line">        indexOf: inArray</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
-<h4 id="在模块中引入全局上下文"><a href="#在模块中引入全局上下文" class="headerlink" title="在模块中引入全局上下文"></a>在模块中引入全局上下文</h4><p>作为这种模式的一个常见的变种，你可以给包裹模块的即时函数传递参数。你可以传递任何值，但通常情况下会传递全局变量甚至是全局对象本身。引入全局上下文可以加快函数内部的全局变量的解析，因为引入之后会作为函数的本地变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MYAPP.utilities.module = (function (app, global) &#123;</span><br><span class="line"></span><br><span class="line">    // 全局对象和全局命名空间都作为本地变量存在</span><br><span class="line"></span><br><span class="line">&#125;(MYAPP, this));</span><br></pre></td></tr></table></figure></p>
+<p>上面的例子可以变成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">MYAPP.utilities.array = (function () &#123;</div><div class="line"></div><div class="line">        // 私有属性</div><div class="line">    var array_string = &quot;[object Array]&quot;,</div><div class="line">        ops = Object.prototype.toString,</div><div class="line"></div><div class="line">        // 私有方法</div><div class="line">        inArray = function (haystack, needle) &#123;</div><div class="line">            for (var i = 0, max = haystack.length; i &lt; max; i += 1) &#123;</div><div class="line">                if (haystack[i] === needle) &#123;</div><div class="line">                    return i;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            return −1;</div><div class="line">        &#125;,</div><div class="line">        isArray = function (a) &#123;</div><div class="line">            return ops.call(a) === array_string;</div><div class="line">        &#125;;</div><div class="line">        // 结束变量定义</div><div class="line"></div><div class="line">    // 暴露公有API</div><div class="line">    return &#123;</div><div class="line">        isArray: isArray,</div><div class="line">        indexOf: inArray</div><div class="line">    &#125;;</div><div class="line">&#125;());</div></pre></td></tr></table></figure></p>
+<h4 id="在模块中引入全局上下文"><a href="#在模块中引入全局上下文" class="headerlink" title="在模块中引入全局上下文"></a>在模块中引入全局上下文</h4><p>作为这种模式的一个常见的变种，你可以给包裹模块的即时函数传递参数。你可以传递任何值，但通常情况下会传递全局变量甚至是全局对象本身。引入全局上下文可以加快函数内部的全局变量的解析，因为引入之后会作为函数的本地变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">MYAPP.utilities.module = (function (app, global) &#123;</div><div class="line"></div><div class="line">    // 全局对象和全局命名空间都作为本地变量存在</div><div class="line"></div><div class="line">&#125;(MYAPP, this));</div></pre></td></tr></table></figure></p>
 <h2 id="代码复用模式"><a href="#代码复用模式" class="headerlink" title="代码复用模式"></a>代码复用模式</h2><p>在做代码复用的工作的时候，谨记Gang of Four在书中给出的关于对象创建的建议：“优先使用对象创建而不是类继承”。</p>
 <p>类式（传统）继承（classical inheritance） vs 现代继承模式<br>类式继承：按照类的方式考虑JavaScript，并产生了一些假定在类的基础上的开发思路和继承模式。<br>现代继承模式：其他任何不需要以类的方式考虑的模式。</p>
 <p>当需要给项目选择一个继承模式时，有不少的备选方案。你应该尽量选择那些现代继承模式，除非团队已经觉得“无类不欢”。</p>
 <p>跳过类继承..</p>
-<h3 id="通过复制属性实现继承"><a href="#通过复制属性实现继承" class="headerlink" title="通过复制属性实现继承"></a>通过复制属性实现继承</h3><p>在这种模式中，一个对象通过简单地复制另一个对象来获得功能。下面是一个简单的实现这种功能的extend()函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function extend(parent, child) &#123;</span><br><span class="line">    var i;</span><br><span class="line">    child = child || &#123;&#125;;</span><br><span class="line">    for (i in parent) &#123;</span><br><span class="line">        if (parent.hasOwnProperty(i)) &#123;</span><br><span class="line">            child[i] = parent[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return child;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="通过复制属性实现继承"><a href="#通过复制属性实现继承" class="headerlink" title="通过复制属性实现继承"></a>通过复制属性实现继承</h3><p>在这种模式中，一个对象通过简单地复制另一个对象来获得功能。下面是一个简单的实现这种功能的extend()函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function extend(parent, child) &#123;</div><div class="line">    var i;</div><div class="line">    child = child || &#123;&#125;;</div><div class="line">    for (i in parent) &#123;</div><div class="line">        if (parent.hasOwnProperty(i)) &#123;</div><div class="line">            child[i] = parent[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return child;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>上面给出的实现叫作对象的“浅拷贝”（shallow copy），与之相对，“深拷贝”是指检查准备复制的属性本身是否是对象或者数组，如果是，也遍历它们的属性并复制。如果使用浅拷贝的话（因为在JavaScript中对象是按引用传递），如果你改变子对象的一个属性，而这个属性恰好是一个对象，那么你也会改变父对象。实际上这对方法来说可能很好（因为函数也是对象，也是按引用传递），但是当遇到其它的对象和数组的时候可能会有些意外情况。</p>
-<p>现在让我们来修改一下extend()函数以便实现深拷贝。你需要做的事情只是检查一个属性的类型是否是对象，如果是，则递归遍历它的属性。另外一个需要做的检查是这个对象是真的对象还是数组，可以使用第三章讨论过的数组检查方式。最终深拷贝版的extend()是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function extendDeep(parent, child) &#123;</span><br><span class="line">    var i,</span><br><span class="line">        toStr = Object.prototype.toString,</span><br><span class="line">        astr = &quot;[object Array]&quot;;</span><br><span class="line"></span><br><span class="line">    child = child || &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    for (i in parent) &#123;</span><br><span class="line">        if (parent.hasOwnProperty(i)) &#123;</span><br><span class="line">            if (typeof parent[i] === &quot;object&quot;) &#123;</span><br><span class="line">                child[i] = (toStr.call(parent[i]) === astr) ? [] : &#123;&#125;;</span><br><span class="line">                extendDeep(parent[i], child[i]);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                child[i] = parent[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return child;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在让我们来修改一下extend()函数以便实现深拷贝。你需要做的事情只是检查一个属性的类型是否是对象，如果是，则递归遍历它的属性。另外一个需要做的检查是这个对象是真的对象还是数组，可以使用第三章讨论过的数组检查方式。最终深拷贝版的extend()是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function extendDeep(parent, child) &#123;</div><div class="line">    var i,</div><div class="line">        toStr = Object.prototype.toString,</div><div class="line">        astr = &quot;[object Array]&quot;;</div><div class="line"></div><div class="line">    child = child || &#123;&#125;;</div><div class="line"></div><div class="line">    for (i in parent) &#123;</div><div class="line">        if (parent.hasOwnProperty(i)) &#123;</div><div class="line">            if (typeof parent[i] === &quot;object&quot;) &#123;</div><div class="line">                child[i] = (toStr.call(parent[i]) === astr) ? [] : &#123;&#125;;</div><div class="line">                extendDeep(parent[i], child[i]);</div><div class="line">            &#125; else &#123;</div><div class="line">                child[i] = parent[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return child;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这种模式并不高深，因为根本没有原型牵涉进来，而只跟对象和它们的属性有关。</p>
-<h3 id="混元（Mix-ins）"><a href="#混元（Mix-ins）" class="headerlink" title="混元（Mix-ins）"></a>混元（Mix-ins）</h3><p>“混元”模式，从任意多数量的对象中复制属性，然后将它们混在一起组成一个新对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function mix() &#123;</span><br><span class="line">    var arg, prop, child = &#123;&#125;;</span><br><span class="line">    for (arg = 0; arg &lt; arguments.length; arg += 1) &#123;</span><br><span class="line">        for (prop in arguments[arg]) &#123;</span><br><span class="line">            if (arguments[arg].hasOwnProperty(prop)) &#123;</span><br><span class="line">                child[prop] = arguments[arg][prop];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return child;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="混元（Mix-ins）"><a href="#混元（Mix-ins）" class="headerlink" title="混元（Mix-ins）"></a>混元（Mix-ins）</h3><p>“混元”模式，从任意多数量的对象中复制属性，然后将它们混在一起组成一个新对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function mix() &#123;</div><div class="line">    var arg, prop, child = &#123;&#125;;</div><div class="line">    for (arg = 0; arg &lt; arguments.length; arg += 1) &#123;</div><div class="line">        for (prop in arguments[arg]) &#123;</div><div class="line">            if (arguments[arg].hasOwnProperty(prop)) &#123;</div><div class="line">                child[prop] = arguments[arg][prop];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return child;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这里我们只是简单地遍历、复制自有属性，并没有与父对象有任何链接。</p>
 <h3 id="借用方法"><a href="#借用方法" class="headerlink" title="借用方法"></a>借用方法</h3><p>apply、call、bind（ES5）。<br>apply是接受数组，而call是接受一个一个的参数。</p>
-<p>在低于ES5的环境中时如何实现Function.prototype.bind()：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if (typeof Function.prototype.bind === &quot;undefined&quot;) &#123;</span><br><span class="line">    Function.prototype.bind = function (thisArg) &#123;</span><br><span class="line">        var fn = this,</span><br><span class="line">        slice = Array.prototype.slice,</span><br><span class="line">        args = slice.call(arguments, 1);</span><br><span class="line"></span><br><span class="line">        return function () &#123;</span><br><span class="line">            return fn.apply(thisArg, args.concat(slice.call(arguments)));</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在低于ES5的环境中时如何实现Function.prototype.bind()：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">if (typeof Function.prototype.bind === &quot;undefined&quot;) &#123;</div><div class="line">    Function.prototype.bind = function (thisArg) &#123;</div><div class="line">        var fn = this,</div><div class="line">        slice = Array.prototype.slice,</div><div class="line">        args = slice.call(arguments, 1);</div><div class="line"></div><div class="line">        return function () &#123;</div><div class="line">            return fn.apply(thisArg, args.concat(slice.call(arguments)));</div><div class="line">        &#125;;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p>在JavaScript中，继承有很多种方案可以选择，在本章中你看到了很多类式继承和现代继承的方案。学习和理解不同的模式是有好处的，因为这可以增强你对这门语言的掌握能力。</p>
 <p>但是，也许在开发过程中继承并不是你经常面对的一个问题。一部分是因为这个问题已经被使用某种方式或者某个你使用的类库解决了，另一部分是因为你不需要在JavaScript中建立很长很复杂的继承链。在静态强类型语言中，继承可能是唯一可以复用代码的方法，但在JavaScript中有更多更简单更优化的方法，包括借用方法、绑定、复制属性、混元等。</p>
 <p>记住，代码复用才是目标，继承只是达成这个目标的一种手段。</p>
@@ -694,9 +757,9 @@ console.log(newSum(2,3,5,4)); // 35
 <li>第二部分是只在用户交互或者其它条件下才会用到的</li>
 </ul>
 <p>分成两部分的目标就是逐步加载页面，让用户尽快可以进行一些操作。剩余的部分在用户可以看到页面的时候再在后台加载。</p>
-<p>加载第二部分JavaScript的方法也是使用动态script元素，将它加在head或者body中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    ……页面主体部分……</span><br><span class="line"></span><br><span class="line">    &lt;!-- 第二块结束 --&gt;</span><br><span class="line">    &lt;script src=&quot;all_20100426.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    window.onload = function () &#123;</span><br><span class="line">        var script = document.createElement(&quot;script&quot;);</span><br><span class="line">        script.src = &quot;all_lazy_20100426.js&quot;;</span><br><span class="line">        document.documentElement.firstChild.appendChild(script);</span><br><span class="line">    &#125;;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-<h3 id="按需加载"><a href="#按需加载" class="headerlink" title="按需加载"></a>按需加载</h3><p>创建一个require()函数或者方法，它接受一个需要被加载的脚本文件的文件名，还有一个在脚本被加载完毕后执行的回调函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require(&quot;extra.js&quot;, function () &#123;</span><br><span class="line">    functionDefinedInExtraJS();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function require(file, callback) &#123;</span><br><span class="line"></span><br><span class="line">    var script = document.getElementsByTagName(&apos;script&apos;)[0], newjs = document.createElement(&apos;script&apos;);</span><br><span class="line"></span><br><span class="line">    // IE</span><br><span class="line">    newjs.onreadystatechange = function () &#123;</span><br><span class="line">        if (newjs.readyState === &apos;loaded&apos; || newjs.readyState === &apos;complete&apos;) &#123;</span><br><span class="line">            newjs.onreadystatechange = null;</span><br><span class="line">            callback();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    // 其它浏览器</span><br><span class="line">    newjs.onload = function () &#123;</span><br><span class="line">        callback();</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    newjs.src = file;</span><br><span class="line">    script.parentNode.insertBefore(newjs, script);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>加载第二部分JavaScript的方法也是使用动态script元素，将它加在head或者body中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">    ……页面主体部分……</div><div class="line"></div><div class="line">    &lt;!-- 第二块结束 --&gt;</div><div class="line">    &lt;script src=&quot;all_20100426.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">    window.onload = function () &#123;</div><div class="line">        var script = document.createElement(&quot;script&quot;);</div><div class="line">        script.src = &quot;all_lazy_20100426.js&quot;;</div><div class="line">        document.documentElement.firstChild.appendChild(script);</div><div class="line">    &#125;;</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="按需加载"><a href="#按需加载" class="headerlink" title="按需加载"></a>按需加载</h3><p>创建一个require()函数或者方法，它接受一个需要被加载的脚本文件的文件名，还有一个在脚本被加载完毕后执行的回调函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">require(&quot;extra.js&quot;, function () &#123;</div><div class="line">    functionDefinedInExtraJS();</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">function require(file, callback) &#123;</div><div class="line"></div><div class="line">    var script = document.getElementsByTagName(&apos;script&apos;)[0], newjs = document.createElement(&apos;script&apos;);</div><div class="line"></div><div class="line">    // IE</div><div class="line">    newjs.onreadystatechange = function () &#123;</div><div class="line">        if (newjs.readyState === &apos;loaded&apos; || newjs.readyState === &apos;complete&apos;) &#123;</div><div class="line">            newjs.onreadystatechange = null;</div><div class="line">            callback();</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    // 其它浏览器</div><div class="line">    newjs.onload = function () &#123;</div><div class="line">        callback();</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    newjs.src = file;</div><div class="line">    script.parentNode.insertBefore(newjs, script);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个实现的几点说明：</p>
 <ul>
 <li>在IE中需要监听readystatechange事件，然后判断状态是否为”loaded”或者”complete”。其它的浏览器会忽略这里。</li>
@@ -706,11 +769,11 @@ console.log(newSum(2,3,5,4)); // 35
 <h3 id="预加载JavaScript"><a href="#预加载JavaScript" class="headerlink" title="预加载JavaScript"></a>预加载JavaScript</h3><p>在延迟加载模式和按需加载模式中，我们加载了当前页面需要用到的脚本，除此之外，我们也可以加载当前页面不需要但可能在接下来的页面中需要的脚本。这样的话，当用户进入第二个页面时，脚本已经被预加载过，整体体验会变得更快。</p>
 <p>预加载可以简单地通过动态脚本模式实现，但这也意味着脚本会被解析和执行。解析仅仅会在页面加载时间中增加预加载消耗的时间，但执行却可能导致JavaScript错误，因为预加载的脚本会假设自己运行在第二个页面上，比如找一个特定的DOM节点就可能出错。</p>
 <p>仅加载脚本而不解析和执行是可能的，这也同样适用于CSS和图像。</p>
-<p>在IE中，你可以使用熟悉的图片信标模式来发起请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Image().src = &quot;preloadme.js&quot;;</span><br></pre></td></tr></table></figure></p>
-<p>在其它的浏览器中，你可以使用<object>替代script元素，然后将它的data属性指向脚本的URL：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj = document.createElement(&apos;object&apos;);</span><br><span class="line">obj.data = &quot;preloadme.js&quot;;</span><br><span class="line">document.body.appendChild(obj);</span><br></pre></td></tr></table></figure></object></p>
+<p>在IE中，你可以使用熟悉的图片信标模式来发起请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new Image().src = &quot;preloadme.js&quot;;</div></pre></td></tr></table></figure></p>
+<p>在其它的浏览器中，你可以使用<object>替代script元素，然后将它的data属性指向脚本的URL：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var obj = document.createElement(&apos;object&apos;);</div><div class="line">obj.data = &quot;preloadme.js&quot;;</div><div class="line">document.body.appendChild(obj);</div></pre></td></tr></table></figure></object></p>
 <p>为了阻止object可见，你应该设置它的width和height属性为0。</p>
-<p>你可以创建一个通用的preload()函数或者方法，使用条件初始化模式（第四章）来处理浏览器差异：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var preload;</span><br><span class="line">if (/*@cc_on!@*/false) &#123; // IE支持条件注释</span><br><span class="line">    preload = function (file) &#123;</span><br><span class="line">        new Image().src = file;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    preload = function (file) &#123;</span><br><span class="line">        var obj = document.createElement(&apos;object&apos;),</span><br><span class="line">            body = document.body;</span><br><span class="line"></span><br><span class="line">        obj.width = 0;</span><br><span class="line">        obj.height = 0;</span><br><span class="line">        obj.data = file;</span><br><span class="line">        body.appendChild(obj);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用这个新函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preload(&apos;my_web_worker.js&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>你可以创建一个通用的preload()函数或者方法，使用条件初始化模式（第四章）来处理浏览器差异：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var preload;</div><div class="line">if (/*@cc_on!@*/false) &#123; // IE支持条件注释</div><div class="line">    preload = function (file) &#123;</div><div class="line">        new Image().src = file;</div><div class="line">    &#125;;</div><div class="line">&#125; else &#123;</div><div class="line">    preload = function (file) &#123;</div><div class="line">        var obj = document.createElement(&apos;object&apos;),</div><div class="line">            body = document.body;</div><div class="line"></div><div class="line">        obj.width = 0;</div><div class="line">        obj.height = 0;</div><div class="line">        obj.data = file;</div><div class="line">        body.appendChild(obj);</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用这个新函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">preload(&apos;my_web_worker.js&apos;);</div></pre></td></tr></table></figure></p>
 <p>这种模式的坏处在于存在用户代理（浏览器）嗅探，但这里无法避免，因为特性检测没有办法告知足够的浏览器行为信息。比如在这个模式中，理论上你可以测试typeof Image是否是”function”来代替嗅探，但这种方法其实没有作用，因为所有的浏览器都支持new Image()；只是有一些浏览器会为图片单独做缓存，意味着作为图片缓存下来的组件（文件）在第二个页面中不会被作为脚本取出来，而是会重新下载。</p>
 <blockquote>
 <p>浏览器嗅探中使用条件注释很有意思，这明显比在<code>navigator.userAgent</code>中找字符串要安全得多，因为用户可以很容易地修改这些字符串。 比如： <code>var isIE = /*@cc_on!@*/false</code>; 会在其它的浏览器中将<code>isIE</code>设为<code>false</code>（因为忽略了注释），但在IE中会是<code>true</code>，因为在条件注释中有取反运算符!。在IE中就像是这样： var isIE = !false; // true</p>
@@ -719,20 +782,32 @@ console.log(newSum(2,3,5,4)); // 35
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
+
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/notes/" rel="tag"># notes</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -743,6 +818,8 @@ console.log(newSum(2,3,5,4)); // 35
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -764,7 +841,10 @@ console.log(newSum(2,3,5,4)); // 35
     <div class="post-spread">
       
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5703d69d3666b5f8" async = "async" ></script>
+</div>
+
       
     </div>
   </div>
@@ -773,7 +853,7 @@ console.log(newSum(2,3,5,4)); // 35
           </div>
           
 
-  <p style="margin:0;">热评文章</p>
+  <p>热评文章</p>
   <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
 
 
@@ -815,7 +895,7 @@ console.log(newSum(2,3,5,4)); // 35
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -826,7 +906,7 @@ console.log(newSum(2,3,5,4)); // 35
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -843,7 +923,7 @@ console.log(newSum(2,3,5,4)); // 35
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -864,36 +944,36 @@ console.log(newSum(2,3,5,4)); // 35
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/JChehe" target="_blank">
+                <a href="https://github.com/JChehe" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/u/1995306965" target="_blank">
+                <a href="http://weibo.com/u/1995306965" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.jobbole.com/members/q574805242/" target="_blank">
+                <a href="http://www.jobbole.com/members/q574805242/" target="_blank" title="伯乐在线">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-fw fa-globe"></i>
                   
                   伯乐在线
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://segmentfault.com/u/jc" target="_blank">
+                <a href="https://segmentfault.com/u/jc" target="_blank" title="Segmentfault">
                   
-                    <i class="fa fa-Segmentfault"></i>
+                    <i class="fa fa-fw fa-segmentfault"></i>
                   
                   Segmentfault
                 </a>
@@ -906,45 +986,51 @@ console.log(newSum(2,3,5,4)); // 35
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-            <div class="links-of-blogroll-title">友情链接</div>
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://aotu.io" target="_blank">凹凸实验室</a>
+                  <a href="https://aotu.io" title="凹凸实验室" target="_blank">凹凸实验室</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://gongmingwang.com/" target="_blank">莞青共鸣网</a>
+                  <a href="http://gongmingwang.com/" title="莞青共鸣网" target="_blank">莞青共鸣网</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://codcodog.github.io/" target="_blank">莫廖の博客</a>
+                  <a href="http://codcodog.github.io/" title="莫廖の博客" target="_blank">莫廖の博客</a>
                 </li>
               
             </ul>
-          
-        </div>
-        <div class="links-of-blogroll motion-element">
-          <div class="links-of-blogroll-title" style="text-align:left; margin-bottom:5px;">关注公众号</div>
-          <img src="/images/o2_qrcode.jpg" alt="O2实验室公众号" />
-        </div>
+          </div>
+        
+
+        
+
 
       </section>
 
-
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本技巧"><span class="nav-number">2.</span> <span class="nav-text">基本技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#尽量少用全局变量"><span class="nav-number">2.1.</span> <span class="nav-text">尽量少用全局变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局变量的问题"><span class="nav-number">2.1.1.</span> <span class="nav-text">全局变量的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单一var模式"><span class="nav-number">2.2.</span> <span class="nav-text">单一var模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免使用隐式类型转换"><span class="nav-number">2.3.</span> <span class="nav-text">避免使用隐式类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免使用-eval"><span class="nav-number">2.4.</span> <span class="nav-text">避免使用 eval()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用parseInt-进行数字转换"><span class="nav-number">2.5.</span> <span class="nav-text">使用parseInt()进行数字转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名约定"><span class="nav-number">2.6.</span> <span class="nav-text">命名约定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字面量与构造函数"><span class="nav-number">3.</span> <span class="nav-text">字面量与构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强制使用new的模式"><span class="nav-number">3.1.</span> <span class="nav-text">强制使用new的模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">4.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重定义函数"><span class="nav-number">4.1.</span> <span class="nav-text">重定义函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件初始化"><span class="nav-number">4.2.</span> <span class="nav-text">条件初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数属性——记忆模式（Memoization）"><span class="nav-number">4.3.</span> <span class="nav-text">函数属性——记忆模式（Memoization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#柯里化"><span class="nav-number">4.4.</span> <span class="nav-text">柯里化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么时候使用柯里化"><span class="nav-number">4.4.1.</span> <span class="nav-text">什么时候使用柯里化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">4.5.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象创建模式"><span class="nav-number">5.</span> <span class="nav-text">对象创建模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名空间模式"><span class="nav-number">5.1.</span> <span class="nav-text">命名空间模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用命名空间函数"><span class="nav-number">5.1.1.</span> <span class="nav-text">通用命名空间函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖声明"><span class="nav-number">5.2.</span> <span class="nav-text">依赖声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私有属性和方法"><span class="nav-number">5.3.</span> <span class="nav-text">私有属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#私有成员"><span class="nav-number">5.3.1.</span> <span class="nav-text">私有成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特权方法"><span class="nav-number">5.3.2.</span> <span class="nav-text">特权方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#私有成员失效"><span class="nav-number">5.3.3.</span> <span class="nav-text">私有成员失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型和私有成员"><span class="nav-number">5.3.4.</span> <span class="nav-text">原型和私有成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将私有函数暴露为公有方法"><span class="nav-number">5.3.5.</span> <span class="nav-text">将私有函数暴露为公有方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块模式"><span class="nav-number">5.4.</span> <span class="nav-text">模块模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#暴露模块模式"><span class="nav-number">5.4.1.</span> <span class="nav-text">暴露模块模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在模块中引入全局上下文"><span class="nav-number">5.4.2.</span> <span class="nav-text">在模块中引入全局上下文</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码复用模式"><span class="nav-number">6.</span> <span class="nav-text">代码复用模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过复制属性实现继承"><span class="nav-number">6.1.</span> <span class="nav-text">通过复制属性实现继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混元（Mix-ins）"><span class="nav-number">6.2.</span> <span class="nav-text">混元（Mix-ins）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#借用方法"><span class="nav-number">6.3.</span> <span class="nav-text">借用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结-1"><span class="nav-number">6.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM与浏览器模式"><span class="nav-number">7.</span> <span class="nav-text">DOM与浏览器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#延迟加载"><span class="nav-number">7.1.</span> <span class="nav-text">延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按需加载"><span class="nav-number">7.2.</span> <span class="nav-text">按需加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预加载JavaScript"><span class="nav-number">7.3.</span> <span class="nav-text">预加载JavaScript</span></a></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -967,8 +1053,9 @@ console.log(newSum(2,3,5,4)); // 35
   <span class="author" itemprop="copyrightHolder">刘健超</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -979,7 +1066,9 @@ console.log(newSum(2,3,5,4)); // 35
 </div>
 
 
+        
 
+        
       </div>
     </footer>
 
@@ -990,12 +1079,6 @@ console.log(newSum(2,3,5,4)); // 35
 
   
 
-
-  
-
-
-
-
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
@@ -1003,48 +1086,65 @@ console.log(newSum(2,3,5,4)); // 35
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
 
-  
-  
 
-
-  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
@@ -1069,14 +1169,21 @@ console.log(newSum(2,3,5,4)); // 35
 
   
     
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
+
+
+
   
   
+
   
 
   
@@ -1112,6 +1219,14 @@ console.log(newSum(2,3,5,4)); // 35
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
           }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
         })
         .fail(function (object, error) {
           console.log("Error: " + error.code + " " + error.message);
@@ -1142,6 +1257,12 @@ console.log(newSum(2,3,5,4)); // 35
             });
           } else {
             var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
             newcounter.set("title", title);
             newcounter.set("url", url);
             newcounter.set("time", 1);
@@ -1175,6 +1296,9 @@ console.log(newSum(2,3,5,4)); // 35
 
 
   
+
+  
+
 
 </body>
 </html>
