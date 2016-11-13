@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-13T11:54:16.000Z</updated>
+  <updated>2016-11-13T11:55:44.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/11/13/2016-11-08-first-mobile-rebuild/"/>
     <id>http://yoursite.com/2016/11/13/2016-11-08-first-mobile-rebuild/</id>
     <published>2016-11-13T11:52:51.000Z</published>
-    <updated>2016-11-13T11:54:16.000Z</updated>
+    <updated>2016-11-13T11:55:44.000Z</updated>
     
     <content type="html"><![CDATA[<p>最近被分配到移动端开发组，支持某活动的页面页面制作。这算是我第一次真正接触移动端页面制作，下面就谈谈个人总结和思考。</p>
 <a id="more"></a>
@@ -148,13 +148,13 @@ li:first-child:nth-last-child(4) ~ li {
 <li>多行文本的多行padding：让背景只出现在有文字的地方，可直接设置 <code>display: inline;</code>，但还会存在一个问题是：padding 只会出现在多行文本的首和尾，对于需要为每行文本的首尾都需要相同的 padding，可以参考这篇文章：<a href="https://css-tricks.com/multi-line-padded-text/" target="_blank" rel="external">《multi-line-padded-text》</a> 。该文章提供了多种实现方式，根据具体情况选择一种即可。另外，对于每行的间距，可通过设置 line-height 和 padding-top/bottom 实现，其中 line-height 要大于（字体高度+padding-top/bottom）。<br><img src="//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/multi-line1.png" alt="此处输入图片的描述"><br><img src="//misc.aotu.io/JChehe/2016-11-08-first-mobile-rebuild/multi-line2.png" alt="此处输入图片的描述">  </li>
 <li>最小字体限制：PC上最小字体是 12px、移动端最小是 8px，当然可通过 transform:scale() 突破限制。</li>
 </ul>
-<h3 id="不止页面页面制作"><a href="#不止页面页面制作" class="headerlink" title="不止页面页面制作"></a>不止页面页面制作</h3><ol>
+<h2 id="不止页面页面制作"><a href="#不止页面页面制作" class="headerlink" title="不止页面页面制作"></a>不止页面页面制作</h2><ol>
 <li>基础：合理运用 CSS 的威力更好地完成对设计稿的重现目的。  </li>
 <li>沟通：由于分工较细，只负责页面制作的同学，需要与产品和设计沟通，以达到交给开发后更少修改的目的。如哪些地方可跳转、哪些地方最多显示几行文字、超出如何处理（直接隐藏/省略号等）、坑位中的图片摆放（顶部对齐/居中等）等等。  </li>
 <li>代码上的沟通：HTML 注释要写好、HTML 与 CSS 代码要规范（命名等）清晰。  </li>
 </ol>
-<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>由于工具的成熟，我不需要考虑构建工具的搭建。<br>由于发布方式的成熟，页面制作和开发能更好地分离，页面制作者负责输出 HTML、CSS，开发负责 copy html 代码和引入 CSS 页面片。CSS 页面片由页面制作者更新发布，开发无需关心。这达到了互不干扰、多线程并行的效果。<br>成熟的基础设施让我们免除了非代码相关的烦恼，但这也让我担心：假如有一天我脱离了这些基础设施，我该如何保持高效。</p>
-<h4 id="延伸：页面片是什么？"><a href="#延伸：页面片是什么？" class="headerlink" title="延伸：页面片是什么？"></a>延伸：页面片是什么？</h4><p>CSS 页面片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- #include virtual=&quot;/folder/branch.shtml&quot; --&gt;</div><div class="line">&lt;link combofile=&quot;/folder/branch.shtml&quot; rel=&quot;stylesheet&quot; href=&quot;//website/folder/gb.min_1151b5b0.css,/folder/branch.min_925332fc.css&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>由于工具的成熟，我不需要考虑构建工具的搭建。<br>由于发布方式的成熟，页面制作和开发能更好地分离，页面制作者负责输出 HTML、CSS，开发负责 copy html 代码和引入 CSS 页面片。CSS 页面片由页面制作者更新发布，开发无需关心。这达到了互不干扰、多线程并行的效果。<br>成熟的基础设施让我们免除了非代码相关的烦恼，但这也让我担心：假如有一天我脱离了这些基础设施，我该如何保持高效。</p>
+<h3 id="延伸：页面片是什么？"><a href="#延伸：页面片是什么？" class="headerlink" title="延伸：页面片是什么？"></a>延伸：页面片是什么？</h3><p>CSS 页面片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- #include virtual=&quot;/folder/branch.shtml&quot; --&gt;</div><div class="line">&lt;link combofile=&quot;/folder/branch.shtml&quot; rel=&quot;stylesheet&quot; href=&quot;//website/folder/gb.min_1151b5b0.css,/folder/branch.min_925332fc.css&quot; /&gt;</div></pre></td></tr></table></figure></p>
 <p>JS 页面片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- #include virtual=&quot;/folder/branch_js.shtml&quot; --&gt;</div><div class="line">&lt;script combofile=&quot;/folder/branch.shtml&quot; src=&quot;//website/path/branch.min_8971778a.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
 <blockquote>
 <p>Combo Handler是Yahoo!开发的一个Apache模块，它实现了开发人员简单方便地通过URL来合并JavaScript和CSS文件，从而大大减少文件请求数。 <a href="http://www.cnblogs.com/zhengyun_ustc/archive/2012/07/18/combo.html" target="_blank" rel="external">http://www.cnblogs.com/zhengyun_ustc/archive/2012/07/18/combo.html</a></p>
@@ -1130,9 +1130,9 @@ console.log(newSum(2,3,5,4)); // 35
       <category term="原创" scheme="http://yoursite.com/categories/%E5%8E%9F%E5%88%9B/"/>
     
     
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
-    
       <category term="notes" scheme="http://yoursite.com/tags/notes/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
   </entry>
   
@@ -3841,9 +3841,9 @@ console.log(person2.getAge()); // 23
       <category term="原创" scheme="http://yoursite.com/categories/%E5%8E%9F%E5%88%9B/"/>
     
     
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
-    
       <category term="notes" scheme="http://yoursite.com/tags/notes/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
       <category term="object-oriented" scheme="http://yoursite.com/tags/object-oriented/"/>
     
@@ -4795,9 +4795,9 @@ p{margin-left:200px}
       <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
-    
       <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
   </entry>
   
